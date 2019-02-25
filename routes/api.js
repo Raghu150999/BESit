@@ -1,5 +1,8 @@
 const router = require('express').Router();
 const User = require('../models/userSchema');
+const jwtHandler = require('./../auth/token');
+const utils = require('./../utils/utils');
+const jwt = require('jsonwebtoken');
 
 
 router.post('/verifyuser', (req, res) => {
@@ -53,18 +56,47 @@ router.post('/login', (req, res) => {
             err = true;
             success = false;
         }
+        let cleanUser = utils.getCleanUser(result);
         const response = {
             success: success,
             error: err,
             msg: 'Invalid username or password',
-            user: result
+            user: cleanUser,
+            token: null
         };
-        if(err === false)
+        if(err === false) {
             User.logIn(result.username, val => {
             });
+            let token = jwtHandler.generateToken(result);
+            response.token = token;
+            console.log(token);
+        }
         res.send(response);
     });
-})
+});
 
+router.get('/authorize', (req, res) => {
+    let token = req.query.token;
+    jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
+        if(err) throw err;
+        User.findOne({ username: user.username }).then(result => {
+            let response;
+            if(result) {
+                user = utils.getCleanUser(user);
+                response = {
+                    user,
+                    success: true
+                }
+            }
+            else {
+                response = {
+                    user: null,
+                    success: false
+                }
+            }
+            res.json(response);
+        })
+    })
+});
 
 module.exports = router;

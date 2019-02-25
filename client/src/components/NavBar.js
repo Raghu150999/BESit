@@ -6,7 +6,7 @@ class NavBar extends Component {
     render() {
         return (
             <nav className="navbar navbar-expand-lg bg-dark navbar-dark">
-                <span className="navbar-brand logo">Besit</span>
+                <span className="navbar-brand logo">BESit</span>
             </nav>
         )
     }

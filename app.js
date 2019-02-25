@@ -7,6 +7,9 @@ const cors = require('cors');
 
 const app = express();
 
+// environment variables for jwt token
+require('dotenv').config();
+
 mongoose.Promise = global.Promise;
 
 mongoose.connect('mongodb://localhost/mydb', {useNewUrlParser: true})
@@ -20,6 +23,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routers);
 
+// Custom middleware to handle errors
 app.use((err, req, res, next) => {
   console.log('Error:', err.message);
   res.status(422).json(err.message);

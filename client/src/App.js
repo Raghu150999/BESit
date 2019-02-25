@@ -3,6 +3,9 @@ import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import SignUp from './components/SignUp';
 import NavBar from './components/NavBar';
 import LogIn from './components/LogIn';
+import Profile from './components/Profile';
+import HomeNav from './components/HomeNav';
+
 
 class App extends Component {
   render() {
@@ -13,7 +16,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={LogIn} />
             <Route path="/signup" component={SignUp} />
-            {/* <Route path="/public" component= {Public} /> */}
+            <Route path="/profile" component= {Profile} />
           </Switch>
         </BrowserRouter>
       </div>
