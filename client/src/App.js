@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import {BrowserRouter, Route, Switch} from 'react-router-dom';
 import SignUp from './components/SignUp';
 import NavBar from './components/NavBar';
+import LogIn from './components/LogIn';
 
 class App extends Component {
   render() {
@@ -10,7 +11,8 @@ class App extends Component {
         <NavBar />
         <BrowserRouter>
           <Switch>
-            <Route exact path="/" component={SignUp} />
+            <Route exact path="/" component={LogIn} />
+            <Route path="/signup" component={SignUp} />
             {/* <Route path="/public" component= {Public} /> */}
           </Switch>
         </BrowserRouter>

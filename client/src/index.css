@@ -16,3 +16,17 @@ code {
 .logo {
   font-size: 3vw;
 }
+
+.signupform {
+  margin-top: 20px;
+  margin-bottom: 100px;
+}
+
+.loginform {
+  margin-top: 20px;
+}
+
+.register {
+  margin-top: 25px;
+  margin-left: -25px;
+}

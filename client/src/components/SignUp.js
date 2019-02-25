@@ -2,29 +2,24 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 class SignUp extends Component {
-    constructor(props){
-        super(props);
-        this.state = {
-            errors: []
-        }
+    state = {
+        error: []
     }
     handleSubmit = (e) => {
         e.preventDefault();
-        var form = document.querySelector('.signupform');
-        var data = new FormData(form);
-        console.log(data);
-        axios.post('http://localhost:8000/api/verifyUser', {
+        let user = {
             username: e.target[0].value,
             fname: e.target[1].value,
             lname: e.target[2].value,
             email: e.target[3].value,
             password: e.target[4].value,
             rpassword: e.target[5].value
-        })
+        };
+        axios.post('http://localhost:8000/api/verifyuser', user)
         .then(res => res.data)
         .then(json => {
             if(json.success){
-                
+                this.props.history.push('/', {success: true, msg: 'Registered Successfully!'});
             }else{
                 let errs = json.errors.map((error) => {
                     return error.msg;
