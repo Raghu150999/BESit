@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import { authorize } from './../utils/authorize'
-
+import { connect } from 'react-redux';
 
 class LogIn extends Component {
     state = {
@@ -10,15 +10,15 @@ class LogIn extends Component {
     }
 
     componentDidMount() {
-        const token = localStorage.getItem('acces_token');
+        const token = localStorage.getItem('access_token');
         authorize(token).then(result => {
-            console.log(result);
             if (result.success) {
+                this.props.logInUser(result.user);
                 this.props.history.push('/profile');
             }
             else {
                 if (result.remove) {
-                    localStorage.removeItem('acces_token');
+                    localStorage.removeItem('access_token');
                 }
             }
         });
@@ -33,10 +33,13 @@ class LogIn extends Component {
         .then(res => {
             let user = res.data.user;
             if(res.data.success) {
-                localStorage.setItem('acces_token', res.data.token);
-                this.props.history.push('/profile/' + user.username, {
-                    user
-                });
+                // saving access token in the browser
+                localStorage.setItem('access_token', res.data.token);
+                
+                // adding user to the redux store
+                this.props.logInUser(user); 
+
+                this.props.history.push('/profile/' + user.username);
             }
             else {
                 this.setState({
@@ -52,6 +55,7 @@ class LogIn extends Component {
         this.props.history.push('/signup');
     }
     render() {
+
         let msgBlock = this.props.location.state && this.props.location.state.success ? (
             <div className="alert alert-success">
                 <strong>Success: </strong> {this.props.location.state.msg}
@@ -94,4 +98,18 @@ class LogIn extends Component {
     }
 }
 
-export default LogIn;
+const mapStateToProps = (state, ownProps) => {
+    return {
+
+    }; // nothing needed from redux store
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logInUser: (user) => {
+            dispatch({ type: 'LOGIN_USER', user: user }); // calling a dispatch action
+        }
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(LogIn);

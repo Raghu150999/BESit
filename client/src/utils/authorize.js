@@ -1,5 +1,4 @@
 import axios from 'axios'
-import React, { Component } from 'react';
 
 export const authorize = async function (token) {
     

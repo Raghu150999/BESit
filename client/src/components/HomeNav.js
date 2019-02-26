@@ -5,19 +5,22 @@ import { Link, NavLink } from 'react-router-dom';
 class HomeNav extends Component {
     render() {
         return (
-            <nav className="navbar navbar-expand-sm bg-light navbar-light">
-                <ul className="navbar-nav">
+            <nav className="navbar navbar-expand-sm bg-dark navbar-dark sticky-top">
+                <ul className="navbar-nav homenav">
                     <li className="nav-item active">
-                        <a className="nav-link" href="#">Active</a>
+                        <a className="nav-link" href="#">Home</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
+                        <a className="nav-link" href="#">Buy</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link" href="#">Link</a>
+                        <a className="nav-link" href="#">Sell</a>
                     </li>
                     <li className="nav-item">
-                        <a className="nav-link disabled" href="#">Disabled</a>
+                        <a className="nav-link" href="#">Settings</a> { /* @info: # represents redirecting to same page empty href will do nothing */}
+                    </li>
+                    <li className="nav-item">
+                        <a className="nav-link" href="" onClick={this.props.logOut}>LogOut</a> { /* @debug: Float this to right */ }
                     </li>
                 </ul>
             </nav>
