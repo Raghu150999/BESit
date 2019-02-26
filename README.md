@@ -1,4 +1,4 @@
-# BESit-final
+# BESit
 
 Installation & Usage: 
 
