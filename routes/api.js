@@ -6,6 +6,7 @@ const jwt = require('jsonwebtoken');
 
 
 router.post('/verifyuser', (req, res) => {
+    console.log(req.body);
     User.findOne({ username: req.body.username }).then(function (result) {
         if (result)
             req.check('username', 'User already exists').not().equals(result.username);
@@ -14,6 +15,7 @@ router.post('/verifyuser', (req, res) => {
         req.check('email', 'Not a valid email').isEmail();
         req.check('password', 'Password cannot be empty').notEmpty();
         req.check('password', 'Passwords don\'t match').equals(req.body.rpassword);
+        req.check('phoneno', 'Phoneno is invalid').isMobilePhone(["en-IN"]);
         User.findOne({email: req.body.email}).then(result => {
             if(result){
                 req.check('email', 'Email already in use').not().equals(result.email);
@@ -45,18 +47,19 @@ router.post('/login', (req, res) => {
     User.findOne({ username: req.body.username }).then(result => {
         let err = false;
         let success = true;
-        let loggedIn = true;
+        let cleanUser;
         if(result) {
             if(result.password !== req.body.password) {
                 err = true;
                 success = false;
             }
+            cleanUser = utils.getCleanUser(result);
         }
         else {
             err = true;
             success = false;
         }
-        let cleanUser = utils.getCleanUser(result);
+        
         const response = {
             success: success,
             error: err,
@@ -65,8 +68,6 @@ router.post('/login', (req, res) => {
             token: null
         };
         if(err === false) {
-            User.logIn(result.username, val => {
-            });
             let token = jwtHandler.generateToken(result);
             response.token = token;
             console.log(token);
@@ -95,8 +96,8 @@ router.get('/authorize', (req, res) => {
                 }
             }
             res.json(response);
-        })
-    })
+        });
+    });
 });
 
 module.exports = router;
