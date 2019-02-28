@@ -4,7 +4,7 @@ import SignUp from './components/SignUp/SignUp';
 //import NavBar from './components/NavBar';
 import LogIn from './components/Login/LogIn';
 import Profile from './components/Profile/Profile';
-import Sell from './Sell/Sell';
+import Sell from './components/Sell/Sell';
 
 
 class App extends Component {
