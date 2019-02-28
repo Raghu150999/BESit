@@ -1,0 +1,40 @@
+
+.container-register{
+    background-color: #e99041;
+    width: 100%;  
+    min-height: 100vh;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+}
+#forgot1{
+    color:#924d10 ;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 16px;
+    padding: 6px;
+}
+.wrap-input100 {
+    width: 100%;
+    position: relative;
+  }
+
+#card{
+    width: 95%;
+    margin-bottom: 85px;
+    margin-top: 85px;
+}
+
+.card-body{
+    margin-top:15px;
+}
+
+.container-button{
+    text-align:center;
+}
