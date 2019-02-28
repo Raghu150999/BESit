@@ -1,7 +1,9 @@
+import './styles.css';
 import React, { Component } from 'react';
 import axios from 'axios';
-import { authorize } from './../utils/authorize'
+import { authorize } from '../../utils/authorize'
 import { connect } from 'react-redux';
+import {Link} from 'react-router-dom'
 
 class LogIn extends Component {
     state = {
@@ -50,10 +52,6 @@ class LogIn extends Component {
         });
     }
 
-    handleRegister = (e) => {
-        e.preventDefault();
-        this.props.history.push('/signup');
-    }
     render() {
 
         let msgBlock = this.props.location.state && this.props.location.state.success ? (
@@ -71,29 +69,26 @@ class LogIn extends Component {
             </div>
         ) : ('');
         return (
-            <div className="container loginform">
+            <div className="container-login100">
                 {msgBlock}
                 {errBlock}
-                <form onSubmit={this.handleSubmit}>
-                    <div className="text-center container">
-                        <h1 className="display-4">
-                            Log In
-                        </h1>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="">Username:</label>
-                        <input type="text" name="username" className="form-control"/>
-                    </div>
-                    <div className="form-group">
-                        <label htmlFor="">Password:</label>
-                        <input type="password" className="form-control" name="password"/>
-                    </div>
-                    <button className="btn btn-primary">Submit</button>
+                <form className="loginform" onSubmit={this.handleSubmit}>
+                                    <h1 id="title">Want to sell? Want to Buy?<br/>BESit Karo. Lite lo.</h1>
+                                    <div className="form-group">
+                                    <div className="wrap-input100 validate-input" data-validate = "Enter username">
+                                    <label for="Username">UserName</label>
+                                    <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="UserName"/>
+                                    <span className="focus-input100" data-placeholder="&#xf207;"></span>
+                                    </div>
+                                    <div className="form-group">
+                                    <label for="Password">Password</label>
+                                    <input type="password" className="form-control" name="password" placeholder="Password"/>
+                                    </div>
+                                    <button type="submit" className="btn btn-primary" id="index-submit">Submit</button>
+                                    <span className="psw">Don't have an account? <Link to="/signup" id="forgot"> Register now.</Link></span>
+                                </div>
                 </form>
-                <div className="container register">
-                    <button className="btn btn-link" onClick={this.handleRegister}>Register</button>
-                </div>
-            </div>
+        </div>
         )
     }
 }

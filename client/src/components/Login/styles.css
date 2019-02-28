@@ -1,0 +1,35 @@
+.container-login100 {
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url(img/bg1.jpg);
+    width: 100%;  
+    min-height: 100vh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+  }
+#forgot{
+    color:#fff ;
+    text-decoration: none;
+    text-transform: capitalize;
+    font-size: 16px;
+    padding: 6px;
+  }
+.flex-centered{
+    padding: 40px 40px;
+}
+#title{
+    color:#fff;
+    font-size: 45px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    word-spacing: 4px; 
+    margin-bottom:35px; 
+  }
+
+

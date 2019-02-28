@@ -1,36 +1,51 @@
-body {
-  margin: 0;
+* {
+  margin: 0 auto;
   padding: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-    "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "Helvetica Neue",
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  box-sizing: border-box;
 }
-
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
-    monospace;
+html {
+background-color: #fff;
+color: #e67e22;
+font-family: 'Lato','Arial','sans-serif';
+font-weight: 100;
+font-size: 20px;
+text-rendering: optimizeLegibility;
 }
-
-.logo {
-  font-size: 3vw;
+.btn{
+  display: inline-block;
+  padding: 10px 30px;
+  font-weight: 300;
+  text-decoration: none;
+  border-radius: 200px;
+  transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
-
-.signupform {
-  margin-top: 20px;
-  margin-bottom: 100px;
+.btn-primary{
+  background-color: #e67e22;
+  border: 1px solid #e67e22;
+  color: #fff;
+  margin-right: 15px;
 }
-
-.loginform {
-  margin-top: 20px;
+.btn:hover,
+.btn:active {
+  background-color: #cf6d17; 
+  border: 1px solid #cf6d17;
 }
-
-.register {
-  margin-top: 25px;
-  margin-left: -25px;
+label {
+color:#e67e22;
 }
-
-.homenav {
-  font-size: 1.75vw;
+span.psw{
+  float: right;
+  padding-top: 16px;
+}
+span.psw {
+color: #eda25f;
+}
+a:link,
+a:visited{
+  border-bottom: 2px solid transparent;
+  transition: border-bottom 0.5s;
+}
+a:hover,
+a:active{
+  border-bottom: 2px solid #e67e22;
 }
