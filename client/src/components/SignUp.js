@@ -12,8 +12,10 @@ class SignUp extends Component {
             fname: e.target[1].value,
             lname: e.target[2].value,
             email: e.target[3].value,
-            password: e.target[4].value,
-            rpassword: e.target[5].value
+            phoneno: e.target[4].value,
+            roomno: e.target[5].value,
+            password: e.target[6].value,
+            rpassword: e.target[7].value
         };
         axios.post('http://localhost:8000/api/verifyuser', user)
         .then(res => res.data)
@@ -68,6 +70,16 @@ class SignUp extends Component {
                     <div className="form-group">
                         <label htmlFor="">Email:</label>
                         <input type="text" name="email" className="form-control" />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="">Phone no:</label>
+                        <input type="text" name="phoneno" className="form-control" />
+                    </div>
+
+                    <div className="form-group">
+                        <label htmlFor="">Room no:</label>
+                        <input type="text" name="roomno" className="form-control" />
                     </div>
 
                     <div className="form-group">

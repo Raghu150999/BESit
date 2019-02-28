@@ -4,7 +4,6 @@ import SignUp from './components/SignUp';
 import NavBar from './components/NavBar';
 import LogIn from './components/LogIn';
 import Profile from './components/Profile';
-import HomeNav from './components/HomeNav';
 
 
 class App extends Component {

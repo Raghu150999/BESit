@@ -7,10 +7,8 @@ let userSchema = new Schema({
     lname: String,
     email: String,
     password: String,
-    loggedIn: {
-        type: Boolean,
-        default: false
-    }
+    phoneno: Number,
+    roomno: String
 });
 
 let User = mongoose.model('users', userSchema);
@@ -18,13 +16,15 @@ let User = mongoose.model('users', userSchema);
 module.exports = User;
 
 module.exports.saveUser = function (data, done) {
+    console.log(data);
     let user = new User({
         username: data.username,
         fname: data.fname,
         lname: data.lname,
         email: data.email,
         password: data.password,
-        loggedIn: false
+        roomno: data.roomno,
+        phoneno: data.phoneno
     });
     User.findOne({ username: data.username }).then(function (result) {
         if (result === null) {
@@ -38,41 +38,4 @@ module.exports.saveUser = function (data, done) {
     });
 }
 
-
-module.exports.logIn = function (username, done) {
-    User.findOne({username: username}).then(result => {
-        if(result) {
-            User.findOneAndUpdate({username: username}, {loggedIn: true}).then(res => {
-                done(true);
-            });
-        }
-        else {
-            done(false);
-        }
-    });
-}
-
-module.exports.logOut = function (username, done) {
-    User.findOne({ username: username }).then(result => {
-        if (result) {
-            User.findOneAndUpdate({ username: username }, { loggedIn: false }).then(result => {
-                done(true);
-            });
-        }
-        else {
-            done(false);
-        }
-    });
-}
-
-module.exports.checkStatus = function (username, done) {
-    User.findOne({ username: username }).then(result => {
-        if(result) {
-            return result.loggedIn;
-        }
-        else {
-            return null;
-        }
-    });
-}
 
