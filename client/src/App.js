@@ -4,6 +4,7 @@ import SignUp from './components/SignUp/SignUp';
 //import NavBar from './components/NavBar';
 import LogIn from './components/Login/LogIn';
 import Profile from './components/Profile/Profile';
+import Sell from './Sell/Sell';
 
 
 class App extends Component {
@@ -16,6 +17,7 @@ class App extends Component {
             <Route exact path="/" component={LogIn} />
             <Route path="/signup" component={SignUp} />
             <Route path="/profile" component= {Profile} />
+            <Route path="/sell" component={Sell} />
           </Switch>
         </BrowserRouter>
       </div>
