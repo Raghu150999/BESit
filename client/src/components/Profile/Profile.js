@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
-import HomeNav from './HomeNav';
+import HomeNav from '../HomeNav/HomeNav';
 import { connect } from 'react-redux';
-import { authorize } from '../utils/authorize';
+import { authorize } from '../../utils/authorize';
 
 
 class Profile extends Component {
