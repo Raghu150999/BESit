@@ -5,7 +5,8 @@ module.exports.getCleanUser = function (user) {
         lname: user.lname,
         email: user.email,
         phoneno: user.phoneno,
-        roomno: user.roomno
+        roomno: user.roomno,
+        password:user.password
     }
     return newUser;
 }
