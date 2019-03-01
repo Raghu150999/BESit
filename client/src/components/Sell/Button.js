@@ -6,15 +6,16 @@ class Button extends Component {
 
     state = {
         open: false,
-      };
-     
-      onOpenModal = () => {
+    };
+
+    onOpenModal = () => {
         this.setState({ open: true });
-      };
-     
-      onCloseModal = () => {
+    };
+
+    onCloseModal = () => {
         this.setState({ open: false });
-      };
+    };
+
     render() {
         const { open } = this.state;
         return (
@@ -22,9 +23,9 @@ class Button extends Component {
                 <button className="btn btn-primary btn-lg" onClick={this.onOpenModal}>
                     Upload New Item
                 </button>
-                <Modal open={open} onClose={ this.onCloseModal} center>
-            <Form/>
-        </Modal>
+                <Modal open={open} onClose={this.onCloseModal} center>
+                    <Form />
+                </Modal>
             </div>
         )
     }

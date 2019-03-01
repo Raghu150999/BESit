@@ -37,7 +37,6 @@ class LogIn extends Component {
             if(res.data.success) {
                 // saving access token in the browser
                 localStorage.setItem('access_token', res.data.token);
-                
                 // adding user to the redux store
                 this.props.logInUser(user); 
 
