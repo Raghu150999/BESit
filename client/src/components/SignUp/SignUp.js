@@ -158,7 +158,7 @@ class SignUp extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="container">
+                <div className="error">
                     {errBlock}
                 </div>
             </div>
