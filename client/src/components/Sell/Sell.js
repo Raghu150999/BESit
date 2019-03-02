@@ -5,9 +5,11 @@ import HomeNav from '../HomeNav/HomeNav';
 class Sell extends Component {
     render() {
         return (
-            <div className="container">
+            <div>
                 <HomeNav />
-                <Products />
+                <div  className="container">
+                    <Products />
+                </div>
             </div>
         )
     }

@@ -58,7 +58,9 @@ class Products extends Component {
         return (
             <div>
                 <Button />
-                <h4>All Your Items:</h4>
+                <div className = "container">
+                    <h2 style = {{marginTop: '15px'}}>All Your Items:</h2>
+                </div>
                 {displayItems}
             </div>
         )
