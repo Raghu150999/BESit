@@ -29,5 +29,5 @@ app.use((err, req, res, next) => {
   res.status(422).json(err.message);
 });
 
-app.listen(8000);
+app.listen(process.env.PORT||8000);
 console.log('Listening to port 8000');
