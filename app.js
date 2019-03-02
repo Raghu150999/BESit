@@ -3,7 +3,7 @@ const  bodyParser = require('body-parser');
 const  morgan = require('morgan');
 const  mongoose = require('mongoose');
 const  routers = require('./server/routes');
-const cors = require('cors');
+const  cors = require('cors');
 
 const app = express();
 
@@ -12,7 +12,7 @@ require('dotenv').config();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/mydb', {useNewUrlParser: true})
+mongoose.connect("mongodb://Raghu:raghu150999@cluster0-shard-00-00-y5bgy.mongodb.net:27017,cluster0-shard-00-01-y5bgy.mongodb.net:27017,cluster0-shard-00-02-y5bgy.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true", {useNewUrlParser: true})
   .catch(err => console.error(err));
 
 
