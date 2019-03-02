@@ -1,0 +1,32 @@
+#prof{
+    margin-top:20px;
+}
+#prof1{
+    margin-top:45px;
+}
+#profiletitle{
+    color:#fff;
+    font-size: 45px;
+    font-weight: 300;
+    letter-spacing: 1px;
+    word-spacing: 4px; 
+    margin-bottom:35px; 
+    text-align: center;
+}
+.profile{
+    background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url(img/good.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    align-items: center;
+}
+#profilecard{
+    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url(img/good.jpg);*/
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    width: 45%;
+    margin-top:50px;
+}
