@@ -20,29 +20,29 @@ class Profile extends Component {
     }
     componentDidMount() 
     {
-            const token = localStorage.getItem('access_token');
-            authorize(token).then(result => {
-                if (result.success) {
-                    this.props.logInUser(result.user);
-                    this.setState({
-                        user: {
+        const token = localStorage.getItem('access_token');
+        authorize(token).then(result => {
+            if (result.success) {
+                this.props.logInUser(result.user);
+                this.setState({
+                    user: {
                         username: result.user.username,
-                        fname:result.user.fname,
+                        fname: result.user.fname,
                         phoneno: result.user.phoneno,
                         roomno: result.user.roomno,
                         lname: result.user.lname,
-                        email:result.user.email,
-                        password:result.user.password
+                        email: result.user.email,
+                        password: result.user.password
                     }
                 });
+            }
+            else {
+                if (result.remove) {
+                    localStorage.removeItem('access_token');
                 }
-                else {
-                    if (result.remove) {
-                        localStorage.removeItem('access_token');
-                    }
-                    this.props.history.push('/');
-                }
-            });
+                this.props.history.push('/');
+            }
+        });    
     }
     logOut = (e) => {
         e.preventDefault();
@@ -97,42 +97,42 @@ class Profile extends Component {
         })) : '';
         return (
             <div className="profile">
-                <HomeNav logOut={this.logOut}/>
+                <HomeNav />
                <div id="profilecard">
                     <h1 id="profiletitle">YOUR PROFILE</h1>
                     <form className="registerform" onSubmit={this.handleSubmit}>
                     <div className="form-group" id="prof1">
-                        <label for="Username" >UserName</label>
+                        <label htmlFor="Username" >UserName</label>
                         <input type="text" className="form-control" name="username" aria-describedby="emailHelp" defaultValue={this.state.user.username} disabled/>
                     </div>
 
                     <div className="form-group" id="prof">
-                        <label for="FirstName" >First Name</label>
+                        <label htmlFor="FirstName" >First Name</label>
                         <input type="text" className="form-control" name="fname" aria-describedby="emailHelp" defaultValue={this.state.user.fname}/>
                     </div>
 
                     <div className="form-group" id="prof">
-                        <label for="LastName" >Last Name</label>
+                        <label htmlFor="LastName" >Last Name</label>
                         <input type="text" className="form-control" name="lname" aria-describedby="emailHelp" defaultValue={this.state.user.lname}/>
                     </div>
                     
                     <div className="form-group" id="prof">
-                        <label for="Email">Email</label>
+                        <label htmlFor="Email">Email</label>
                         <input type="text" className="form-control" name="email" aria-describedby="emailHelp" defaultValue={this.state.user.email}/>
                     </div>
                     
                     <div className="form-group" id="prof">
-                        <label for="PhoneNo">Phone Number</label>
+                        <label htmlFor="PhoneNo">Phone Number</label>
                         <input type="text" className="form-control" name="phoneno" aria-describedby="emailHelp" defaultValue={this.state.user.phoneno}/>
                     </div>
                     
                     <div className="form-group" id="prof">
-                        <label for="RoomNo">Room Number</label>
+                        <label htmlFor="RoomNo">Room Number</label>
                         <input type="text" className="form-control" name="roomno" aria-describedby="emailHelp" defaultValue={this.state.user.roomno}/>
                     </div>
 
                     <div className="form-group" id="prof">
-                        <label for="Password">Password</label>
+                        <label htmlFor="Password">Password</label>
                         <input type="text" className="form-control" name="password" defaultValue={this.state.user.password}/>
                     </div>
 
@@ -150,4 +150,20 @@ class Profile extends Component {
     }
 }
 
-export default (Profile);
+const mapStateToProps = (state) => {
+    return {
+        userLoggedIn: state.userLoggedIn,
+        user: state.user
+    }
+}
+const mapDispatchToProps = (dispatch) => {
+    return {
+        logInUser: (user) => {
+            dispatch({ type: 'LOGIN_USER', user: user }); // calling a dispatch action
+        },
+        logOutUser: () => {
+            dispatch({ type: 'LOGOUT_USER' });
+        }
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(Profile);
