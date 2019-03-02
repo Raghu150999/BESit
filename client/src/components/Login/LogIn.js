@@ -28,7 +28,7 @@ class LogIn extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/login', {
+        axios.post('https://powerful-hamlet-87555.herokuapp.com/api/login', {
             username: e.target[0].value,
             password: e.target[1].value
         })

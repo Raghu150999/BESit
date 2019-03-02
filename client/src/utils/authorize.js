@@ -7,7 +7,7 @@ export const authorize = async function (token) {
             resolve({ success: false });
         });
     }
-    let res = await axios.get('http://localhost:8000/api/authorize', {
+    let res = await axios.get('https://powerful-hamlet-87555.herokuapp.com/api/authorize', {
         params: {
             token: token
         }

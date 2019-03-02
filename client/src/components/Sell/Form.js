@@ -23,7 +23,7 @@ class Form extends Component{
       owner: this.props.user.username, 
       status: 'NOT SOLD'
     };
-    axios.post('http://localhost:8000/api/additem', { formData })
+    axios.post('https://powerful-hamlet-87555.herokuapp.com/api/additem', { formData })
       .then(res => {
         // Display message item added
       });
