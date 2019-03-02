@@ -135,4 +135,23 @@ router.get('/authorize', (req, res) => {
     });
 });
 
+const Product = require('./../models/productSchema');
+
+router.post('/additem', (req, res) => {
+    const product = new Product({
+        ...req.body.formData
+    });
+    product.save().then(() => {
+        Product.find({}).then(result => {
+            res.send(result);
+        });
+    });
+});
+
+router.get('/getitems', (req, res) => {
+    Product.find({}).then(result => {
+        res.send(result);
+    });
+});
+
 module.exports = router;
