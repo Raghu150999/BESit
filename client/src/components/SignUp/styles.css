@@ -1,4 +1,3 @@
-
 .container-register{
     background-color: #e99041;
     width: 100%;  
@@ -25,7 +24,7 @@
     position: relative;
   }
 
-#card{
+#cardregister{
     width: 95%;
     margin-bottom: 85px;
     margin-top: 85px;
