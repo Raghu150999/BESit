@@ -22,7 +22,7 @@ class SignUp extends Component {
             password: e.target[6].value,
             rpassword: e.target[7].value
         };
-        axios.post('http://localhost:8000/api/verifyuser', user)
+        axios.post('https://powerful-hamlet-87555.herokuapp.com/api/verifyuser', user)
         .then(res => res.data)
         .then(json => {
             if(json.success){

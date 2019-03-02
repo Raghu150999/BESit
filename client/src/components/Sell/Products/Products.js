@@ -11,7 +11,7 @@ class Products extends Component {
         itemsAvailable: false
     }
     componentDidMount() {
-        axios.get('http://localhost:8000/api/getitems', {
+        axios.get('https://powerful-hamlet-87555.herokuapp.com/api/getitems', {
             params: {
                 username: 'Raghu'
             }

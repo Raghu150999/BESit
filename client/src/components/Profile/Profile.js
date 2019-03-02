@@ -61,7 +61,7 @@ class Profile extends Component {
             roomno: e.target[5].value,
             password: e.target[6].value,
         };
-        axios.post('http://localhost:8000/api/updateuser', user)
+        axios.post('https://powerful-hamlet-87555.herokuapp.com/api/updateuser', user)
         .then(res => res.data)
         .then(json => {
             if(json.success){
