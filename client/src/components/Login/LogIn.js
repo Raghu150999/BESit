@@ -72,20 +72,20 @@ class LogIn extends Component {
                 {msgBlock}
                 {errBlock}
                 <form className="loginform" onSubmit={this.handleSubmit}>
-                                    <h1 id="title">Want to sell? Want to Buy?<br/>BESit Karo. Lite lo.</h1>
-                                    <div className="form-group">
-                                    <div className="wrap-input100 validate-input" data-validate = "Enter username">
-                                    <label for="Username">UserName</label>
-                                    <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="UserName"/>
-                                    <span className="focus-input100" data-placeholder="&#xf207;"></span>
-                                    </div>
-                                    <div className="form-group">
-                                    <label for="Password">Password</label>
-                                    <input type="password" className="form-control" name="password" placeholder="Password"/>
-                                    </div>
-                                    <button type="submit" className="btn btn-primary" id="index-submit">Submit</button>
-                                    <span className="psw">Don't have an account? <Link to="/signup" id="forgot"> Register now.</Link></span>
-                                </div>
+                    <h1 id="title">Want to sell? Want to Buy?<br />BESit Karo. Lite lo.</h1>
+                    <div className="form-group">
+                        <div className="wrap-input100 validate-input" data-validate="Enter username">
+                            <label htmlFor="Username">UserName</label>
+                            <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="UserName" />
+                            <span className="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="Password">Password</label>
+                            <input type="password" className="form-control" name="password" placeholder="Password" />
+                        </div>
+                        <button type="submit" className="btn btn-primary" id="index-submit">Submit</button>
+                        <span className="psw">Don't have an account? <Link to="/signup" id="forgot"> Register now.</Link></span>
+                    </div>              
                 </form>
         </div>
         )
