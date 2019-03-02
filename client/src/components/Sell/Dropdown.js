@@ -28,24 +28,12 @@ class Dropdown extends Component{
 
     render(){
         return(
-                <div class="styled-select rounded">
+                <div className="styled-select rounded">
                 <select defaultValue={this.state.selectedValue}  onChange={this.handleChange} >
-                    <option value="SOLD">Mark as Sold</option>
+                    <option value="SOLD">Sold</option>
                     <option value="REMOVED">Remove</option>
                     <option value="NOT SOLD">Not Sold</option>
                 </select>
-                
-                {/* <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Update Status
-                </button>
-                <div className="dropdown-menu" aria-labelledby="dropdownMenuButton">
-                    <a className="dropdown-item" href="#">Mark as Sold</a>
-                    <a className="dropdown-item" href="#">Remove</a>
-                    <a className="dropdown-item" href="#">Not Sold</a>
-        </div> 
-    <button onClick={this.updateHandler} className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Update Status
-                </button>*/}
             </div>
         );
     }
