@@ -1,0 +1,24 @@
+.styled-select {
+    background-color:transparent;
+    height: 35px;
+    overflow: hidden;
+    width: 150px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin-top: 15px;
+ }
+
+ .styled-select select {
+    background-color: transparent;
+    border: black;
+    border-radius: 5px;
+    font-size: 20px;
+    height: 35px;
+    width: 150px;
+    color:black;
+ }
+
+ .styled-select:hover, select:hover
+ {
+    cursor: pointer;
+ }

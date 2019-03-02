@@ -1,0 +1,100 @@
+/*.Product 
+{
+    display : inline-block;
+    box-shadow: 2px 3px rgb(77, 65, 65);
+    border : 1px solid rgb(82, 62, 62);
+    margin : 16px 14px;
+    padding : 16px;
+    width : 40%;
+    
+}*/
+
+
+.card
+{
+    max-width: 450px;
+    max-height: 475px;
+}
+
+.Product
+{
+    display: inline-block;
+    margin: 16px 14px;
+}
+
+.card-img-top
+{
+    max-width: 450px;
+    max-height: 300px;
+    margin: 1px;
+    object-fit: cover;
+}
+
+.card-title
+{
+    display: inline-block;
+    text-align: left;
+    margin: 1px;
+}
+
+.card-body
+{
+    margin-top: 1px;
+    margin-left: 1px;
+    max-height: 250px;
+    max-width: 475px;
+}
+
+.price
+{
+    font-size: 25px;
+    margin: 1px;
+}
+
+.desc
+{
+    margin: 1px;
+}
+
+.prod-btn
+{
+    border-radius: 5px;
+    position: absolute;
+    right: 15px; 
+    background-color: black;
+    border: none;
+}
+
+.prod-btn:hover
+{
+    cursor: default;
+    background-color: black;
+    border: none;
+}
+
+.new-item-btn
+{
+    width: 100px;
+    height: 100px;
+    background-color: #e99041;
+    color: white;
+    border-color: #e99041;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 50px;
+    right: 400px;
+    padding-right: -1000px;
+    padding-left: 27px;
+}
+
+.new-item-btn:hover
+{
+    background-color: black;
+    color:gray;
+    border-color: black;
+}
+
+.box-shadow--8dp {
+    box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, .14),
+                2px -5px 10px 1px rgba(0, 0, 0, .14)
+}

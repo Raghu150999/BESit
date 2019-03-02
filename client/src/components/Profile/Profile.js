@@ -1,6 +1,7 @@
 import './styles.css'
 import React, { Component } from 'react'
 import HomeNav from '../HomeNav/HomeNav';
+<<<<<<< HEAD
 import { connect } from 'react-redux';
 import { authorize } from '../../utils/authorize';
 import axios from 'axios'
@@ -87,6 +88,10 @@ class Profile extends Component {
     }
 
 
+=======
+
+class Profile extends Component {
+>>>>>>> test
     render() {
         let errBlock = this.state.errors ? (this.state.errors.map((err, idx) => {
             return (
@@ -96,6 +101,7 @@ class Profile extends Component {
             );
         })) : '';
         return (
+<<<<<<< HEAD
             <div className="profile">
                 <HomeNav logOut={this.logOut}/>
                <div id="profilecard">
@@ -146,26 +152,11 @@ class Profile extends Component {
                 {errBlock}
             </div>
         </div>
+=======
+            <HomeNav />
+>>>>>>> test
         )
     }
 }
 
-const mapStateToProps = (state) => {
-    return {
-        userLoggedIn: state.userLoggedIn,
-        user: state.user
-    }
-}
-
-const mapDispatchToProps = (dispatch) => {
-    return {
-        logInUser: (user) => {
-            dispatch({ type: 'LOGIN_USER', user: user }); // calling a dispatch action
-        }, 
-        logOutUser: () => {
-            dispatch({ type: 'LOGOUT_USER' });
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default (Profile);
