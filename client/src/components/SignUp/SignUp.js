@@ -50,7 +50,6 @@ class SignUp extends Component {
         })) : '';
         return (
             <div className="container-register">
-                
                 <div className="card mb-3 w-95 " id="card">
                     <div className="row no-gutters">
                         <div className="col-xs-12 col-sm-12 col-md-12 col-lg-8" >
@@ -106,42 +105,42 @@ class SignUp extends Component {
                             <div className="card-body">
                                 <form className="registerform" onSubmit={this.handleSubmit}>
                                     <div className="form-group">
-                                        <label for="Username" className="sr-only">UserName</label>
+                                        <label htmlFor="Username" className="sr-only">UserName</label>
                                         <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="UserName"/>
                                     </div>
 
                                     <div className="form-group">
-                                        <label for="FirstName" className="sr-only">First Name</label>
+                                        <label htmlFor="FirstName" className="sr-only">First Name</label>
                                         <input type="text" className="form-control" name="fname" aria-describedby="emailHelp" placeholder="First Name"/>
                                     </div>
 
                                     <div className="form-group">
-                                        <label for="LastName" className="sr-only">First Name</label>
+                                        <label htmlFor="LastName" className="sr-only">First Name</label>
                                         <input type="text" className="form-control" name="lname" aria-describedby="emailHelp" placeholder="Last Name"/>
                                     </div>
                                       
                                     <div className="form-group">
-                                        <label for="Email" className="sr-only">Email</label>
+                                        <label htmlFor="Email" className="sr-only">Email</label>
                                         <input type="text" className="form-control" name="email" aria-describedby="emailHelp" placeholder="Email ID"/>
                                     </div>
                                     
                                     <div className="form-group">
-                                        <label for="PhoneNo" className="sr-only">Phone Number</label>
+                                        <label htmlFor="PhoneNo" className="sr-only">Phone Number</label>
                                         <input type="text" className="form-control" name="phoneno" aria-describedby="emailHelp" placeholder="Phone Number"/>
                                     </div>
                                     
                                     <div className="form-group">
-                                        <label for="RoomNo" className="sr-only">Room Number</label>
+                                        <label htmlFor="RoomNo" className="sr-only">Room Number</label>
                                         <input type="text" className="form-control" name="roomno" aria-describedby="emailHelp" placeholder="Room Number"/>
                                     </div>
   
                                     <div className="form-group">
-                                        <label for="Password" className="sr-only">Password</label>
+                                        <label htmlFor="Password" className="sr-only">Password</label>
                                         <input type="password" className="form-control" name="password" placeholder="Password"/>
                                     </div>
                                     
                                     <div className="form-group">
-                                        <label for="RenterPassword" className="sr-only">Reenter Password</label>
+                                        <label htmlFor="RenterPassword" className="sr-only">Reenter Password</label>
                                         <input type="password" className="form-control" name="rpassword" placeholder="Confirm Password"/>
                                     </div>
                                     
