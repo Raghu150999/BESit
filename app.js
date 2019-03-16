@@ -36,7 +36,8 @@ const port = process.env.NODE_ENV ? process.env.PORT : 8000;
 
 console.log(port);
 
-app.listen(process.env.NODE_ENV || 8000);
-console.log(process.env.NODE_ENV, process.env.MONGODB_URI);
+app.listen(process.env.PORT || 8000);
+
+console.log(process.env.NODE_ENV);
 
 console.log(`Listening to port ${port}`);
