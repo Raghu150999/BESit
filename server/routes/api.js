@@ -80,6 +80,8 @@ router.post('/updateuser', (req, res) => {
 router.get("/trial",function(req,res){
     res.send({message:"Connected"});
 });
+
+
 router.post('/login', (req, res) => {
     User.findOne({ username: req.body.username }).then(result => {
         let err = false;

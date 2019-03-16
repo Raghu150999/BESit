@@ -1,5 +1,10 @@
 import axios from 'axios'
 
+import {} from 'dotenv/config';
+
+console.log(process.env.NODE_ENV);
+
+
 export const authorize = async function (token) {
     
     if (!token) {

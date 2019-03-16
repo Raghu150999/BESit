@@ -12,9 +12,10 @@ require('dotenv').config();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect("mongodb://Raghu:raghu150999@cluster0-shard-00-00-y5bgy.mongodb.net:27017,cluster0-shard-00-01-y5bgy.mongodb.net:27017,cluster0-shard-00-02-y5bgy.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true", {useNewUrlParser: true})
-  .catch(err => console.error(err));
+const mongodb_uri = process.env.NODE_ENV ? process.env.MONGODB_URI : "mongodb://localhost/mydb";
 
+mongoose.connect(mongodb_uri, {useNewUrlParser: true})
+  .catch(err => console.error(err));
 
 // App Setup
 app.use(cors());
@@ -29,5 +30,9 @@ app.use((err, req, res, next) => {
   res.status(422).json(err.message);
 });
 
-app.listen(process.env.PORT||8000);
-console.log('Listening to port 8000');
+const port = process.env.NODE_ENV ? process.env.PORT : 8000;
+
+app.listen(port);
+console.log(process.env.NODE_ENV, process.env.MONGODB_URI);
+
+console.log(`Listening to port ${port}`);
