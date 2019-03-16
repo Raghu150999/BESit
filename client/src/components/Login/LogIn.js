@@ -92,11 +92,6 @@ class LogIn extends Component {
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-
-    }; // nothing needed from redux store
-}
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -106,4 +101,4 @@ const mapDispatchToProps = (dispatch) => {
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
+export default connect(null, mapDispatchToProps)(LogIn);

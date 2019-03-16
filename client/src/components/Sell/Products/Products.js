@@ -10,8 +10,9 @@ class Products extends Component {
         items: [],
         itemsAvailable: false
     }
+    
     componentDidMount() {
-        axios.get('https://powerful-hamlet-87555.herokuapp.com/api/getitems', {
+        axios.get('/api/getitems', {
             params: {
                 username: 'Raghu'
             }
@@ -25,23 +26,12 @@ class Products extends Component {
 
     updateStatus = (status, id) => {
         console.log(status, id)
-        // const items = [...this.state.items];
-        // const index = items.findIndex((item) => {
-        //     return item.id == id
-        // });
-        // items[index].status = status
-        // this.setState({
-        //     items
-        // });
+        axios.post('/api/updateitemstatus', {
+            status,
+            id,
+            owner: this.props.user.username
+        })
     }
-
-    inputChangeHandler = (e) => {
-        console.log(e.target);
-        // this.setState({
-        //     value: e.target.value
-        // });
-    }
-
 
     render() {
 

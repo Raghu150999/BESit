@@ -14,9 +14,7 @@ mongoose.Promise = global.Promise;
 
 const mongodb_uri = process.env.NODE_ENV ? process.env.MONGODB_URI : "mongodb://localhost/mydb";
 
-console.log(mongodb_uri);
-
-mongoose.connect("mongodb://Raghu:raghu150999@cluster0-shard-00-00-y5bgy.mongodb.net:27017,cluster0-shard-00-01-y5bgy.mongodb.net:27017,cluster0-shard-00-02-y5bgy.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true", {useNewUrlParser: true})
+mongoose.connect(mongodb_uri, {useNewUrlParser: true})
   .catch(err => console.error(err));
 
 // App Setup
@@ -34,10 +32,5 @@ app.use((err, req, res, next) => {
 
 const port = process.env.NODE_ENV ? process.env.PORT : 8000;
 
-console.log(port);
-
 app.listen(process.env.PORT || 8000);
-
-console.log('Msg : ' + process.env.NODE_ENV, process.env.PORT);
-
 console.log(`Listening to port ${port}`);

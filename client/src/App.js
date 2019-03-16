@@ -4,8 +4,11 @@ import SignUp from './components/SignUp/SignUp';
 import LogIn from './components/Login/LogIn';
 import Profile from './components/Profile/Profile';
 import Sell from './components/Sell/Sell';
-import dotenvConfig from 'dotenv/config';
+import { } from 'dotenv/config';
+import axios from 'axios';
 
+// Setting up baseURL for axios api requests change this to process.env.REACT_APP_API_URI_LOCAL for local testing and process.env.REACT_APP_API_URI for cloud testing
+axios.defaults.baseURL = process.env.REACT_APP_API_URI_LOCAL;
 
 class App extends Component {
   render() {

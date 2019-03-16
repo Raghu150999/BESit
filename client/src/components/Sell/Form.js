@@ -21,9 +21,9 @@ class Form extends Component{
       rating: e.target[4].value,
       timestamp: Date(), 
       owner: this.props.user.username, 
-      status: 'NOT SOLD'
+      status: 'Available'
     };
-    axios.post('https://powerful-hamlet-87555.herokuapp.com/api/additem', { formData })
+    axios.post('/api/additem', { formData })
       .then(res => {
         // Display message item added
       });

@@ -3,18 +3,6 @@ import './Product.css';
 import Dropdown from '../Dropdown.js'
 
 const Product = (props) => {
-    const style = {
-        backgroundColor : 'red',
-        border : '1px solid black'
-    }
-
-    if(props.item.status == 'NOT SOLD'){
-        style.backgroundColor = 'green'
-    }
-    else if(props.item.status == 'REMOVED'){
-        style.backgroundColor = 'brown'
-    }
-
     return(
         <div className="Product">
             <div className = "row">
@@ -25,7 +13,7 @@ const Product = (props) => {
                         <div className = "card-body">
                             <h2 className = "card-title">{props.item.name}<button type="button" className="btn btn-dark prod-btn">&#8377; {props.item.price}</button></h2>
                             <p className = "card-text desc">{props.item.desc}</p>
-                            {<Dropdown update={props.update} id={props.id} current = {props.item.status}/>}
+                            {<Dropdown update={props.update} id={props.id} current={props.item.status}/>}
                         </div>
                     </div>
                 </div>

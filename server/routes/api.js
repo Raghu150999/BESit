@@ -153,8 +153,14 @@ router.post('/additem', (req, res) => {
 });
 
 router.get('/getitems', (req, res) => {
-    Product.find({}).then(result => {
+    Product.find({owner: req.query.username}).then(result => {
         res.send(result);
+    });
+});
+
+router.post('/updateitemstatus', (req, res) => {
+    Product.findOneAndUpdate({ _id: req.body.id }, { status: req.body.status }).then(result => {
+        res.send('ok');
     });
 });
 

@@ -9,7 +9,6 @@ class Dropdown extends Component{
 
     updateHandler = (e) => {
         const status = e.target.value;
-        console.log(status, this.props.id)
         this.props.update(status, this.props.id);
     }
 
@@ -17,10 +16,6 @@ class Dropdown extends Component{
         this.setState({
             selectedValue : e.target.value
         });
-        {/*CHECK THIS PART
-        console.log(this.state.selectedValue);
-        console.log(this.state.selectedValue);
-        console.log(e.target.value);*/}
         this.updateHandler(e)
     }
 
@@ -32,7 +27,7 @@ class Dropdown extends Component{
                 <select defaultValue={this.state.selectedValue}  onChange={this.handleChange} >
                     <option value="SOLD">Sold</option>
                     <option value="REMOVED">Remove</option>
-                    <option value="NOT SOLD">Not Sold</option>
+                    <option value="Available">Available</option>
                 </select>
             </div>
         );

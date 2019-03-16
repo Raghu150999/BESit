@@ -1,9 +1,4 @@
-import axios from 'axios'
-
-import {} from 'dotenv/config';
-
-console.log(process.env.NODE_ENV);
-
+import axios from 'axios';
 
 export const authorize = async function (token) {
     
@@ -12,7 +7,7 @@ export const authorize = async function (token) {
             resolve({ success: false });
         });
     }
-    let res = await axios.get('https://powerful-hamlet-87555.herokuapp.com/api/authorize', {
+    let res = await axios.get('/api/authorize', {
         params: {
             token: token
         }
