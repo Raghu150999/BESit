@@ -16,8 +16,8 @@ router.post('/verifyuser', (req, res) => {
         req.check('password', 'Password cannot be empty').notEmpty();
         req.check('password', 'Passwords don\'t match').equals(req.body.rpassword);
         req.check('phoneno', 'Phoneno is invalid').isMobilePhone(["en-IN"]);
-       User.findOne({email: req.body.email}).then(result => {
-            if(result){
+        User.findOne({ email: req.body.email }).then(result => {
+            if (result) {
                 req.check('email', 'Email already in use').not().equals(result.email);
             }
             const errors = req.validationErrors();
@@ -43,52 +43,43 @@ router.post('/verifyuser', (req, res) => {
 });
 
 router.post('/updateuser', (req, res) => {
-    console.log(req.body);
-        req.check('fname', 'First Name missing').notEmpty();
-        req.check('lname', 'Last Name missing').notEmpty();
-        req.check('email', 'Not a valid email').isEmail();
-        req.check('password', 'Password cannot be empty').notEmpty();
-        req.check('phoneno', 'Phone number is invalid').isMobilePhone(["en-IN"]);
-        User.findOne({email: req.body.email}).then(result => {
-           /* if(result.username!==req.body.username){
-                req.check('email', 'Email already in use').not().equals(result.email);
-            }*/
-            const errors = req.validationErrors();
-            let response;
-            if (errors) {
-                response = {
-                    success: false,
-                    errors,
-                }
+    req.check('fname', 'First Name missing').notEmpty();
+    req.check('lname', 'Last Name missing').notEmpty();
+    req.check('email', 'Not a valid email').isEmail();
+    req.check('password', 'Password cannot be empty').notEmpty();
+    req.check('phoneno', 'Phone number is invalid').isMobilePhone(["en-IN"]);
+    User.findOne({ email: req.body.email }).then(result => {
+        /* if(result.username!==req.body.username){
+             req.check('email', 'Email already in use').not().equals(result.email);
+         }*/
+        const errors = req.validationErrors();
+        let response;
+        if (errors) {
+            response = {
+                success: false,
+                errors,
+            }
+            res.send(response);
+        }
+        else {
+            response = {
+                success: true,
+                errors: null
+            }
+            User.findOneAndUpdate({ username: req.body.username }, { fname: req.body.fname, lname: req.body.lname, email: req.body.email, password: req.body.password, phoneno: req.body.phoneno, roomno: req.body.roomno }).then(function (result) {
                 res.send(response);
-            }
-            else {
-                response = {
-                    success: true,
-                    errors: null
-                }
-                console.log('great');
-                User.findOneAndUpdate({username:req.body.username},{fname:req.body.fname,lname:req.body.lname,email:req.body.email,password:req.body.password,phoneno:req.body.phoneno,roomno:req.body.roomno}).then(function (result) {
-                    /*console.log(response);*/
-                    res.send(response);
-                    console.log('good');
-                });
-            }
-        });
+            });
+        }
+    });
 });
-
-router.get("/trial",function(req,res){
-    res.send({message:"Connected"});
-});
-
 
 router.post('/login', (req, res) => {
     User.findOne({ username: req.body.username }).then(result => {
         let err = false;
         let success = true;
         let cleanUser;
-        if(result) {
-            if(result.password !== req.body.password) {
+        if (result) {
+            if (result.password !== req.body.password) {
                 err = true;
                 success = false;
             }
@@ -98,7 +89,7 @@ router.post('/login', (req, res) => {
             err = true;
             success = false;
         }
-        
+
         const response = {
             success: success,
             error: err,
@@ -106,10 +97,9 @@ router.post('/login', (req, res) => {
             user: cleanUser,
             token: null
         };
-        if(err === false) {
+        if (err === false) {
             let token = jwtHandler.generateToken(result);
             response.token = token;
-            console.log(token);
         }
         res.send(response);
     });
@@ -118,10 +108,10 @@ router.post('/login', (req, res) => {
 router.get('/authorize', (req, res) => {
     let token = req.query.token;
     jwt.verify(token, process.env.JWT_SECRET, function (err, user) {
-        if(err) throw err;
+        if (err) throw err;
         User.findOne({ username: user.username }).then(result => {
             let response;
-            if(result) {
+            if (result) {
                 user = utils.getCleanUser(user);
                 response = {
                     user,
@@ -153,7 +143,7 @@ router.post('/additem', (req, res) => {
 });
 
 router.get('/getitems', (req, res) => {
-    Product.find({owner: req.query.username}).then(result => {
+    Product.find({ owner: req.query.username }).then(result => {
         res.send(result);
     });
 });
@@ -163,5 +153,9 @@ router.post('/updateitemstatus', (req, res) => {
         res.send('ok');
     });
 });
+
+router.post('/uploadimage', (req, res) => {
+    res.send('ok');
+})
 
 module.exports = router;

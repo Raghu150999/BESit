@@ -1,68 +1,89 @@
 import React, { Component } from 'react';
 import Product from '../Product/Product';
 import Button from '../Button'
-import { connect } from 'react-redux';
 import axios from 'axios';
+import { connect } from 'react-redux';
 
 class Products extends Component {
 
-    state = {
-        items: [],
-        itemsAvailable: false
-    }
-    
-    componentDidMount() {
-        console.log(this.props);
-        axios.get('/api/getitems', {
-            params: {
-                username: 'Raghu'
-            }
-        })
+  state = {
+    items: [],
+    itemsAvailable: false
+  }
+
+  componentDidMount() {
+    if (this.props.user) {
+      axios.get('/api/getitems', {
+        params: {
+          username: this.props.user.username
+        }
+      })
         .then(res => {
-            console.log(this.props);
-            this.setState({
-                items: res.data
-            });
+          this.setState({
+            items: res.data,
+            itemsAvailable: true
+          });
         });
     }
+  }
 
-    updateStatus = (status, id) => {
-        console.log(status, id)
-        axios.post('/api/updateitemstatus', {
-            status,
-            id,
-            owner: this.props.user.username
-        })
+  componentDidUpdate() {
+    if (!this.state.itemsAvailable) {
+      axios.get('/api/getitems', {
+        params: {
+          username: this.props.user.username
+        }
+      })
+        .then(res => {
+          this.setState({
+            items: res.data,
+            itemsAvailable: true
+          });
+        });
     }
+  }
 
-    render() {
+  updateStatus = (status, id) => {
+    axios.post('/api/updateitemstatus', {
+      status,
+      id,
+      owner: this.props.user.username
+    })
+  }
 
-        let displayItems = this.state.items ? (
-            this.state.items.map((item) => {
-                return (
-                    <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
-                )
-            })
-        ) : (
-            <h1>No items Available</h1>
-        );
-        
+  render() {
+    let displayItems = this.state.items.length > 0 ? (
+      this.state.items.map((item) => {
         return (
-            <div>
-                <Button />
-                <div className = "container">
-                    <h2 style = {{marginTop: '15px'}}>All Your Items:</h2>
-                </div>
-                {displayItems}
-            </div>
+          <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
         )
-    }
+      })
+    ) : (
+        <h2 style={{ marginTop: '15px', textAlign: 'center' }}>No items available to display</h2>
+      );
+    const header = this.state.items.length > 0 ? (
+      <div className="container">
+        <h2 style={{ marginTop: '15px' }}>All Your Items:</h2>
+      </div>
+    ) : (
+        ''
+      );
+    return (
+      <div>
+        <Button />
+        {header}
+        {displayItems}
+      </div>
+    )
+  }
 }
+
 const mapStateToProps = (state) => {
-    return {
-        userLoggedIn: state.userLoggedIn,
-        user: state.user
-    }
+  return {
+    userLoggedIn: state.userLoggedIn,
+    user: state.user
+  }
 }
+
 
 export default connect(mapStateToProps)(Products);
