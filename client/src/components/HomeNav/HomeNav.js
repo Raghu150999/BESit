@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
-import { Link, NavLink } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { withRouter } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { authorize } from './../../utils/authorize'
-import './styles.css';
+import { logInUser, logOutUser } from './../../actions/userActions';
 
 class HomeNav extends Component {
     componentDidMount() {
@@ -41,7 +41,7 @@ class HomeNav extends Component {
                             <Link to="/profile" className="nav-link">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Buy</a>
+                            <Link to="/buy" className="nav-link">Buy</Link>
                         </li>
                         <li className="nav-item">
                             <Link to="/sell" className="nav-link">Sell</Link>
@@ -65,13 +65,14 @@ const mapStateToProps = (state) => {
     }
 }
 
+
 const mapDispatchToProps = (dispatch) => {
     return {
         logInUser: (user) => {
-            dispatch({ type: 'LOGIN_USER', user: user }); // calling a dispatch action
+            dispatch(logInUser(user)); // calling a dispatch action
         },
         logOutUser: () => {
-            dispatch({ type: 'LOGOUT_USER' });
+            dispatch(logOutUser());
         }
     }
 }

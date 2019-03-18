@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { authorize } from '../../utils/authorize'
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { logInUser } from './../../actions/userActions';
 
 class LogIn extends Component {
     state = {
@@ -52,7 +53,6 @@ class LogIn extends Component {
     }
 
     render() {
-
         let msgBlock = this.props.location.state && this.props.location.state.success ? (
             <div className="alert alert-success">
                 <strong>Success: </strong> {this.props.location.state.msg}
@@ -96,7 +96,7 @@ class LogIn extends Component {
 const mapDispatchToProps = (dispatch) => {
     return {
         logInUser: (user) => {
-            dispatch({ type: 'LOGIN_USER', user: user }); // calling a dispatch action
+            dispatch(logInUser(user)); // calling a dispatch action
         }
     }
 }

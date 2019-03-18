@@ -3,12 +3,12 @@ const initState = {
     user: null
 }
 
-const rootReducer = (state = initState, action) => {
+const userReducer = (state = initState, action) => {
     if (action.type === 'LOGIN_USER') {
         return {
             ...state,
             userLoggedIn: true,
-            user: action.user
+            user: action.payload
         }
     }
 
@@ -21,4 +21,4 @@ const rootReducer = (state = initState, action) => {
     return state; // returning same state for unspecified action
 }
 
-export default rootReducer;
+export default userReducer;
