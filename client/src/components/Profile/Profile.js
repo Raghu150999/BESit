@@ -61,7 +61,7 @@ class Profile extends Component {
             roomno: e.target[5].value,
             password: e.target[6].value,
         };
-        axios.post('https://powerful-hamlet-87555.herokuapp.com/api/updateuser', user)
+        axios.post('/api/updateuser', user)
         .then(res => res.data)
         .then(json => {
             if(json.success){
@@ -133,7 +133,7 @@ class Profile extends Component {
 
                     <div className="form-group" id="prof">
                         <label htmlFor="Password">Password</label>
-                        <input type="text" className="form-control" name="password" defaultValue={this.state.user.password}/>
+                        <input type="text" className="form-control" name="password"/>
                     </div>
 
                     <div className="container-profile-button" id="prof">

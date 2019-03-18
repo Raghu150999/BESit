@@ -12,12 +12,14 @@ class Products extends Component {
     }
     
     componentDidMount() {
+        console.log(this.props);
         axios.get('/api/getitems', {
             params: {
                 username: 'Raghu'
             }
         })
         .then(res => {
+            console.log(this.props);
             this.setState({
                 items: res.data
             });
