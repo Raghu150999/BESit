@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { authorize } from '../../utils/authorize'
 import { connect } from 'react-redux';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { logInUser } from './../../actions/userActions';
 
 class LogIn extends Component {
     state = {
@@ -28,7 +29,7 @@ class LogIn extends Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('http://localhost:8000/api/login', {
+        axios.post('/api/login', {
             username: e.target[0].value,
             password: e.target[1].value
         })
@@ -37,11 +38,10 @@ class LogIn extends Component {
             if(res.data.success) {
                 // saving access token in the browser
                 localStorage.setItem('access_token', res.data.token);
-                
                 // adding user to the redux store
                 this.props.logInUser(user); 
 
-                this.props.history.push('/profile/' + user.username);
+                this.props.history.push('/profile');
             }
             else {
                 this.setState({
@@ -53,7 +53,6 @@ class LogIn extends Component {
     }
 
     render() {
-
         let msgBlock = this.props.location.state && this.props.location.state.success ? (
             <div className="alert alert-success">
                 <strong>Success: </strong> {this.props.location.state.msg}
@@ -73,38 +72,33 @@ class LogIn extends Component {
                 {msgBlock}
                 {errBlock}
                 <form className="loginform" onSubmit={this.handleSubmit}>
-                                    <h1 id="title">Want to sell? Want to Buy?<br/>BESit Karo. Lite lo.</h1>
-                                    <div className="form-group">
-                                    <div className="wrap-input100 validate-input" data-validate = "Enter username">
-                                    <label for="Username">UserName</label>
-                                    <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="UserName"/>
-                                    <span className="focus-input100" data-placeholder="&#xf207;"></span>
-                                    </div>
-                                    <div className="form-group">
-                                    <label for="Password">Password</label>
-                                    <input type="password" className="form-control" name="password" placeholder="Password"/>
-                                    </div>
-                                    <button type="submit" className="btn btn-primary" id="index-submit">Submit</button>
-                                    <span className="psw">Don't have an account? <Link to="/signup" id="forgot"> Register now.</Link></span>
-                                </div>
+                    <h1 id="title">Want to sell? Want to Buy?<br />BESit Karo. Lite lo.</h1>
+                    <div className="form-group">
+                        <div className="wrap-input100 validate-input" data-validate="Enter username">
+                            <label htmlFor="Username">UserName</label>
+                            <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="UserName" />
+                            <span className="focus-input100" data-placeholder="&#xf207;"></span>
+                        </div>
+                        <div className="form-group">
+                            <label htmlFor="Password">Password</label>
+                            <input type="password" className="form-control" name="password" placeholder="Password" />
+                        </div>
+                        <button type="submit" className="btn btn-primary" id="index-submit">Submit</button>
+                        <span className="psw">Don't have an account? <Link to="/signup" id="forgot"> Register now.</Link></span>
+                    </div>              
                 </form>
         </div>
         )
     }
 }
 
-const mapStateToProps = (state, ownProps) => {
-    return {
-
-    }; // nothing needed from redux store
-}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         logInUser: (user) => {
-            dispatch({ type: 'LOGIN_USER', user: user }); // calling a dispatch action
+            dispatch(logInUser(user)); // calling a dispatch action
         }
     }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(LogIn);
+export default connect(null, mapDispatchToProps)(LogIn);
