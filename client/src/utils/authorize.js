@@ -1,4 +1,4 @@
-import axios from 'axios'
+import axios from 'axios';
 
 export const authorize = async function (token) {
     
@@ -7,7 +7,7 @@ export const authorize = async function (token) {
             resolve({ success: false });
         });
     }
-    let res = await axios.get('http://localhost:8000/api/authorize', {
+    let res = await axios.get('/api/authorize', {
         params: {
             token: token
         }

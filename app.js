@@ -2,8 +2,8 @@ const  express = require('express');
 const  bodyParser = require('body-parser');
 const  morgan = require('morgan');
 const  mongoose = require('mongoose');
-const  routers = require('./routes');
-const cors = require('cors');
+const  routers = require('./server/routes');
+const  cors = require('cors');
 
 const app = express();
 
@@ -12,9 +12,10 @@ require('dotenv').config();
 
 mongoose.Promise = global.Promise;
 
-mongoose.connect('mongodb://localhost/mydb', {useNewUrlParser: true})
-  .catch(err => console.error(err));
+const mongodb_uri = process.env.NODE_ENV ? process.env.MONGODB_URI : "mongodb://localhost/mydb";
 
+mongoose.connect(mongodb_uri, {useNewUrlParser: true})
+  .catch(err => console.error(err));
 
 // App Setup
 app.use(cors());
@@ -29,5 +30,7 @@ app.use((err, req, res, next) => {
   res.status(422).json(err.message);
 });
 
-app.listen(8000);
-console.log('Listening to port 8000');
+const port = process.env.NODE_ENV ? process.env.PORT : 8000;
+
+app.listen(process.env.PORT || 8000);
+console.log(`Listening to port ${port}`);
