@@ -1,6 +1,7 @@
 import React from 'react';
 import './Product.css';
 import Dropdown from '../Dropdown.js'
+import axios from 'axios';
 
 const Product = (props) => {
   let item = props.item;
@@ -45,6 +46,17 @@ const Product = (props) => {
     ));
   }
 
+  const handleDelete = (e) => {
+    let confirmation = window.confirm('This action will permanently delete this item. Do you want to continue?');
+    if (!confirmation) 
+      return;
+    axios.post('/removeitem', props.item)
+      .then(res => {
+        console.log(res.data);
+        window.location = '/sell';
+      })
+  }
+
   return (
     <div className="Product">
       <div className="row">
@@ -75,6 +87,7 @@ const Product = (props) => {
               <h2 className="card-title">{props.item.name}<button type="button" className="btn btn-dark prod-btn">&#8377; {props.item.price}</button></h2>
               <p className="card-text desc">{props.item.desc}</p>
               {<Dropdown update={props.update} id={props.id} current={props.item.status} />}
+              <button type="button" className="btn btn-dark prod-btn" onClick={handleDelete}>Delete</button>
             </div>
           </div>
         </div>

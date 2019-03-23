@@ -9,6 +9,7 @@ const crypto = require('crypto');
 const path = require('path');
 const GridFsStorage = require('multer-gridfs-storage');
 const Grid = require('gridfs-stream');
+const Product = require('./server/models/productSchema');
 
 const app = express();
 
@@ -72,8 +73,6 @@ const storage = new GridFsStorage({
 
 const upload = multer({ storage });
 
-const Product = require('./server/models/productSchema');
-
 // Route for image upload(s)
 app.post('/uploaditem', upload.array('files'), (req, res) => {
   const imageIsAvailable = req.files.length > 0;
@@ -116,6 +115,21 @@ app.get('/image/:filename', (req, res) => {
   });
 });
 
+// @route: for removing item from database
+app.post('/removeitem', (req, res) => {
+  const item = req.body;
+  for (let i = 0; i < item.fileNames.length; i++) {
+    gfs.remove({ 
+      filename: item.fileNames[i], 
+      root: 'uploads' // Important to specify collection name (Not given in docs)
+    }, function (err, gridStore) {
+      if (err) throw err;
+    });
+  }
+  Product.deleteOne({ _id: item._id }).then((result) => {
+    res.send('item deleted');
+  });
+});
 
 app.listen(process.env.PORT || 8000);
 console.log(`Listening to port ${port}`);
