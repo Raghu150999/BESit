@@ -1,16 +1,16 @@
 #prof{
-    margin-top:20px;
+    margin-top:2vh;
 }
 #prof1{
-    margin-top:45px;
+    margin-top:4.5vh;
 }
 #profiletitle{
     color:#fff;
-    font-size: 45px;
+    font-size: 8.3vh;
     font-weight: 300;
     letter-spacing: 1px;
-    word-spacing: 4px; 
-    margin-bottom:35px; 
+    word-spacing: 1.4vh; 
+    margin-bottom:3.5vh; 
     text-align: center;
 }
 .profile{
@@ -20,14 +20,12 @@
     background-size: cover;
     position: relative;
     align-items: center;
-    margin-top: 0px;
 }
 #profilecard{
-    /*background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url(img/good.jpg);*/
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding: 1.5vh;
     width: 45%;
-    margin-top:50px;
+    margin-top:5vh;
 }
