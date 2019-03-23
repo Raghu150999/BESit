@@ -10,7 +10,9 @@ const productSchema = new Schema({
     desc: String,
     rating: String,
     timestamp: Date, 
-    status: String
+    status: String,
+    imageIsAvailable: Boolean,
+    fileNames: Array
 });
 
 let Product = mongoose.model('products', productSchema);

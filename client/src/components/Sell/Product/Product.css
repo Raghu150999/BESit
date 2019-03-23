@@ -12,6 +12,8 @@
 
 .prod-card
 {
+    width: 450px;
+    /*height: 475px;*/
     max-width: 450px;
     max-height: 475px;
 }
@@ -26,8 +28,10 @@
 {
     max-width: 450px;
     max-height: 300px;
+    width: 450px;
+    /*height: 300px;*/
     margin: 1px;
-    object-fit: cover;
+    object-fit: cover ;
 }
 
 .card-title
@@ -43,6 +47,8 @@
     margin-left: 1px;
     max-height: 250px;
     max-width: 475px;
+    width: 450px;
+    /*height: 250px;*/
 }
 
 .price

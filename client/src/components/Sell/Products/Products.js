@@ -36,7 +36,7 @@ class Products extends Component {
       })
         .then(res => {
           this.setState({
-            items: res.data,
+            items: res.data.reverse(),
             itemsAvailable: true
           });
         });

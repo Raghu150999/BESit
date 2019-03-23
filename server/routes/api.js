@@ -42,6 +42,8 @@ router.post('/verifyuser', (req, res) => {
     });
 });
 
+
+// @debug: Correct this route.
 router.post('/updateuser', (req, res) => {
     req.check('fname', 'First Name missing').notEmpty();
     req.check('lname', 'Last Name missing').notEmpty();
@@ -131,18 +133,9 @@ router.get('/authorize', (req, res) => {
 
 const Product = require('./../models/productSchema');
 
-router.post('/additem', (req, res) => {
-    const product = new Product({
-        ...req.body.formData
-    });
-    product.save().then(() => {
-        Product.find({}).then(result => {
-            res.send(result);
-        });
-    });
-});
 
 router.get('/getitems', (req, res) => {
+    // req.query contains the parameter passed from axios request
     Product.find({ owner: req.query.username }).then(result => {
         res.send(result);
     });
@@ -153,9 +146,5 @@ router.post('/updateitemstatus', (req, res) => {
         res.send('ok');
     });
 });
-
-router.post('/uploadimage', (req, res) => {
-    res.send('ok');
-})
 
 module.exports = router;
