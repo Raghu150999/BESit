@@ -15,12 +15,9 @@ class SignUp extends Component {
     let user = {
       username: e.target[0].value,
       fname: e.target[1].value,
-      lname: e.target[2].value,
-      email: e.target[3].value,
-      phoneno: e.target[4].value,
-      roomno: e.target[5].value,
-      password: e.target[6].value,
-      rpassword: e.target[7].value
+      phoneno: e.target[2].value,
+      password: e.target[3].value,
+      rpassword: e.target[4].value
     };
     axios.post('/api/verifyuser', user)
       .then(res => res.data)
@@ -40,6 +37,7 @@ class SignUp extends Component {
         console.log(err);
       });
   }
+
   render() {
     let errBlock = this.state.errors ? (this.state.errors.map((err, idx) => {
       return (
@@ -110,28 +108,13 @@ class SignUp extends Component {
                   </div>
 
                   <div className="form-group">
-                    <label htmlFor="FirstName" className="sr-only">First Name</label>
-                    <input type="text" className="form-control" name="fname" aria-describedby="emailHelp" placeholder="First Name" />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="LastName" className="sr-only">First Name</label>
-                    <input type="text" className="form-control" name="lname" aria-describedby="emailHelp" placeholder="Last Name" />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="Email" className="sr-only">Email</label>
-                    <input type="text" className="form-control" name="email" aria-describedby="emailHelp" placeholder="Email ID" />
+                    <label htmlFor="Name" className="sr-only">Name</label>
+                    <input type="text" className="form-control" name="fname" aria-describedby="emailHelp" placeholder="Name" />
                   </div>
 
                   <div className="form-group">
                     <label htmlFor="PhoneNo" className="sr-only">Phone Number</label>
                     <input type="text" className="form-control" name="phoneno" aria-describedby="emailHelp" placeholder="Phone Number" />
-                  </div>
-
-                  <div className="form-group">
-                    <label htmlFor="RoomNo" className="sr-only">Room Number</label>
-                    <input type="text" className="form-control" name="roomno" aria-describedby="emailHelp" placeholder="Room Number" />
                   </div>
 
                   <div className="form-group">

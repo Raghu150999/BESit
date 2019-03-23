@@ -11,15 +11,9 @@ router.post('/verifyuser', (req, res) => {
         if (result)
             req.check('username', 'User already exists').not().equals(result.username);
         req.check('fname', 'First Name missing').notEmpty();
-        req.check('lname', 'Last Name missing').notEmpty();
-        req.check('email', 'Not a valid email').isEmail();
         req.check('password', 'Password cannot be empty').notEmpty();
         req.check('password', 'Passwords don\'t match').equals(req.body.rpassword);
         req.check('phoneno', 'Phoneno is invalid').isMobilePhone(["en-IN"]);
-        User.findOne({ email: req.body.email }).then(result => {
-            if (result) {
-                req.check('email', 'Email already in use').not().equals(result.email);
-            }
             const errors = req.validationErrors();
             let response;
             if (errors) {
@@ -38,7 +32,6 @@ router.post('/verifyuser', (req, res) => {
                     res.send(response);
                 });
             }
-        });
     });
 });
 
@@ -46,14 +39,8 @@ router.post('/verifyuser', (req, res) => {
 // @debug: Correct this route.
 router.post('/updateuser', (req, res) => {
     req.check('fname', 'First Name missing').notEmpty();
-    req.check('lname', 'Last Name missing').notEmpty();
-    req.check('email', 'Not a valid email').isEmail();
     req.check('password', 'Password cannot be empty').notEmpty();
     req.check('phoneno', 'Phone number is invalid').isMobilePhone(["en-IN"]);
-    User.findOne({ email: req.body.email }).then(result => {
-        /* if(result.username!==req.body.username){
-             req.check('email', 'Email already in use').not().equals(result.email);
-         }*/
         const errors = req.validationErrors();
         let response;
         if (errors) {
@@ -68,11 +55,10 @@ router.post('/updateuser', (req, res) => {
                 success: true,
                 errors: null
             }
-            User.findOneAndUpdate({ username: req.body.username }, { fname: req.body.fname, lname: req.body.lname, email: req.body.email, password: req.body.password, phoneno: req.body.phoneno, roomno: req.body.roomno }).then(function (result) {
+            User.findOneAndUpdate({ username: req.body.username }, { fname: req.body.fname, password: req.body.password, phoneno: req.body.phoneno}).then(function (result) {
                 res.send(response);
             });
         }
-    });
 });
 
 router.post('/login', (req, res) => {
