@@ -6,7 +6,7 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding: 1.5vh;
     
     background-repeat: no-repeat;
     background-position: center;
@@ -17,19 +17,19 @@
     color:#fff ;
     text-decoration: none;
     text-transform: capitalize;
-    font-size: 16px;
-    padding: 6px;
+    font-size: 3.2vh;
+    padding: 1vh;
   }
 .flex-centered{
-    padding: 40px 40px;
+    padding: 5vh 5vh;
 }
 #title{
     color:#fff;
-    font-size: 45px;
+    font-size: 8.3vh;
     font-weight: 300;
-    letter-spacing: 1px;
-    word-spacing: 4px; 
-    margin-bottom:35px; 
+    letter-spacing: 0.15vh;
+    word-spacing: 1.4vh; 
+    margin-bottom:3.9vh; 
   }
 
 

@@ -10,14 +10,14 @@
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 15px;
+    padding: 1.5vh;
 }
 #forgot1{
     color:#924d10 ;
     text-decoration: none;
     text-transform: capitalize;
-    font-size: 16px;
-    padding: 6px;
+    font-size: 3.1vh;
+    padding: 1vh;
 }
 .wrap-input100 {
     width: 100%;
@@ -26,14 +26,11 @@
 
 #cardregister{
     width: 95%;
-    margin-bottom: 85px;
-    margin-top: 85px;
+    margin-bottom: 8.5vh;
+    margin-top: 8.7vh;
 }
 
 .card-body{
-    margin-top:15px;
+    margin-top:1.6vh;
 }
 
-.container-button{
-    text-align:center;
-}

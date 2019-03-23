@@ -8,15 +8,15 @@ background-color: #fff;
 color: #e67e22;
 font-family: 'Lato','Arial','sans-serif';
 font-weight: 100;
-font-size: 20px;
+font-size: 3.5vh;
 text-rendering: optimizeLegibility;
 }
 .btn{
   display: inline-block;
-  padding: 10px 30px;
+  padding: 1.8vh 3.5vh;
   font-weight: 300;
   text-decoration: none;
-  border-radius: 200px;
+  border-radius: 50vh;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
 .btn-primary{
@@ -35,7 +35,7 @@ color:#e67e22;
 }
 span.psw{
   float: right;
-  padding-top: 16px;
+  padding-top: 2.5vh;
 }
 span.psw {
 color: #eda25f;
@@ -48,4 +48,8 @@ a:visited{
 a:hover,
 a:active{
   border-bottom: 2px solid #e67e22;
+}
+
+.container-button{
+  text-align:center;
 }

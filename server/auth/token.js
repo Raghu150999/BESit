@@ -4,9 +4,6 @@ module.exports.generateToken = function (user) {
     var u = {
         username: user.username,
         fname: user.fname,
-        lname: user.lname,
-        email: user.email,
-        roomno:user.roomno,
         phoneno:user.phoneno,
         password:user.password
     };

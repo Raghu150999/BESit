@@ -12,10 +12,7 @@ class Profile extends Component {
     user: {
       username: null,
       fname: null,
-      lname: null,
-      email: null,
       phoneno: null,
-      roomno: null,
       password: null
     }
   }
@@ -49,11 +46,8 @@ class Profile extends Component {
     let user = {
       username: e.target[0].value,
       fname: e.target[1].value,
-      lname: e.target[2].value,
-      email: e.target[3].value,
-      phoneno: e.target[4].value,
-      roomno: e.target[5].value,
-      password: e.target[6].value,
+      phoneno: e.target[2].value,
+      password: e.target[3].value,
     };
     axios.post('/api/updateuser', user)
       .then(res => res.data)
@@ -80,7 +74,9 @@ class Profile extends Component {
         console.log(err);
       });
   }
-
+  passChange =(e)=>{
+    e.preventDefault();
+  }
 
   render() {
     let errBlock = this.state.errors ? (this.state.errors.map((err, idx) => {
@@ -102,18 +98,8 @@ class Profile extends Component {
             </div>
 
             <div className="form-group" id="prof">
-              <label htmlFor="FirstName" >First Name</label>
+              <label htmlFor="FirstName" >Name</label>
               <input type="text" className="form-control" name="fname" aria-describedby="emailHelp" defaultValue={this.state.user.fname} />
-            </div>
-
-            <div className="form-group" id="prof">
-              <label htmlFor="LastName" >Last Name</label>
-              <input type="text" className="form-control" name="lname" aria-describedby="emailHelp" defaultValue={this.state.user.lname} />
-            </div>
-
-            <div className="form-group" id="prof">
-              <label htmlFor="Email">Email</label>
-              <input type="text" className="form-control" name="email" aria-describedby="emailHelp" defaultValue={this.state.user.email} />
             </div>
 
             <div className="form-group" id="prof">
@@ -122,16 +108,11 @@ class Profile extends Component {
             </div>
 
             <div className="form-group" id="prof">
-              <label htmlFor="RoomNo">Room Number</label>
-              <input type="text" className="form-control" name="roomno" aria-describedby="emailHelp" defaultValue={this.state.user.roomno} />
-            </div>
-
-            <div className="form-group" id="prof">
               <label htmlFor="Password">Password</label>
-              <input type="text" className="form-control" name="password" />
+              <input type="password" className="form-control" name="password" defaultValue={this.state.user.password} disabled onClick={this.passChange}/>
             </div>
 
-            <div className="container-profile-button" id="prof">
+            <div className="container-button" id="prof">
               <button type="submit" className="btn btn-primary" id="register-submit">Submit</button>
             </div>
 
