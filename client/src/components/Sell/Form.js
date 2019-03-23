@@ -3,14 +3,14 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
 
-class Form extends Component{
+class Form extends Component {
   state = {
-      files: null,
-      imageAvailable: false,
-      err: false
+    files: null,
+    imageAvailable: false,
+    err: false
   }
 
-  submitForm = (e) =>{
+  submitForm = (e) => {
     e.preventDefault();
 
     if (this.state.err) {
@@ -24,13 +24,13 @@ class Form extends Component{
       price: e.target[2].value,
       desc: e.target[3].value,
       rating: e.target[4].value,
-      timestamp: Date(), 
-      owner: this.props.user.username, 
+      timestamp: Date(),
+      owner: this.props.user.username,
       status: 'Available'
     };
 
     const fd = new FormData();
-    
+
     // using formData to send multipart/form-data for sending images (important: Have to use multer at the endpoint to process this kind of object passed)
 
     // appends key-value pairs in the form
@@ -84,7 +84,7 @@ class Form extends Component{
       });
       return;
     }
-    
+
     if (files.length > 0)
       imageAvailable = true;
     this.setState({
@@ -94,25 +94,28 @@ class Form extends Component{
     });
   }
 
-  render(){
+  render() {
     let errmsg = this.state.err ? (
       <div className="alert alert-danger">
         <strong>Error: </strong> Images Only!
       </div>
     ) : ('');
-      return(
-        <div>
+
+    let categories = this.props.categories.map(category => {
+      return (
+        <option key={category._id}>{category.name}</option>
+      )
+    });
+    return (
+      <div>
         <form onSubmit={this.submitForm}>
           <div className="form-group">
             <label htmlFor="exampleFormControlSelect1">Category</label>
             <select className="form-control" id="exampleFormControlSelect1">
-              <option>Text/Reference Books</option>
-              <option>Stationery</option>
-              <option>Electronics</option>
-              <option>Novels</option>
-              <option>Miscellaneous</option>
+              {categories}
             </select>
           </div>
+          
           <div className="form-group">
             <label htmlFor="exampleFormControlInput1">Name Of Item</label>
             <input type="text" className="form-control" id="exampleFormControlInput1" placeholder="eg:Harry Potter Books"></input>
@@ -141,8 +144,8 @@ class Form extends Component{
         <h6>Upload image</h6>
         <input type="file" name="files" id="files" onChange={this.fileSelectHandler} accept="image/*" multiple />
         {errmsg}
-        </div>
-      )
+      </div>
+    )
   }
 }
 

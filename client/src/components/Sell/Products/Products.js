@@ -8,7 +8,7 @@ class Products extends Component {
 
   state = {
     items: [],
-    itemsAvailable: false
+    itemsAvailable: false,
   }
 
   componentDidMount() {

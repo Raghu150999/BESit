@@ -17,4 +17,14 @@ const productSchema = new Schema({
 
 let Product = mongoose.model('products', productSchema);
 
+const db = mongoose.connection;
+const collection = db.collection('products');
+
+// Creating text index for search
+collection.createIndex({ 
+    name: "text",
+    desc: "text"
+});
+
+
 module.exports = Product;

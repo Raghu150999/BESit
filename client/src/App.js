@@ -6,7 +6,7 @@ import Profile from './components/Profile/Profile';
 import Sell from './components/Sell/Sell';
 import { } from 'dotenv/config';
 import axios from 'axios';
-import Buy from './components/Buy';
+import Buy from './components/Buy/Buy';
 
 
 // Setting up baseURL for axios api requests change this to process.env.REACT_APP_API_URI_LOCAL for local testing and process.env.REACT_APP_API_URI for cloud testing
