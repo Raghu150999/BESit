@@ -1,17 +1,20 @@
 import React, {Component} from 'react';
 import './Dropdown.css'
-
+// props.update see
 class Dropdown extends Component{
 
     state = {
         selectedValue : this.props.current
+        //prev value already when called
     }
 
     updateHandler = (e) => {
         const status = e.target.value;
         this.props.update(status, this.props.id);
+        // calls update method which is actuaally present in products page
+        //which requests server for upating status using axios.post(/url,json object)
     }
-
+ 
     handleChange =(e) =>{
         this.setState({
             selectedValue : e.target.value

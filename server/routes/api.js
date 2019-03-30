@@ -3,12 +3,15 @@ const User = require('../models/userSchema');
 const jwtHandler = require('./../auth/token');
 const utils = require('./../utils/utils');
 const jwt = require('jsonwebtoken');
-
-
-router.post('/verifyuser', (req, res) => {
+// router is express router
+// get is someone asking info for server (Server job if some-one mde get request to this page)
+// post is some one giving info to server for posting in database maybe (server job if someone made post request to this page)
+router.post('/verifyuser', (req, res) => { //some one made post request with some data as req
     console.log(req.body);
     User.findOne({ username: req.body.username }).then(function (result) {
-        if (result)
+        //result can be either true--existing in database
+        // or false-- not in database
+        if (result) //runs for true
             req.check('username', 'User already exists').not().equals(result.username);
         req.check('fname', 'First Name missing').notEmpty();
         req.check('lname', 'Last Name missing').notEmpty();
@@ -26,6 +29,7 @@ router.post('/verifyuser', (req, res) => {
                 response = {
                     success: false,
                     errors,
+                    //errors:eroors but ES6 no need to mention
                 }
                 res.send(response);
             }
@@ -34,6 +38,7 @@ router.post('/verifyuser', (req, res) => {
                     success: true,
                     errors: null
                 }
+                // this is similar to User.create({object});
                 User.saveUser(req.body, function (result) {
                     res.send(response);
                 });
@@ -43,7 +48,6 @@ router.post('/verifyuser', (req, res) => {
 });
 
 router.post('/updateuser', (req, res) => {
-    console.log(req.body);
         req.check('fname', 'First Name missing').notEmpty();
         req.check('lname', 'Last Name missing').notEmpty();
         req.check('email', 'Not a valid email').isEmail();
@@ -67,11 +71,9 @@ router.post('/updateuser', (req, res) => {
                     success: true,
                     errors: null
                 }
-                console.log('great');
                 User.findOneAndUpdate({username:req.body.username},{fname:req.body.fname,lname:req.body.lname,email:req.body.email,password:req.body.password,phoneno:req.body.phoneno,roomno:req.body.roomno}).then(function (result) {
                     /*console.log(response);*/
                     res.send(response);
-                    console.log('good');
                 });
             }
         });
@@ -105,7 +107,7 @@ router.post('/login', (req, res) => {
             msg: 'Invalid username or password',
             user: cleanUser,
             token: null
-        };
+        };// this is send to caller
         if(err === false) {
             let token = jwtHandler.generateToken(result);
             response.token = token;
@@ -144,17 +146,19 @@ const Product = require('./../models/productSchema');
 router.post('/additem', (req, res) => {
     const product = new Product({
         ...req.body.formData
-    });
+        //spreading array ...arr
+    });// Product schema for creating new product element
     product.save().then(() => {
         Product.find({}).then(result => {
             res.send(result);
         });
     });
 });
-
+// owner is a attributr in productschema
+//same router for that edit page send res(result); 
 router.get('/getitems', (req, res) => {
     Product.find({owner: req.query.username}).then(result => {
-        res.send(result);
+        res.send(result);// sed complete Product object data
     });
 });
 

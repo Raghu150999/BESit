@@ -11,12 +11,13 @@ class LogIn extends Component {
         errormsg: '', 
         error: false
     }
-
-    componentDidMount() {
+// state has been set for login class component
+    // already registered user checking toke whether valid or not like expired or what
+    componentDidMount() {  //happens before submitting form to check whether he is previous user or not
         const token = localStorage.getItem('access_token');
-        authorize(token).then(result => {
+        authorize(token).then(result => { //calling imported authorize function
             if (result.success) {
-                this.props.logInUser(result.user);
+                this.props.logInUser(result.user); // storing in redux store of active users
                 this.props.history.push('/profile');
             }
             else {
@@ -26,19 +27,20 @@ class LogIn extends Component {
             }
         });
     }
-
+//   if new user like (just registerd )then he gets allocated with token and taken to profile page
+// if old user then directly taken by checking prev token logs in automatically (and) if any problem with token it removes token user has to login manually
     handleSubmit = (e) => {
-        e.preventDefault();
-        axios.post('/api/login', {
+        e.preventDefault(); //prevets refreshing contet //default appended one is .env one and makinig request to ow servers api
+        axios.post('/api/login', { //post request to server
             username: e.target[0].value,
             password: e.target[1].value
         })
-        .then(res => {
+        .then(res => { //result came after api call
             let user = res.data.user;
             if(res.data.success) {
                 // saving access token in the browser
                 localStorage.setItem('access_token', res.data.token);
-                // adding user to the redux store
+                // adding user to the redux store //storing in redux store of active users
                 this.props.logInUser(user); 
 
                 this.props.history.push('/profile');
@@ -51,8 +53,8 @@ class LogIn extends Component {
             }
         });
     }
-
-    render() {
+// better forgot password option instead of re registering because old info gets lost
+    render() { //as component requested this runs first
         let msgBlock = this.props.location.state && this.props.location.state.success ? (
             <div className="alert alert-success">
                 <strong>Success: </strong> {this.props.location.state.msg}
@@ -61,17 +63,19 @@ class LogIn extends Component {
             ''
         );
         if(this.props.location.state)
-            this.props.location.state.success = false;
+            this.props.location.state.success = false;// to make success message disappear
         let errBlock = this.state.error ? (
             <div className="alert alert-danger">
                 <strong>Error: </strong> {this.state.errormsg}
             </div>
-        ) : ('');
+        ) : ('');// for first time component running every thing is false not work
         return (
             <div className="container-login100">
                 {msgBlock}
                 {errBlock}
-                <form className="loginform" onSubmit={this.handleSubmit}>
+                {/* //both null */}
+                <form className="loginform" onSubmit={this.handleSubmit}> 
+                    {/* //make enter also works here */}
                     <h1 id="title">Want to sell? Want to Buy?<br />BESit Karo. Lite lo.</h1>
                     <div className="form-group">
                         <div className="wrap-input100 validate-input" data-validate="Enter username">

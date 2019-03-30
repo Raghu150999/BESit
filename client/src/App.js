@@ -13,10 +13,10 @@ import Buy from './components/Buy';
 axios.defaults.baseURL = process.env.REACT_APP_API_URI_LOCAL;
 
 class App extends Component {
-  render() {
-    return (
+  render() {   
+    return (// how are you making user to go to login page as default
       <div className="App">
-        <BrowserRouter>
+        <BrowserRouter> 
           <Switch>
             <Route exact path="/" component={LogIn} />
             <Route path="/signup" component={SignUp} />

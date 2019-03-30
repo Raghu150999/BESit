@@ -27,6 +27,7 @@ class Form extends Component{
     axios.post('/api/additem', { formData })
       .then(res => {
         // Display message item added
+        //here set local array to this and editing/
       });
     
     // Reloads the page
@@ -36,10 +37,16 @@ class Form extends Component{
     //also erro because no this.state.close here
     window.location = '/sell';
   }
-
+/// make router call just 
   render(){
+    let array[];
+    if (this.props.formData==null){
+        array[1]="eg:Harry Potter Books";
+    } //then place holders will havesome string otherwise prev data that logic write here
+    else{
+        array=this.props.formData;
+    }
       return(
-        //if this.props.data==null then place holders will havesome string otherwise prev data that logic write here
         <form onSubmit={this.submitForm}>
           <div className="form-group">
             <label htmlFor="exampleFormControlSelect1">Category</label>
@@ -64,11 +71,13 @@ class Form extends Component{
           </div>
           <div className="form-group">
             <label htmlFor="exampleFormControlTextarea1">Short Description</label>
+            {/* default text also put*/}
             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
           <div className="form-group">
             <label htmlFor="exampleFormControlSelect1">Condition</label>
             <select className="form-control" id="exampleFormControlSelect1">
+                {/* efault select option should also */}
               <option>1 star</option>
               <option>2 stars</option>
               <option>3 stars</option>

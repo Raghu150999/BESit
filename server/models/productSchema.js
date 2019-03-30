@@ -14,5 +14,5 @@ const productSchema = new Schema({
 });
 
 let Product = mongoose.model('products', productSchema);
-
+// creating new database section with name Products 
 module.exports = Product;

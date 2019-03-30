@@ -22,25 +22,31 @@ class SignUp extends Component {
             password: e.target[6].value,
             rpassword: e.target[7].value
         };
-        axios.post('https://powerful-hamlet-87555.herokuapp.com/api/verifyuser', user)
+        axios.post('/api/verifyuser', user) //requestin server and server with get mathod of verifyuser listes to this
         .then(res => res.data)
-        .then(json => {
-            if(json.success){
+        //data object that is being sent by server while calling api/verifyuser
+        .then(json => { // her res.data==json is just a variable name anyway our result will be always json data
+            if(json.success){ //res.data.success
                 this.props.history.push('/', {success: true, msg: 'Registered Successfully!'});
             }else{
+                //errors is an array from data obtainde from server
                 let errs = json.errors.map((error) => {
                     return error.msg;
                 });
+                //errs is array of all mapped json.errors array
                 this.setState({
-                    errors: errs
+                    errors: errs //we have completely updated state object from error to errors both are diff names variables
                 });
             }
         })
+        // error from server
         .catch((err) => {
             console.log(err);
         });
     }
     render(){
+        // eroor mess correspoding to particular id of user(mistake) or email(mistake) or number (mistake) that particulr error msg is set
+        //while rerendering any errors detected because rerendering occurs after one submission atlest if errors in that submission then printed
         let errBlock = this.state.errors ? (this.state.errors.map((err, idx) => {
             return (
                 <div className="alert alert-danger" key={idx}>
@@ -48,6 +54,7 @@ class SignUp extends Component {
                 </div>
             );
         })) : '';
+        // info about error stored here just but printing at last of form
         return (
             <div className="container-register">
                 <div className="card mb-3 w-95 " id="card">
@@ -157,8 +164,9 @@ class SignUp extends Component {
                         </div>
                     </div>
                 </div>
-                <div className="error">
-                    {errBlock}
+                {/* prints error block now prev iously some message might have set whlile rendering */}
+                <div className="error"> 
+                    {errBlock} 
                 </div>
             </div>
         )
