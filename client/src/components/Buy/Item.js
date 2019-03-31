@@ -1,7 +1,57 @@
 import React, { Component } from 'react'
 import './Product.css';
+import axios from 'axios';
 
 class Item extends Component {
+
+	state = {
+		status: 'Not Interested',
+		interestedUsers: [],
+		sellerStatus: false
+	}
+
+	handleInterested = (e) => {
+		const newStatus = this.state.status === 'Not Interested' ? 'Interested' : 'Not Interested';
+		console.log(newStatus);
+		const interestedUsers = this.state.interestedUsers.filter(user => {
+			if (user.username === this.props.user.username) {
+				return false; // skip the current user
+			}
+			return true;
+		});
+
+		if (newStatus === 'Interested') {
+			interestedUsers.push({
+				username: this.props.user.username,
+				status: this.state.sellerStatus
+			})
+		}
+		axios.post('/api/updateinteresteduser', {
+			item: this.props.item,
+			interestedUsers
+		});
+
+		this.setState({
+			status: newStatus,
+			interestedUsers
+		})
+
+	}
+	componentDidMount() {
+		const interestedUsers = this.props.item.interestedUsers;
+		interestedUsers.forEach(user => {
+			if (user.username === this.props.user.username) {
+				this.setState({
+					status: 'Interested',
+					sellerStatus: user.status
+				});
+			}
+		});
+		this.setState({
+			interestedUsers
+		});
+	}
+
 	render() {
 		const api_uri = process.env.REACT_APP_API_URI_LOCAL;
 		let item = this.props.item;
@@ -91,8 +141,8 @@ class Item extends Component {
 								<dd className="col-sm-9">{item.status}</dd>
 							</dl>
 
-							<button type="button" className="btn btn-dark prod-btn">
-								Interested
+							<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
+								{this.state.status}
 							</button>
 						</div>
 					</div>

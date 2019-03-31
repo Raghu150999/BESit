@@ -133,5 +133,11 @@ router.post('/updateitemstatus', (req, res) => {
     });
 });
 
+router.post('/updateinteresteduser', (req, res) => {
+    Product.findOneAndUpdate({ _id: req.body.item._id }, {interestedUsers: req.body.interestedUsers })
+        .then(result => {
+            res.send('ok');
+        });
+});
 
 module.exports = router;

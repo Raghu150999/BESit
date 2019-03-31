@@ -56,7 +56,7 @@ class Buy extends Component {
 
     let items = this.state.items.map(item => {
       return (
-        <Item key={item._id} item={item} />
+        <Item key={item._id} item={item} user={this.props.user}/>
       );
     });
 
