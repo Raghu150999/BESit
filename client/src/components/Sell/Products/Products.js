@@ -3,7 +3,7 @@ import Product from '../Product/Product';
 import Button from '../Button'
 import axios from 'axios';
 import { connect } from 'react-redux';
-
+import Edit from '../Edit';
 class Products extends Component {
 
   state = {
@@ -55,7 +55,11 @@ class Products extends Component {
     let displayItems = this.state.items.length > 0 ? (
       this.state.items.map((item) => {
         return (
-          <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
+          <div>
+            <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
+            <Edit key={item._id} item={item}/>
+          </div>
+          
         )
       })
     ) : (

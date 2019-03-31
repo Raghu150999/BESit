@@ -121,7 +121,7 @@ const Product = require('./../models/productSchema');
 
 
 router.get('/getitems', (req, res) => {
-    // req.query contains the parameter passed from axios request
+    // req.query contains the parameter passed from axios request  // see in console your username
     Product.find({ owner: req.query.username }).then(result => {
         res.send(result);
     });
@@ -133,5 +133,10 @@ router.post('/updateitemstatus', (req, res) => {
     });
 });
 
-
+router.post('/updateitem',(req,res)=>{
+    Product.findOneAndUpdate({_id:req.body.id}, { ...req.body.form }).then( result=>{
+        console.log(result);
+        res.send('ok');
+    });
+});
 module.exports = router;
