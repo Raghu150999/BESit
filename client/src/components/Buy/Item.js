@@ -90,10 +90,12 @@ class Item extends Component {
 								<dt className="col-sm-3">Status:</dt>
 								<dd className="col-sm-9">{item.status}</dd>
 							</dl>
-
-							<button type="button" className="btn btn-dark prod-btn">
-								Interested
-							</button>
+							
+							<div className="row">
+								<button type="button" className="btn btn-primary" >
+									Interested
+								</button>
+							</div>
 						</div>
 					</div>
 				</div>

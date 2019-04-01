@@ -1,12 +1,28 @@
-import React from 'react';
+import React, { Component } from 'react';
 import './Product.css';
 import Dropdown from '../Dropdown.js'
+import Modal from 'react-responsive-modal';
 import axios from 'axios';
+import Dispuser from './Dispuser.js';
+import { connect } from 'react-redux';
 
-const Product = (props) => {
-  let item = props.item;
+class Product extends Component {
+  state={
+  open:false,
+  Displayusers:[]
+  }
+
+  shareStatus = (status,username) =>{
+    axios.post('/api/shareStatus', {
+      item: this.props.item,
+      username: username,
+      status: status
+    }).then(res=>{
+    });
+  }
+  render(){
+   let item = this.props.item;
   const api_uri = process.env.REACT_APP_API_URI_LOCAL;
-
   // generating elements for ol
   let varOl = [];
 
@@ -50,14 +66,48 @@ const Product = (props) => {
     let confirmation = window.confirm('This action will permanently delete this item. Do you want to continue?');
     if (!confirmation) 
       return;
-    axios.post('/removeitem', props.item)
+    axios.post('/removeitem', this.props.item)
       .then(res => {
         console.log(res.data);
         window.location = '/sell';
       })
   }
 
-  return (
+  const getInterestedUsers =(e)=>{
+    axios.get('/api/getInterestedUsers',{
+      params: {
+        id: item._id
+      }
+    }).then(res => {
+      this.setState({
+        Displayusers:res.data
+      }); 
+      this.setState({
+        open:true
+      });
+    });
+  }
+
+  const onCloseModal = (e) => {
+    this.setState({
+      open:false
+    });
+  };
+
+  let usersList = this.state.Displayusers.length>0?(
+    this.state.Displayusers.map((Displayuser) =>{
+          return(
+           <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} />
+          )
+        })
+    ) : (
+      <div>
+      <br/>
+      <h4 className="card-title">Sorry! No users to display!</h4>
+      </div>
+    );
+
+    return (
     <div className="Product">
       <div className="row">
         <div className="col-sm">
@@ -83,15 +133,41 @@ const Product = (props) => {
                 </a>
               </div>
             </div>
+
             <div className="card-body">
-              <h2 className="card-title">{props.item.name}<button type="button" className="btn btn-dark prod-btn">&#8377; {props.item.price}</button></h2>
-              <p className="card-text desc">{props.item.desc}</p>
-              {<Dropdown update={props.update} id={props.id} current={props.item.status} />}
-              <button type="button" className="btn btn-dark prod-btn" onClick={handleDelete}>Delete</button>
+              <h2 className="card-title">{this.props.item.name}<button type="button" className="btn btn-dark prod-btn">&#8377; {this.props.item.price}</button></h2>
+              <p className="card-text desc">{this.props.item.desc}</p>
+              {<Dropdown update={this.props.update} id={this.props.id} current={this.props.item.status} />}
+              
+              <div className="row">
+                <div className="col-12-md">
+                  <button type="button" className="btn btn-dark prod-btn" onClick={handleDelete}>Delete</button>
+                  <br/><br/>
+                </div>
+              </div>
+
+              <div className="row">
+                 <div className="col-12-md"> 
+                  <button type="button" className="btn btn-dark prod-btn" onClick={getInterestedUsers} >Interested Users</button>
+                    <Modal open={this.state.open} onClose={onCloseModal} center>
+                    {usersList  }
+                    </Modal>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
+      </div>
   );
+  }
 }
-export default Product;
+const mapStateToProps = (state) => {
+  return {
+    userLoggedIn: state.userLoggedIn,
+    user: state.user
+  }
+}
+
+
+export default connect(mapStateToProps)(Product);

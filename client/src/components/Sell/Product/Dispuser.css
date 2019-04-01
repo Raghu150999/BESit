@@ -1,0 +1,24 @@
+.contact2{
+    font-size: 5vh;
+    text-align: center;
+}
+.contact1{
+    font-size: 5vh;
+    margin-top:3vh;
+    text-align: center;
+}
+.Dispusertitle{
+    align-self: center;
+    font-size: 7.5vh;
+}
+.dispUser{
+    margin-top: 5vh;
+    border: 1px solid #cf6d17;
+}
+.shareContact{
+    float: right;
+}
+#contactlabel{
+    color: black;
+    font-weight: 100;
+}
