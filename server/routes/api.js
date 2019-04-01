@@ -119,7 +119,39 @@ router.get('/authorize', (req, res) => {
 
 const Product = require('./../models/productSchema');
 
+router.get('/getInterestedUsers',(req,res) => {
+    Product.findOne({_id: req.query.id}).then(result=>{
+        let response=[];
+        if(result)
+        {
+            response=result.interestedUsers
+        }
+        else {
+            reponse=null;
+        }
+        res.send(response);
+    });
+});
 
+router.get('/getContact',(req,res)=>{
+    User.findOne({username:req.query.username}).then(result=>{
+        let response;
+        if(result)
+        {
+            response={
+                name: result.fname,
+                phoneno: result.phoneno
+            }
+        }
+        else{
+            response={
+                name:'good',
+                phoneno: 9080683671
+            }
+        }
+        res.send(response);
+    });
+});
 router.get('/getitems', (req, res) => {
     // req.query contains the parameter passed from axios request
     Product.find({ owner: req.query.username }).then(result => {
@@ -140,4 +172,10 @@ router.post('/updateinteresteduser', (req, res) => {
         });
 });
 
+router.post('/shareStatus', (req, res) => {
+        Product.findOneAndUpdate({ _id: req.body.item._id,"interestedUsers.username": req.body.username}, { $set:{"interestedUsers.$.status":req.body.status}}).then(result => {
+            console.log('done');
+            res.send('ok');
+    });
+});
 module.exports = router;

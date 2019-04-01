@@ -5,7 +5,7 @@
 }
 html {
 background-color: #fff;
-color: #e67e22;
+color: black;
 font-family: 'Lato','Arial','sans-serif';
 font-weight: 100;
 font-size: 3.5vh;
@@ -20,10 +20,12 @@ text-rendering: optimizeLegibility;
   transition: background-color 0.5s, border 0.5s, color 0.5s;
 }
 .btn-primary{
+  display: inline-block;
+  padding: 1.8vh 3.5vh;
   background-color: #e67e22;
   border: 1px solid #e67e22;
   color: #fff;
-  margin-right: 15px;
+  border-radius: 50vh;
 }
 .btn:hover,
 .btn:active {
