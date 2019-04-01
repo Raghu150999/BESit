@@ -7,6 +7,9 @@ const Product = (props) => {
   let item = props.item;
   const api_uri = process.env.REACT_APP_API_URI_LOCAL;
 
+  if (!item.desc) {
+    item.desc = 'No description provided';
+  }
   // generating elements for ol
   let varOl = [];
 
@@ -15,9 +18,9 @@ const Product = (props) => {
     <li data-target={"#images" + item._id} data-slide-to="0" className="active" key="0"></li>
   ));
 
-  for(let i = 1; i < item.fileNames.length; i++) {
+  for (let i = 1; i < item.fileNames.length; i++) {
     varOl.push((
-      <li data-target={"#images" + item._id} data-slide-to={i+""} key={i+""}></li>
+      <li data-target={"#images" + item._id} data-slide-to={i + ""} key={i + ""}></li>
     ));
   }
 
@@ -29,7 +32,7 @@ const Product = (props) => {
         <img src={api_uri + "/image/" + item.fileNames[0]} className="card-img-top" alt="Responsive" />
       </div>
     ));
-  } else { 
+  } else {
     // Default image if no image is available.
     carouselElements.push((
       <div className="carousel-item active" key="0">
@@ -40,7 +43,7 @@ const Product = (props) => {
 
   for (let i = 1; i < item.fileNames.length; i++) {
     carouselElements.push((
-      <div className="carousel-item" key={i+""}>
+      <div className="carousel-item" key={i + ""}>
         <img src={api_uri + "/image/" + item.fileNames[i]} className="card-img-top" alt="Responsive" />
       </div>
     ));
@@ -48,7 +51,7 @@ const Product = (props) => {
 
   const handleDelete = (e) => {
     let confirmation = window.confirm('This action will permanently delete this item. Do you want to continue?');
-    if (!confirmation) 
+    if (!confirmation)
       return;
     axios.post('/removeitem', props.item)
       .then(res => {
@@ -58,40 +61,50 @@ const Product = (props) => {
   }
 
   return (
-    <div className="Product">
-      <div className="row">
-        <div className="col-sm">
-          <div className="prod-card">
-              <div id={"images" + item._id} className="carousel slide" data-ride="carousel">
+    <div className="">
+      <div className="">
+        <div className="col-sm-auto">
+          <div className="card box-shadow--8dp">
+            
+            <div id={"images" + item._id} className="carousel slide" data-ride="carousel">
+              {/* <ol className="carousel-indicators">
+                {varOl}
+              </ol> */}
 
-                <ol className="carousel-indicators">
-                  {varOl}
-                </ol>
-
-                <div className="carousel-inner">
-                  {carouselElements}
-                </div>
+              <div className="carousel-inner">
+                {carouselElements}
+              </div>
 
               <a className="carousel-control-prev" href={"#images" + item._id} role="button" data-slide="prev">
-                  <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span className="sr-only">Previous</span>
-                </a>
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
+              </a>
 
               <a className="carousel-control-next" href={"#images" + item._id} role="button" data-slide="next">
-                  <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span className="sr-only">Next</span>
-                </a>
-              </div>
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
+              </a>
             </div>
             <div className="card-body">
-              <h2 className="card-title">{props.item.name}<button type="button" className="btn btn-dark prod-btn">&#8377; {props.item.price}</button></h2>
-              <p className="card-text desc">{props.item.desc}</p>
-              {<Dropdown update={props.update} id={props.id} current={props.item.status} />}
-              <button type="button" className="btn btn-dark prod-btn" onClick={handleDelete}>Delete</button>
+              <h4 className="card-title">{item.name}</h4>
+              <div className="container desc-list">
+                <dl className="row">
+                  <dt className="col-sm-4">Price:</dt>
+                  <dd className="col-sm-8">{String.fromCharCode(8377) + " " + item.price}</dd>
+
+                  <dt className="col-sm-4">Desc:</dt>
+                  <dd className="col-sm-8">{item.desc}</dd>
+                </dl>
+                {<Dropdown update={props.update} id={props.id} current={props.item.status} />}
+                <button type="button" className="btn btn-dark prod-btn" onClick={handleDelete}>Delete</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
+    </div>
   );
 }
+
+
 export default Product;

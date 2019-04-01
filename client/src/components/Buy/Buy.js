@@ -56,18 +56,18 @@ class Buy extends Component {
 
     let items = this.state.items.map(item => {
       return (
-        <Item key={item._id} item={item} user={this.props.user}/>
+          <Item key={item._id} item={item} user={this.props.user}/>
       );
     });
 
     if (items.length === 0) {
       items = (
         <div className="container">
-          <h6 className="display-4">
+          <h4>
             No results found :( 
-          </h6>
+          </h4>
           <p className="lead">
-            (Tip: search with empty query to search all items)
+            (Tip: search with empty query to get all items)
           </p>
         </div>
       );
@@ -76,9 +76,7 @@ class Buy extends Component {
     return (
       <div>
         <HomeNav />
-        <h1>
-          Coming Soon!
-        </h1>
+        <div className="container">
         <form onSubmit={this.submitHandler}>
           <div className="form-group">
             <label>Category</label>
@@ -94,11 +92,14 @@ class Buy extends Component {
             </div>
           </div>
         </form>
-        <div className="container">
-          <h1 className="display-3">
+        </div>
+        <div className="container" style={{marginBottom: "20px"}}>
+          <h3 className="display-4">
             Search Results: 
-          </h1>
-          {items}
+          </h3>
+          <div className="row">
+            {items}
+          </div>
         </div>
       </div>
     )

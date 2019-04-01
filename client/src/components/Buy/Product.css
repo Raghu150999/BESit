@@ -1,4 +1,4 @@
-/*.Product 
+/* .Product 
 {
     display : inline-block;
     box-shadow: 2px 3px rgb(77, 65, 65);
@@ -7,16 +7,17 @@
     padding : 16px;
     width : 40%;
     
-}*/
+}
 
 
 .prod-card
 {
     width: 450px;
-    /*height: 475px;*/
+    height: 475px;
     max-width: 450px;
     max-height: 475px;
-}
+} 
+
 
 .Product
 {
@@ -29,7 +30,7 @@
     max-width: 450px;
     max-height: 300px;
     width: 450px;
-    /*height: 300px;*/
+    height: 300px;
     margin: 1px;
     object-fit: cover ;
 }
@@ -48,7 +49,7 @@
     max-height: 250px;
     max-width: 475px;
     width: 450px;
-    /*height: 250px;*/
+    height: 250px;
 }
 
 .price
@@ -103,4 +104,4 @@
 .box-shadow--8dp {
     box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, .14),
                 2px -5px 10px 1px rgba(0, 0, 0, .14)
-}
+} */
