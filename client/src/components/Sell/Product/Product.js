@@ -5,6 +5,7 @@ import Modal from 'react-responsive-modal';
 import axios from 'axios';
 import Dispuser from './Dispuser.js';
 import { connect } from 'react-redux';
+import Edit from './../Edit';
 
 class Product extends Component {
   state = {
@@ -144,14 +145,18 @@ class Product extends Component {
                   <dl className="row">
                     <dt className="col-sm-4">Price:</dt>
                     <dd className="col-sm-8">{String.fromCharCode(8377) + " " + item.price}</dd>
-
                     <dt className="col-sm-4">Desc:</dt>
                     <dd className="col-sm-8">{item.desc}</dd>
                   </dl>
-                  {<Dropdown update={this.props.update} id={this.props.id} current={this.props.item.status} />}
-                  <button type="button" className="btn btn-dark prod-btn" onClick={handleDelete}>Delete</button>
 
-                  <button type="button" className="btn btn-dark prod-btn" onClick={getInterestedUsers} >Interested Users</button>
+                  {<Dropdown update={this.props.update} id={this.props.id} current={this.props.item.status} />}
+
+                  <button type="button" className="btn btn-dark sell-prod-btn" onClick={handleDelete}>Delete</button>
+
+                  <Edit key={this.props.id} item={this.props.item} />
+
+                  <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} >Interested Buyers</button>
+
                   <Modal open={this.state.open} onClose={onCloseModal} center>
                     {usersList}
                   </Modal>

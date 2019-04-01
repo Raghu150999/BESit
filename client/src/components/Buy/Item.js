@@ -7,7 +7,8 @@ class Item extends Component {
 	state = {
 		status: 'Not Interested',
 		interestedUsers: [],
-		sellerStatus: false
+		sellerStatus: false,
+		contact: 'Not provided'
 	}
 
 	handleInterested = (e) => {
@@ -39,14 +40,29 @@ class Item extends Component {
 	}
 	componentDidMount() {
 		const interestedUsers = this.props.item.interestedUsers;
+		let status = false;
 		interestedUsers.forEach(user => {
 			if (user.username === this.props.user.username) {
+				status = user.status;
 				this.setState({
 					status: 'Interested',
 					sellerStatus: user.status
 				});
 			}
 		});
+		if (status) {
+			axios.get('/api/getContact', {
+				params: {
+					username: this.props.item.owner
+				}
+			})
+				.then(res => {
+					this.setState({
+						contact: res.data.phoneno
+					})
+				});
+		}
+
 		this.setState({
 			interestedUsers
 		});
@@ -137,6 +153,9 @@ class Item extends Component {
 
 									<dt className="col-sm-4">Status:</dt>
 									<dd className="col-sm-8">{item.status}</dd>
+
+									<dt className="col-sm-4">Contact:</dt>
+									<dd className="col-sm-8">{this.state.contact}</dd>
 								</dl>
 							</div>
 							<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
