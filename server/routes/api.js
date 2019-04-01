@@ -14,33 +14,6 @@ router.post('/verifyuser', (req, res) => {
         req.check('password', 'Password cannot be empty').notEmpty();
         req.check('password', 'Passwords don\'t match').equals(req.body.rpassword);
         req.check('phoneno', 'Phoneno is invalid').isMobilePhone(["en-IN"]);
-            const errors = req.validationErrors();
-            let response;
-            if (errors) {
-                response = {
-                    success: false,
-                    errors,
-                }
-                res.send(response);
-            }
-            else {
-                response = {
-                    success: true,
-                    errors: null
-                }
-                User.saveUser(req.body, function (result) {
-                    res.send(response);
-                });
-            }
-    });
-});
-
-
-// @debug: Correct this route.
-router.post('/updateuser', (req, res) => {
-    req.check('fname', 'First Name missing').notEmpty();
-    req.check('password', 'Password cannot be empty').notEmpty();
-    req.check('phoneno', 'Phone number is invalid').isMobilePhone(["en-IN"]);
         const errors = req.validationErrors();
         let response;
         if (errors) {
@@ -55,10 +28,37 @@ router.post('/updateuser', (req, res) => {
                 success: true,
                 errors: null
             }
-            User.findOneAndUpdate({ username: req.body.username }, { fname: req.body.fname, password: req.body.password, phoneno: req.body.phoneno}).then(function (result) {
+            User.saveUser(req.body, function (result) {
                 res.send(response);
             });
         }
+    });
+});
+
+
+// @debug: Correct this route.
+router.post('/updateuser', (req, res) => {
+    req.check('fname', 'First Name missing').notEmpty();
+    req.check('password', 'Password cannot be empty').notEmpty();
+    req.check('phoneno', 'Phone number is invalid').isMobilePhone(["en-IN"]);
+    const errors = req.validationErrors();
+    let response;
+    if (errors) {
+        response = {
+            success: false,
+            errors,
+        }
+        res.send(response);
+    }
+    else {
+        response = {
+            success: true,
+            errors: null
+        }
+        User.findOneAndUpdate({ username: req.body.username }, { fname: req.body.fname, password: req.body.password, phoneno: req.body.phoneno }).then(function (result) {
+            res.send(response);
+        });
+    }
 });
 
 router.post('/login', (req, res) => {
@@ -85,6 +85,7 @@ router.post('/login', (req, res) => {
             user: cleanUser,
             token: null
         };
+
         if (err === false) {
             let token = jwtHandler.generateToken(result);
             response.token = token;
@@ -119,41 +120,41 @@ router.get('/authorize', (req, res) => {
 
 const Product = require('./../models/productSchema');
 
-router.get('/getInterestedUsers',(req,res) => {
-    Product.findOne({_id: req.query.id}).then(result=>{
-        let response=[];
-        if(result)
-        {
-            response=result.interestedUsers
+router.get('/getInterestedUsers', (req, res) => {
+    Product.findOne({ _id: req.query.id }).then(result => {
+        let response = [];
+        if (result) {
+            response = result.interestedUsers
         }
         else {
-            reponse=null;
+            reponse = null;
         }
         res.send(response);
     });
 });
 
-router.get('/getContact',(req,res)=>{
-    User.findOne({username:req.query.username}).then(result=>{
+router.get('/getContact', (req, res) => {
+    User.findOne({ username: req.query.username }).then(result => {
         let response;
-        if(result)
-        {
-            response={
+        if (result) {
+            response = {
                 name: result.fname,
                 phoneno: result.phoneno
             }
         }
-        else{
-            response={
-                name:'good',
+        else {
+            // @ankit pls check this block of code
+            response = {
+                name: 'good',
                 phoneno: 9080683671
             }
         }
         res.send(response);
     });
 });
+
 router.get('/getitems', (req, res) => {
-    // req.query contains the parameter passed from axios request
+    // req.query contains the parameter passed from axios request  // see in console your username
     Product.find({ owner: req.query.username }).then(result => {
         res.send(result);
     });
@@ -166,16 +167,29 @@ router.post('/updateitemstatus', (req, res) => {
 });
 
 router.post('/updateinteresteduser', (req, res) => {
-    Product.findOneAndUpdate({ _id: req.body.item._id }, {interestedUsers: req.body.interestedUsers })
+    Product.findOneAndUpdate({ _id: req.body.item._id }, { interestedUsers: req.body.interestedUsers })
         .then(result => {
             res.send('ok');
         });
 });
 
-router.post('/shareStatus', (req, res) => {
-        Product.findOneAndUpdate({ _id: req.body.item._id,"interestedUsers.username": req.body.username}, { $set:{"interestedUsers.$.status":req.body.status}}).then(result => {
-            console.log('done');
-            res.send('ok');
+router.post('/updateitem', (req, res) => {
+    Product.findOneAndUpdate({ _id: req.body.id }, { ...req.body.form }).then(result => {
+        console.log(result);
+        res.send('ok');
     });
 });
+
+router.post('/shareStatus', (req, res) => {
+    Product.findOneAndUpdate({ 
+        _id: req.body.item._id, 
+        "interestedUsers.username": req.body.username }, 
+        { $set: 
+            { "interestedUsers.$.status": req.body.status } 
+        })
+        .then(result => {
+            res.send('ok');
+        });
+});
+
 module.exports = router;

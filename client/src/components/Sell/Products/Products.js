@@ -55,7 +55,7 @@ class Products extends Component {
     let displayItems = this.state.items.length > 0 ? (
       this.state.items.map((item) => {
         return (
-          <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
+            <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
         )
       })
     ) : (
