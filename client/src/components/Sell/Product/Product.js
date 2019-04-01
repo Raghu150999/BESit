@@ -2,6 +2,7 @@ import React from 'react';
 import './Product.css';
 import Dropdown from '../Dropdown.js'
 import axios from 'axios';
+import Edit from './../Edit';
 
 const Product = (props) => {
   let item = props.item;
@@ -97,6 +98,7 @@ const Product = (props) => {
                 </dl>
                 {<Dropdown update={props.update} id={props.id} current={props.item.status} />}
                 <button type="button" className="btn btn-dark prod-btn" onClick={handleDelete}>Delete</button>
+                <Edit key={props.id} item={props.item} />
               </div>
             </div>
           </div>
