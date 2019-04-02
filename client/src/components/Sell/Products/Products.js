@@ -20,7 +20,7 @@ class Products extends Component {
       })
         .then(res => {
           this.setState({
-            items: res.data,
+            items: res.data.reverse(),
             itemsAvailable: true
           });
         });
@@ -55,7 +55,7 @@ class Products extends Component {
     let displayItems = this.state.items.length > 0 ? (
       this.state.items.map((item) => {
         return (
-          <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
+            <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
         )
       })
     ) : (
@@ -72,7 +72,11 @@ class Products extends Component {
       <div>
         <Button />
         {header}
-        {displayItems}
+        <div className="container" style={{marginBottom: "20px"}}>
+          <div className="row">
+            {displayItems}
+          </div>
+        </div>
       </div>
     )
   }

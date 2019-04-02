@@ -1,11 +1,13 @@
 .styled-select {
-    background-color:transparent;
+    background-color: transparent;
     height: 35px;
     overflow: hidden;
     width: 150px;
     border: 1px solid;
     border-radius: 5px;
-    margin-top: 15px;
+    margin-left: 2px;
+    margin-bottom: 10px;
+    display: block;
  }
 
  .styled-select select {

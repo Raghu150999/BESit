@@ -152,8 +152,9 @@ router.get('/getContact',(req,res)=>{
         res.send(response);
     });
 });
+
 router.get('/getitems', (req, res) => {
-    // req.query contains the parameter passed from axios request
+    // req.query contains the parameter passed from axios request  // see in console your username
     Product.find({ owner: req.query.username }).then(result => {
         res.send(result);
     });
@@ -165,9 +166,22 @@ router.post('/updateitemstatus', (req, res) => {
     });
 });
 
+router.post('/updateinteresteduser', (req, res) => {
+    Product.findOneAndUpdate({ _id: req.body.item._id }, {interestedUsers: req.body.interestedUsers })
+        .then(result => {
+            res.send('ok');
+        });
+});
+
+router.post('/updateitem',(req,res)=>{
+    Product.findOneAndUpdate({_id:req.body.id}, { ...req.body.form }).then( result=>{
+        console.log(result);
+        res.send('ok');
+    });
+});
+
 router.post('/shareStatus', (req, res) => {
         Product.findOneAndUpdate({ _id: req.body.item._id,"interestedUsers.username": req.body.username}, { $set:{"interestedUsers.$.status":req.body.status}}).then(result => {
-            console.log('done');
             res.send('ok');
     });
 });

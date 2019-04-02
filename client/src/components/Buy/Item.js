@@ -1,7 +1,73 @@
 import React, { Component } from 'react'
-import './Product.css';
+import axios from 'axios';
+import './../Sell/Product/Product.css';
 
 class Item extends Component {
+
+	state = {
+		status: 'Not Interested',
+		interestedUsers: [],
+		sellerStatus: false,
+		contact: 'Not provided'
+	}
+
+	handleInterested = (e) => {
+		const newStatus = this.state.status === 'Not Interested' ? 'Interested' : 'Not Interested';
+		console.log(newStatus);
+		const interestedUsers = this.state.interestedUsers.filter(user => {
+			if (user.username === this.props.user.username) {
+				return false; // skip the current user
+			}
+			return true;
+		});
+
+		if (newStatus === 'Interested') {
+			interestedUsers.push({
+				username: this.props.user.username,
+				status: this.state.sellerStatus
+			})
+		}
+		axios.post('/api/updateinteresteduser', {
+			item: this.props.item,
+			interestedUsers
+		});
+
+		this.setState({
+			status: newStatus,
+			interestedUsers
+		})
+
+	}
+	componentDidMount() {
+		const interestedUsers = this.props.item.interestedUsers;
+		let status = false;
+		interestedUsers.forEach(user => {
+			if (user.username === this.props.user.username) {
+				status = user.status;
+				this.setState({
+					status: 'Interested',
+					sellerStatus: user.status
+				});
+			}
+		});
+		if (status) {
+			axios.get('/api/getContact', {
+				params: {
+					username: this.props.item.owner
+				}
+			})
+				.then(res => {
+					this.setState({
+						contact: res.data.phoneno
+					})
+				});
+		}
+
+		this.setState({
+			interestedUsers
+		});
+	}
+
 	render() {
 		const api_uri = process.env.REACT_APP_API_URI_LOCAL;
 		let item = this.props.item;
@@ -24,7 +90,7 @@ class Item extends Component {
 		if (item.fileNames.length > 0) {
 			carouselElements.push((
 				<div className="carousel-item active" key="0">
-					<img src={api_uri + "/image/" + item.fileNames[0]} className="card-img-top" alt="Responsive" />
+					<img src={api_uri + "/image/" + item.fileNames[0]} className="card-img-top" alt="Card image cap" />
 				</div>
 			));
 		} else {
@@ -39,7 +105,7 @@ class Item extends Component {
 		for (let i = 1; i < item.fileNames.length; i++) {
 			carouselElements.push((
 				<div className="carousel-item" key={i + ""}>
-					<img src={api_uri + "/image/" + item.fileNames[i]} className="card-img-top" alt="Responsive" />
+					<img src={api_uri + "/image/" + item.fileNames[i]} className="card-img-top" alt="Card image cap" />
 				</div>
 			));
 		}
@@ -49,58 +115,56 @@ class Item extends Component {
 		}
 
 		return (
-			<div className="Product">
-				<div className="row">
-					<div className="col-sm">
-						<div className="prod-card">
-							<div id={"images" + item._id} className="carousel slide" data-ride="carousel">
-
-								<ol className="carousel-indicators">
-									{varOl}
-								</ol>
-
-								<div className="carousel-inner">
-									{carouselElements}
-								</div>
-
-								<a className="carousel-control-prev" href={"#images" + item._id} role="button" data-slide="prev">
-									<span className="carousel-control-prev-icon" aria-hidden="true"></span>
-									<span className="sr-only">Previous</span>
-								</a>
-
-								<a className="carousel-control-next" href={"#images" + item._id} role="button" data-slide="next">
-									<span className="carousel-control-next-icon" aria-hidden="true"></span>
-									<span className="sr-only">Next</span>
-								</a>
-							</div>
+			<div className="col-sm-auto">
+				<div className="card box-shadow--8dp">
+					<div id={"images" + item._id} className="carousel slide" data-ride="carousel">
+						{/* Indicators */}
+						{/* <ol className="carousel-indicators">
+							{varOl}
+						</ol> */}
+						{/* Slideshow */}
+						<div className="carousel-inner">
+								{carouselElements}
 						</div>
 
-						<div className="card-body">
-							<h2 className="card-title">{item.name}
-							<button type="button" className="btn btn-dark prod-btn">&#8377; {item.price}</button></h2>
-							<br /><br /><br />
+						<a className="carousel-control-prev" href={"#images" + item._id} role="button" data-slide="prev">
+								<span className="carousel-control-prev-icon" aria-hidden="true"></span>
+								<span className="sr-only">Previous</span>
+						</a>
 
-							<dl className="row">
-								<dt className="col-sm-3">Owner:</dt>
-								<dd className="col-sm-9">{item.owner}</dd>
+						<a className="carousel-control-next" href={"#images" + item._id} role="button" data-slide="next">
+								<span className="carousel-control-next-icon" aria-hidden="true"></span>
+								<span className="sr-only">Next</span>
+						</a>
 
-								<dt className="col-sm-3">Desc:</dt>
-								<dd className="col-sm-9">{item.desc}</dd>
-
-								<dt className="col-sm-3">Status:</dt>
-								<dd className="col-sm-9">{item.status}</dd>
-							</dl>
+            <div className="card-body">
+							<h4 className="card-title">{item.name}</h4>
 							
-							<div className="row">
-								<button type="button" className="btn btn-primary" >
-									Interested
-								</button>
+							<div className="container desc-list">
+								<dl className="row">
+									<dt className="col-sm-4">Price:</dt>
+									<dd className="col-sm-8">{String.fromCharCode(8377) + " " + item.price}</dd>
+
+									<dt className="col-sm-4">Owner:</dt>
+									<dd className="col-sm-8">{item.owner}</dd>
+
+									<dt className="col-sm-4">Desc:</dt>
+									<dd className="col-sm-8">{item.desc}</dd>
+
+									<dt className="col-sm-4">Status:</dt>
+									<dd className="col-sm-8">{item.status}</dd>
+
+									<dt className="col-sm-4">Contact:</dt>
+									<dd className="col-sm-8">{this.state.contact}</dd>
+								</dl>
 							</div>
+							<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
+								{this.state.status}
+							</button>
 						</div>
 					</div>
 				</div>
-				<br /><br /><br /><br />
-			</div>
+			</div>	
 		);
 	}
 }
