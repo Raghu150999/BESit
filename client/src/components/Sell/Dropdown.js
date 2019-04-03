@@ -19,8 +19,6 @@ class Dropdown extends Component {
     this.updateHandler(e)
   }
 
-
-
   render() {
     return (
       <div className="styled-select rounded">

@@ -1,0 +1,68 @@
+.container
+{
+    padding-top: 50px;
+}
+
+.card
+{
+    height: 350px;
+    position: relative;
+}
+
+.card .card-title
+{
+    font-size: 40px;
+    margin-top: -40px;
+}
+
+.card .username
+{
+    font-size: 25px;
+    margin-top: -10px;
+    color: orange;
+}
+
+.card .desc
+{
+    margin-top: 40px;
+    font-size: 25px;
+}
+
+.card .time
+{
+    font-size: 25px;
+    margin-top: auto;
+    position: absolute;
+    bottom: 15px;
+    right: 15px;
+    font-style: italic;
+}
+
+.new-req-btn
+{
+    width: 100px;
+    height: 100px;
+    background-color: #e99041;
+    color: white;
+    border-color: #e99041;
+    border-radius: 50%;
+    bottom: 50px;
+    right: 400px;
+    position: fixed;
+    z-index: 100;
+    font-size: 50px;
+    text-align: right;
+}
+
+.new-req-btn:hover
+{
+    background-color: black;
+    color:gray;
+    border-color: black;
+}
+
+.box-shadow--8dp 
+{
+    box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, .14),
+                2px -5px 10px 1px rgba(0, 0, 0, .14)
+}

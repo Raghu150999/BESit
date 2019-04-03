@@ -59,8 +59,9 @@ const Product = (props) => {
 
   return (
     <div className="Product">
+    <div class="container">
       <div className="row">
-        <div className="col-sm">
+        <div className="col-1">
           <div className="prod-card">
               <div id={"images" + item._id} className="carousel slide" data-ride="carousel">
 
@@ -84,12 +85,14 @@ const Product = (props) => {
               </div>
             </div>
             <div className="card-body">
-              <h2 className="card-title">{props.item.name}<button type="button" className="btn btn-dark prod-btn">&#8377; {props.item.price}</button></h2>
+              <h2 className="card-title"><strong>{props.item.name}</strong></h2>
               <p className="card-text desc">{props.item.desc}</p>
+              <button type="button" className="btn-dark price-btn">&#8377; {props.item.price}</button>
               {<Dropdown update={props.update} id={props.id} current={props.item.status} />}
-              <button type="button" className="btn btn-dark prod-btn" onClick={handleDelete}>Delete</button>
+              <button type="button" className="btn-dark prod-btn" onClick={handleDelete}>Delete</button>
             </div>
           </div>
+        </div>
         </div>
       </div>
   );

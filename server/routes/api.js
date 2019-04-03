@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const User = require('../models/userSchema');
+const Requirement = require('../models/reqSchema');
 const jwtHandler = require('./../auth/token');
 const utils = require('./../utils/utils');
 const jwt = require('jsonwebtoken');
@@ -133,5 +134,27 @@ router.post('/updateitemstatus', (req, res) => {
     });
 });
 
+router.post('/newreq', (req,res) => 
+{
+    const requirement = new Requirement(
+    {
+        title: req.body.title,
+        desc: req.body.desc,
+        timestamp: req.body.timestamp,
+        username: req.body.username
+    });
+    requirement.save().then(() =>
+    {
+        res.send(requirement);
+    });
+});
+
+router.get('/getreq',(req,res) =>
+{
+    Requirement.find().then(result =>
+    {
+        res.send(result);
+    });
+});
 
 module.exports = router;

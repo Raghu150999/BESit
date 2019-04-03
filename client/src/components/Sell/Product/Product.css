@@ -1,19 +1,6 @@
-/*.Product 
-{
-    display : inline-block;
-    box-shadow: 2px 3px rgb(77, 65, 65);
-    border : 1px solid rgb(82, 62, 62);
-    margin : 16px 14px;
-    padding : 16px;
-    width : 40%;
-    
-}*/
-
-
 .prod-card
 {
     width: 450px;
-    /*height: 475px;*/
     max-width: 450px;
     max-height: 475px;
 }
@@ -39,6 +26,7 @@
     display: inline-block;
     text-align: left;
     margin: 1px;
+    font-size: 45px;
 }
 
 .card-body
@@ -48,18 +36,42 @@
     max-height: 250px;
     max-width: 475px;
     width: 450px;
+    font-size: 25px;
     /*height: 250px;*/
 }
 
 .price
 {
-    font-size: 25px;
+    font-size: 20px;
     margin: 1px;
+    height: 5px;
+    width: 5px;
 }
 
 .desc
 {
     margin: 1px;
+}
+
+.price-btn
+{
+    border-radius: 5px;
+    position: relative;
+    /*right: 15px; */
+    background-color: black;
+    border: none;
+    font-size: 25px;
+    width: 100px;
+    max-width: 195px;
+    height: 50px;
+    margin-top: 15px;
+}
+
+.price-btn:hover
+{
+    cursor: default;
+    background-color: black;
+    border: none;
 }
 
 .prod-btn
@@ -91,6 +103,7 @@
     right: 400px;
     padding-right: -1000px;
     padding-left: 27px;
+    z-index: 100;
 }
 
 .new-item-btn:hover
