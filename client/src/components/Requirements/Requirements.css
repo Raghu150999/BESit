@@ -1,34 +1,36 @@
-.container
+.req-container
 {
     padding-top: 50px;
 }
 
-.card
+.req-card
 {
     height: 350px;
     position: relative;
+    display: block;
 }
 
-.card .card-title
+.req-card .req-card-title
 {
     font-size: 40px;
-    margin-top: -40px;
+    margin-top: -30px;
+    margin-left: -5px;
 }
 
-.card .username
+.req-card .username
 {
     font-size: 25px;
-    margin-top: -10px;
+    margin-top: -20px;
     color: orange;
 }
 
-.card .desc
+.req-card .desc
 {
     margin-top: 40px;
     font-size: 25px;
 }
 
-.card .time
+.req-card .time
 {
     font-size: 25px;
     margin-top: auto;

@@ -1,9 +1,22 @@
-.prod-card
+/*.Product 
+{
+    display : inline-block;
+    box-shadow: 2px 3px rgb(77, 65, 65);
+    border : 1px solid rgb(82, 62, 62);
+    margin : 16px 14px;
+    padding : 16px;
+    width : 40%;
+    
+}*/
+
+
+/* .prod-card
 {
     width: 450px;
+    height: 475px;
     max-width: 450px;
     max-height: 475px;
-}
+} */
 
 .Product
 {
@@ -11,33 +24,30 @@
     margin: 16px 14px;
 }
 
+.card {
+	width: 18rem;
+	height: 42rem;
+	margin-top: 10px;
+}
+
 .card-img-top
 {
-    max-width: 450px;
-    max-height: 300px;
-    width: 450px;
-    /*height: 300px;*/
-    margin: 1px;
-    object-fit: cover ;
+	width: 18rem;
+	height: 20rem;
+	object-fit: contain;
 }
 
 .card-title
 {
-    display: inline-block;
+	display: block;
     text-align: left;
-    margin: 1px;
-    font-size: 45px;
+    margin-left: 10px;
 }
 
 .card-body
 {
-    margin-top: 1px;
-    margin-left: 1px;
-    max-height: 250px;
-    max-width: 475px;
-    width: 450px;
-    font-size: 25px;
-    /*height: 250px;*/
+	margin-top: 5px;
+	height: auto;
 }
 
 .price
@@ -48,39 +58,30 @@
     width: 5px;
 }
 
-.desc
+.desc-list
 {
-    margin: 1px;
+	font-size: 80%;
+    margin-top: 30px;
 }
 
-.price-btn
-{
-    border-radius: 5px;
-    position: relative;
-    /*right: 15px; */
-    background-color: black;
-    border: none;
-    font-size: 25px;
-    width: 100px;
-    max-width: 195px;
-    height: 50px;
-    margin-top: 15px;
-}
-
-.price-btn:hover
-{
-    cursor: default;
-    background-color: black;
-    border: none;
-}
 
 .prod-btn
 {
+	font-size: 80%;
     border-radius: 5px;
-    position: absolute;
-    right: 15px; 
+    background-color: black;
+	border: none;
+    margin-top: 5px;
+}	
+
+.sell-prod-btn
+{
+	font-size: 80%;
+    border-radius: 5px;
     background-color: black;
     border: none;
+    float: left;
+    margin: 5px;
 }
 
 .prod-btn:hover
@@ -90,10 +91,23 @@
     border: none;
 }
 
+.sell-prod-btn:hover
+{
+    cursor: default;
+    background-color: black;
+    border: none;
+}
+
+.box-shadow--8dp {
+    box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, .14),
+                2px -5px 10px 1px rgba(0, 0, 0, .14)
+}
+
 .new-item-btn
 {
     width: 100px;
-    height: 100px;
+	height: 100px;
+	z-index: 1;
     background-color: #e99041;
     color: white;
     border-color: #e99041;
@@ -113,7 +127,6 @@
     border-color: black;
 }
 
-.box-shadow--8dp {
-    box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, .14),
-                2px -5px 10px 1px rgba(0, 0, 0, .14)
+.interest{
+    margin-right: 1vw; 
 }
