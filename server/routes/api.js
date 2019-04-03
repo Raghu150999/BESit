@@ -173,14 +173,20 @@ router.post('/updateinteresteduser', (req, res) => {
         });
 });
 
+<<<<<<< HEAD
 router.post('/updateitem', (req, res) => {
     Product.findOneAndUpdate({ _id: req.body.id }, { ...req.body.form }).then(result => {
+=======
+router.post('/updateitem',(req,res)=>{
+    Product.findOneAndUpdate({_id:req.body.id}, { ...req.body.form }).then( result=>{
+>>>>>>> 2b0a7b276652aad4578e2ab8b4baab299df35b77
         console.log(result);
         res.send('ok');
     });
 });
 
 router.post('/shareStatus', (req, res) => {
+<<<<<<< HEAD
     Product.findOneAndUpdate({ 
         _id: req.body.item._id, 
         "interestedUsers.username": req.body.username }, 
@@ -190,6 +196,11 @@ router.post('/shareStatus', (req, res) => {
         .then(result => {
             res.send('ok');
         });
+=======
+        Product.findOneAndUpdate({ _id: req.body.item._id,"interestedUsers.username": req.body.username}, { $set:{"interestedUsers.$.status":req.body.status}}).then(result => {
+            res.send('ok');
+    });
+>>>>>>> 2b0a7b276652aad4578e2ab8b4baab299df35b77
 });
 
 module.exports = router;
