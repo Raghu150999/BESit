@@ -53,6 +53,9 @@ class HomeNav extends Component {
             <li className="nav-item">
               <a className="nav-link" href="" onClick={this.logOut}>LogOut</a> { /* @debug: Float this to right */}
             </li>
+            <li className="nav-item">
+              <Link to="/user" className="nav-link">User</Link>
+            </li>
           </ul>
         </div>
       </nav>

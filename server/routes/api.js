@@ -160,6 +160,16 @@ router.get('/getitems', (req, res) => {
     });
 });
 
+router.get('/getInterestedItems', (req, res) => {
+    // req.query contains the parameter passed from axios request  // see in console your username
+    const username=req.query.username;
+    console.log(username);
+    Product.find({'interestedUsers.username':username}).then(result => {
+        res.send(result);
+    });
+});
+
+
 router.post('/updateitemstatus', (req, res) => {
     Product.findOneAndUpdate({ _id: req.body.id }, { status: req.body.status }).then(result => {
         res.send('ok');

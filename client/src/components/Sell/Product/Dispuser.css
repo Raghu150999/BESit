@@ -8,17 +8,25 @@
     text-align: center;
 }
 .Dispusertitle{
-    align-self: center;
-    font-size: 7.5vh;
+    font-size: 4.5vh;
 }
 .dispUser{
     margin-top: 5vh;
+    width: auto;
+	height:auto;
     border: 1px solid #cf6d17;
+
 }
 .shareContact{
-    float: right;
+float:right;
+padding-top:0.6vh;
+margin-right:5px;
 }
 #contactlabel{
+    color: black;
+    font-weight: 100;
+}
+#contactlabel1{
     color: black;
     font-weight: 100;
 }
