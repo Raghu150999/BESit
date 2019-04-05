@@ -13,7 +13,6 @@ class Item extends Component {
 
 	handleInterested = (e) => {
 		const newStatus = this.state.status === 'Not Interested' ? 'Interested' : 'Not Interested';
-		console.log(newStatus);
 		const interestedUsers = this.state.interestedUsers.filter(user => {
 			if (user.username === this.props.user.username) {
 				return false; // skip the current user
@@ -35,9 +34,24 @@ class Item extends Component {
 		this.setState({
 			status: newStatus,
 			interestedUsers
-		})
+		});
 
+		let data = {
+			sourceUsername: this.props.user.username,
+			targetUsername: this.props.item.owner,
+			productID: this.props.item._id,
+			productName: this.props.item.name,
+			type: 'INTEREST',
+			seenStatus: false,
+			status: newStatus,
+			timeStamp: new Date()
+		};
+
+		axios.post('/notify/interest', data)
+			.then(res => {
+			});
 	}
+
 	componentDidMount() {
 		const interestedUsers = this.props.item.interestedUsers;
 		let status = false;
@@ -51,6 +65,7 @@ class Item extends Component {
 			}
 		});
 		if (status) {
+			// if status is true then contact sharing is allowed hence, get contact
 			axios.get('/api/getContact', {
 				params: {
 					username: this.props.item.owner
@@ -85,7 +100,7 @@ class Item extends Component {
 			));
 		}
 
-		// generating carousel elements
+		// generating carousel elements (array of JSX elements when rendered will come one after another)
 		let carouselElements = [];
 		if (item.fileNames.length > 0) {
 			carouselElements.push((
@@ -110,6 +125,7 @@ class Item extends Component {
 			));
 		}
 
+		// Default text if no description provided
 		if (item.desc === '') {
 			item.desc = 'No description provided';
 		}

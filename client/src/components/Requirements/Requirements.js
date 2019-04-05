@@ -6,7 +6,7 @@ import axios from 'axios';
 import { connect } from 'react-redux';
 import Requirement from './Requirement';
 
-const Styles = 
+const Styles =
 {
     content:
     {
@@ -15,22 +15,20 @@ const Styles =
     }
 };
 
-class Requirements extends Component
-{
+class Requirements extends Component {
 
-    state = 
-    {
-        open: false,
-        requirements: []
-    };
+    state =
+        {
+            open: false,
+            requirements: []
+        };
 
-    submitForm = (e) =>
-    {
+    submitForm = (e) => {
         e.preventDefault();
-        if(this.state.err)
+        if (this.state.err)
             return;
 
-        const formData = 
+        const formData =
         {
             title: e.target[0].value,
             desc: e.target[1].value,
@@ -38,61 +36,56 @@ class Requirements extends Component
             username: this.props.user.username
         };
 
-        axios.post('/api/newreq',formData).then(
-            res =>
-            {
+        axios.post('/api/newreq', formData).then(
+            res => {
                 window.location = '/requirements';
             });
     }
 
-    openModal = () =>
-    {
+    openModal = () => {
         //console.log('Modal opened');
-        this.setState({open: true});
+        this.setState({ open: true });
     };
 
-    closeModal = () =>
-    {
-        this.setState({open: false});
+    closeModal = () => {
+        this.setState({ open: false });
     };
 
-    render()
-    {
-        const {open} = this.state;
+    render() {
+        const { open } = this.state;
         return (
             <div>
                 <HomeNav />
                 <Requirement />
-                <div className = "container">
-                <button className="btn btn-primary btn-lg new-req-btn box-shadow--8dp" onClick = {this.openModal}>+</button>
-                <Modal 
-                open={open} 
-                onClose={this.closeModal}
-                style={Styles}>
-                <h4><strong><center>New Requirement</center></strong></h4>
-                <form onSubmit={this.submitForm}>
-                    <div className="form-group">
-                        <label>Title</label>
-                        <input type="text" className="form-control" placeholder="Title"></input>
-                    </div>
-                    <div className="form-group">
-                        <label>Description</label>
-                        <textarea type="text" className="form-control" placeholder="About Requirement" rows="3"></textarea>
-                    </div>
-                    <button>Submit</button>
-                </form>
-                </Modal>
+                <div className="container">
+                    <button className="btn btn-primary btn-lg new-req-btn box-shadow--8dp" onClick={this.openModal}>+</button>
+                    <Modal
+                        open={open}
+                        onClose={this.closeModal}
+                        style={Styles}>
+                        <h4><strong><center>New Requirement</center></strong></h4>
+                        <form onSubmit={this.submitForm}>
+                            <div className="form-group">
+                                <label>Title</label>
+                                <input type="text" className="form-control" placeholder="Title"></input>
+                            </div>
+                            <div className="form-group">
+                                <label>Description</label>
+                                <textarea type="text" className="form-control" placeholder="About Requirement" rows="3"></textarea>
+                            </div>
+                            <button>Submit</button>
+                        </form>
+                    </Modal>
                 </div>
             </div>
         )
     }
 }
 
-const mapStateToProps = (state) => 
-{
+const mapStateToProps = (state) => {
     return {
-      userLoggedIn: state.userLoggedIn,
-      user: state.user
+        userLoggedIn: state.userLoggedIn,
+        user: state.user
     };
 };
 

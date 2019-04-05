@@ -167,25 +167,21 @@ router.post('/updateitemstatus', (req, res) => {
     });
 });
 
-router.post('/newreq', (req,res) => 
-{
+router.post('/newreq', (req, res) => {
     const requirement = new Requirement(
-    {
-        title: req.body.title,
-        desc: req.body.desc,
-        timestamp: req.body.timestamp,
-        username: req.body.username
-    });
-    requirement.save().then(() =>
-    {
+        {
+            title: req.body.title,
+            desc: req.body.desc,
+            timestamp: req.body.timestamp,
+            username: req.body.username
+        });
+    requirement.save().then(() => {
         res.send(requirement);
     });
 });
 
-router.get('/getreq',(req,res) =>
-{
-    Requirement.find().then(result =>
-    {
+router.get('/getreq', (req, res) => {
+    Requirement.find().then(result => {
         res.send(result);
     });
 });
@@ -205,11 +201,13 @@ router.post('/updateitem', (req, res) => {
 });
 
 router.post('/shareStatus', (req, res) => {
-    Product.findOneAndUpdate({ 
-        _id: req.body.item._id, 
-        "interestedUsers.username": req.body.username }, 
-        { $set: 
-            { "interestedUsers.$.status": req.body.status } 
+    Product.findOneAndUpdate({
+        _id: req.body.item._id,
+        "interestedUsers.username": req.body.username
+    },
+        {
+            $set:
+                { "interestedUsers.$.status": req.body.status }
         })
         .then(result => {
             res.send('ok');

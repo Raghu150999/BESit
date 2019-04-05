@@ -1,22 +1,3 @@
-/*.Product 
-{
-    display : inline-block;
-    box-shadow: 2px 3px rgb(77, 65, 65);
-    border : 1px solid rgb(82, 62, 62);
-    margin : 16px 14px;
-    padding : 16px;
-    width : 40%;
-    
-}*/
-
-
-/* .prod-card
-{
-    width: 450px;
-    height: 475px;
-    max-width: 450px;
-    max-height: 475px;
-} */
 
 .Product
 {
@@ -26,14 +7,16 @@
 
 .card {
 	width: 18rem;
-	height: 42rem;
+    height: 28rem;
+    max-height: 28rem;
 	margin-top: 10px;
 }
 
 .card-img-top
 {
+    margin-top: 15px;
 	width: 18rem;
-	height: 20rem;
+	height: 10rem;
 	object-fit: contain;
 }
 
@@ -42,6 +25,8 @@
 	display: block;
     text-align: left;
     margin-left: 10px;
+    font-size: 100%;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
 .card-body
@@ -60,7 +45,7 @@
 
 .desc-list
 {
-	font-size: 80%;
+	font-size: 65%;
     margin-top: 30px;
 }
 
