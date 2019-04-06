@@ -63,7 +63,7 @@ class Requirements extends Component
             <div>
                 <HomeNav />
                 <Requirement />
-                <div className = "container">
+                <div className = "req-container">
                 <button className="btn btn-primary btn-lg new-req-btn box-shadow--8dp" onClick = {this.openModal}>+</button>
                 <Modal 
                 open={open} 

@@ -18,7 +18,7 @@ class HomeNav extends Component {
           if (result.remove) {
             localStorage.removeItem('access_token');
           }
-          this.props.history.push('/');
+          this.props.history.push('/login');
         }
       });
     }
@@ -27,7 +27,7 @@ class HomeNav extends Component {
     e.preventDefault();
     localStorage.removeItem('access_token');
     this.props.logOutUser();
-    this.props.history.push('/');
+    this.props.history.push('/login');
   }
   render() {
     return (
@@ -39,7 +39,7 @@ class HomeNav extends Component {
         <div className="collapse navbar-collapse" id="navbarToggler">
           <ul className="navbar-nav homenav">
             <li className="nav-item active">
-              <Link to="/profile" className="nav-link">Home</Link>
+              <Link to="/" className="nav-link">Home</Link>
             </li>
             <li className="nav-item">
               <Link to="/buy" className="nav-link">Buy</Link>
@@ -51,7 +51,7 @@ class HomeNav extends Component {
               <Link to="/requirements" className="nav-link">Requirements</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="#">Settings</a> { /* @info: # represents redirecting to same page empty href will do nothing */}
+              <Link to="/profile" className="nav-link">Settings</Link> { /* @info: # represents redirecting to same page empty href will do nothing */}
             </li>
             <li className="nav-item">
               <a className="nav-link" href="" onClick={this.logOut}>LogOut</a> { /* @debug: Float this to right */}
