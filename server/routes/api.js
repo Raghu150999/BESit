@@ -177,6 +177,13 @@ router.post('/updateitemstatus', (req, res) => {
     });
 });
 
+router.post('/removereq', (req, res) => {
+    console.log(req.body._id);
+    Requirement.deleteOne({ _id: req.body._id}).then(result => {
+        res.send('ok');
+    });
+});
+
 router.post('/newreq', (req,res) => 
 {
     const requirement = new Requirement(

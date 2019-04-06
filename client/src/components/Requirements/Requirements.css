@@ -68,3 +68,21 @@
     box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, .14),
                 2px -5px 10px 1px rgba(0, 0, 0, .14)
 }
+.req-delbtn{
+    font-size: 80%;
+    border-radius: 5px;
+    background-color: black;
+    border: none;
+    float: left;
+    position: absolute;
+    bottom: 3%;
+    left: 5%;
+    margin: 5px;
+}
+
+.req-delbtn:hover
+{
+    cursor: default;
+    background-color: black;
+    border: none;
+}

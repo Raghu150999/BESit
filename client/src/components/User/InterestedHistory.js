@@ -41,7 +41,6 @@ class InterestedHistory extends Component{
       }
 
     render(){
-      console.log(this.props.user);
       if(this.props.user&&!this.state.itemsAvailable){
         this.getItems();
       }
