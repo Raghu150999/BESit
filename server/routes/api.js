@@ -161,6 +161,15 @@ router.get('/getitems', (req, res) => {
     });
 });
 
+router.get('/getprods', (req,res) => 
+{
+    Product.find().then(result =>
+    {
+        result.reverse();
+        res.send(result);
+    });
+});
+
 router.post('/updateitemstatus', (req, res) => {
     Product.findOneAndUpdate({ _id: req.body.id }, { status: req.body.status }).then(result => {
         res.send('ok');
@@ -180,9 +189,11 @@ router.post('/newreq', (req, res) => {
     });
 });
 
-router.get('/getreq', (req, res) => {
-    Requirement.find().then(result => {
-        res.send(result);
+router.get('/getreq',(req,res) =>
+{
+    Requirement.find().then(result =>
+    {
+        res.send(result.reverse());
     });
 });
 

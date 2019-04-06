@@ -41,7 +41,7 @@ class LogIn extends Component {
                 // adding user to the redux store
                 this.props.logInUser(user); 
 
-                this.props.history.push('/profile');
+                this.props.history.push('/');
             }
             else {
                 this.setState({

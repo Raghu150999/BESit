@@ -57,25 +57,25 @@ class Requirements extends Component {
             <div>
                 <HomeNav />
                 <Requirement />
-                <div className="container">
-                    <button className="btn btn-primary btn-lg new-req-btn box-shadow--8dp" onClick={this.openModal}>+</button>
-                    <Modal
-                        open={open}
-                        onClose={this.closeModal}
-                        style={Styles}>
-                        <h4><strong><center>New Requirement</center></strong></h4>
-                        <form onSubmit={this.submitForm}>
-                            <div className="form-group">
-                                <label>Title</label>
-                                <input type="text" className="form-control" placeholder="Title"></input>
-                            </div>
-                            <div className="form-group">
-                                <label>Description</label>
-                                <textarea type="text" className="form-control" placeholder="About Requirement" rows="3"></textarea>
-                            </div>
-                            <button>Submit</button>
-                        </form>
-                    </Modal>
+                <div className = "req-container">
+                <button className="btn btn-primary btn-lg new-req-btn box-shadow--8dp" onClick = {this.openModal}>+</button>
+                <Modal 
+                open={open} 
+                onClose={this.closeModal}
+                style={Styles}>
+                <h4><strong><center>New Requirement</center></strong></h4>
+                <form onSubmit={this.submitForm}>
+                    <div className="form-group">
+                        <label>Title</label>
+                        <input type="text" className="form-control" placeholder="Title"></input>
+                    </div>
+                    <div className="form-group">
+                        <label>Description</label>
+                        <textarea type="text" className="form-control" placeholder="About Requirement" rows="3"></textarea>
+                    </div>
+                    <button>Submit</button>
+                </form>
+                </Modal>
                 </div>
             </div>
         )
