@@ -157,10 +157,10 @@ class Item extends Component {
 									<dt className="col-sm-4">Contact:</dt>
 									<dd className="col-sm-8">{this.state.contact}</dd>
 								</dl>
-							</div>
-							<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
+								<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
 								{this.state.status}
 							</button>
+							</div>
 						</div>
 					</div>
 				</div>

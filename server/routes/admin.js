@@ -5,6 +5,7 @@ router.post('/addcategory', (req, res) => {
 	let category = new Category({
 		name: req.body.name
 	});
+	console.log(req.body.name);
 	category.save({name: req.body.name})
 		.then(() => {
 			res.send('ok, added');

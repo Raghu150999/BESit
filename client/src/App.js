@@ -5,6 +5,7 @@ import LogIn from './components/Login/LogIn';
 import Profile from './components/Profile/Profile';
 import Sell from './components/Sell/Sell';
 import User from './components/User/User';
+import Requirements from './components/Requirements/Requirements'
 import { } from 'dotenv/config';
 import axios from 'axios';
 import Buy from './components/Buy/Buy';
@@ -25,6 +26,7 @@ class App extends Component {
             <Route path="/sell" component={Sell} />
             <Route path="/buy" component={Buy} />
             <Route path="/user" component={User}/>
+            <Route path="/requirements" component={Requirements} />
           </Switch>
         </BrowserRouter>
       </div>

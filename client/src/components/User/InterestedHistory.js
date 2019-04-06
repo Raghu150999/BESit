@@ -8,7 +8,8 @@ class InterestedHistory extends Component{
         items: [],
         itemsAvailable: false
     }
-    componentDidMount() {
+    getItems=()=> {
+      console.log(this.props.user);
         if (this.props.user) {
           axios.get('/api/getInterestedItems', {
             params: {
@@ -40,6 +41,10 @@ class InterestedHistory extends Component{
       }
 
     render(){
+      console.log(this.props.user);
+      if(this.props.user&&!this.state.itemsAvailable){
+        this.getItems();
+      }
         let displayItems = this.state.items.length > 0 ? (
             this.state.items.map((item) => {
               return (

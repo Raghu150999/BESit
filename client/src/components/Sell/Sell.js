@@ -4,14 +4,14 @@ import HomeNav from './../HomeNav/HomeNav';
 
 
 class Sell extends Component {
-    render() {
-        return (
-            <div>
-                <HomeNav />
-                <Products />
-            </div>
-        )
-    }
+  render() {
+    return (
+      <div>
+        <HomeNav />
+        <Products />
+      </div>
+    )
+  }
 }
 
 export default Sell;

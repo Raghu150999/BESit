@@ -48,6 +48,9 @@ class HomeNav extends Component {
               <Link to="/sell" className="nav-link">Sell</Link>
             </li>
             <li className="nav-item">
+              <Link to="/requirements" className="nav-link">Requirements</Link>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="#">Settings</a> { /* @info: # represents redirecting to same page empty href will do nothing */}
             </li>
             <li className="nav-item">

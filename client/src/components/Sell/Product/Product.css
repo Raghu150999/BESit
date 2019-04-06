@@ -1,22 +1,3 @@
-/*.Product 
-{
-    display : inline-block;
-    box-shadow: 2px 3px rgb(77, 65, 65);
-    border : 1px solid rgb(82, 62, 62);
-    margin : 16px 14px;
-    padding : 16px;
-    width : 40%;
-    
-}*/
-
-
-/* .prod-card
-{
-    width: 450px;
-    height: 475px;
-    max-width: 450px;
-    max-height: 475px;
-} */
 
 .Product
 {
@@ -26,14 +7,14 @@
 
 .card {
 	width: 18rem;
-	height: 42rem;
-	margin-top: 10px;
+	height: auto;
+	margin-top: 2.5vh;
 }
 
 .card-img-top
 {
 	width: 18rem;
-	height: 20rem;
+	height: 15rem;
 	object-fit: contain;
 }
 
@@ -52,14 +33,15 @@
 
 .price
 {
-    font-size: 25px;
+    font-size: 20px;
     margin: 1px;
+    height: 5px;
+    width: 5px;
 }
 
 .desc-list
 {
 	font-size: 80%;
-    margin-top: 30px;
 }
 
 
@@ -103,18 +85,19 @@
 
 .new-item-btn
 {
-    width: 100px;
-	height: 100px;
+    width: 20vh;
+	height: 20vh;
 	z-index: 1;
     background-color: #e99041;
     color: white;
     border-color: #e99041;
     border-radius: 50%;
     position: fixed;
-    bottom: 50px;
-    right: 400px;
+    bottom: 10%;
+    right: 10%;
     padding-right: -1000px;
     padding-left: 27px;
+    z-index: 100;
 }
 
 .new-item-btn:hover
@@ -126,4 +109,13 @@
 
 .interest{
     margin-right: 1vw; 
+}
+
+.int-card-text{
+    font-size: 4.2vh;
+    margin-top: auto;
+    position: absolute;
+    bottom: 4.8%;
+    right: 10%;
+    font-style: italic;
 }

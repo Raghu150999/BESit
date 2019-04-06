@@ -14,3 +14,8 @@
     transition: background-color 0.6s;
   }
 
+  .vline{
+    border-right: 2px solid #cf6d17;
+    height: 1000px;
+  }
+
