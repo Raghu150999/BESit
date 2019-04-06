@@ -90,16 +90,16 @@
 
 .new-item-btn
 {
-    width: 100px;
-	height: 100px;
+    width: 20vh;
+	height: 20vh;
 	z-index: 1;
     background-color: #e99041;
     color: white;
     border-color: #e99041;
     border-radius: 50%;
     position: fixed;
-    bottom: 50px;
-    right: 400px;
+    bottom: 10%;
+    right: 10%;
     padding-right: -1000px;
     padding-left: 27px;
     z-index: 100;
@@ -112,6 +112,26 @@
     border-color: black;
 }
 
+
 .interest{
     margin-right: 1vw; 
+    float:right;
+}
+
+.int-card-text{
+    font-size: 4.2vh;
+    margin-top: auto;
+    position: absolute;
+    bottom: 4.8%;
+    right: 10%;
+    font-style: italic;
+}
+
+.interestDialog{
+    overflow-y:initial;
+}
+
+.interestBody{
+    height:65vh;
+    overflow-y:auto; 
 }

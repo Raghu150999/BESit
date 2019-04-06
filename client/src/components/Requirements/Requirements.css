@@ -42,18 +42,18 @@
 
 .new-req-btn
 {
-    width: 100px;
-    height: 100px;
+    width: 20vh;
+    height: 20vh;
     background-color: #e99041;
     color: white;
     border-color: #e99041;
     border-radius: 50%;
-    bottom: 50px;
-    right: 400px;
+    bottom: 10%;
+    right: 10%;
     position: fixed;
     z-index: 100;
     font-size: 50px;
-    text-align: right;
+    text-align: center;
 }
 
 .new-req-btn:hover
@@ -67,4 +67,22 @@
 {
     box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, .14),
                 2px -5px 10px 1px rgba(0, 0, 0, .14)
+}
+.req-delbtn{
+    font-size: 80%;
+    border-radius: 5px;
+    background-color: black;
+    border: none;
+    float: left;
+    position: absolute;
+    bottom: 3%;
+    left: 5%;
+    margin: 5px;
+}
+
+.req-delbtn:hover
+{
+    cursor: default;
+    background-color: black;
+    border: none;
 }

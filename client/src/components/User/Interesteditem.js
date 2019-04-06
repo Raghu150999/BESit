@@ -2,17 +2,45 @@ import React, { Component } from 'react'
 import axios from 'axios';
 import './../Sell/Product/Product.css';
 
-class Item extends Component {
+class Interesteditem extends Component {
 
 	state = {
-		status: 'Not Interested',
+		status: 'Interested',
 		interestedUsers: [],
 		sellerStatus: false,
 		contact: 'Not provided'
 	}
 
+	calcTime(timestamp) {
+		var x = new Date(timestamp);
+		var y = new Date();
+		var diff = (y.getTime() / 1000) - (x.getTime() / 1000);
+		if (diff < 3600) {
+		  var val = parseInt(diff / 60);
+		  if (val != 1)
+			return val + ' minutes ago';
+		  else
+			return val + ' minute ago';
+		}
+		if (diff < 86400) {
+		  var val = parseInt(diff / 3600);
+		  if (val != 1)
+			return val + ' hours ago';
+		  else
+			return val + ' hour ago';
+		}
+		else {
+		  var val = parseInt(diff / 86400);
+		  if (val != 1)
+			return val + ' days ago';
+		  else
+			return val + ' day ago';
+		}
+	  }
+
 	handleInterested = (e) => {
 		const newStatus = this.state.status === 'Not Interested' ? 'Interested' : 'Not Interested';
+		console.log(newStatus);
 		const interestedUsers = this.state.interestedUsers.filter(user => {
 			if (user.username === this.props.user.username) {
 				return false; // skip the current user
@@ -29,29 +57,14 @@ class Item extends Component {
 		axios.post('/api/updateinteresteduser', {
 			item: this.props.item,
 			interestedUsers
-		});
-
-		this.setState({
-			status: newStatus,
-			interestedUsers
-		});
-
-		let data = {
-			sourceUsername: this.props.user.username,
-			targetUsername: this.props.item.owner,
-			productID: this.props.item._id,
-			productName: this.props.item.name,
-			type: 'INTEREST',
-			seenStatus: false,
-			status: newStatus,
-			timeStamp: new Date()
-		};
-
-		axios.post('/notify/interest', data)
-			.then(res => {
-			});
+		}).then(res=>{
+            this.setState({
+                status: newStatus,
+                interestedUsers
+            });
+            this.props.update();
+        });
 	}
-
 	componentDidMount() {
 		const interestedUsers = this.props.item.interestedUsers;
 		let status = false;
@@ -65,7 +78,6 @@ class Item extends Component {
 			}
 		});
 		if (status) {
-			// if status is true then contact sharing is allowed hence, get contact
 			axios.get('/api/getContact', {
 				params: {
 					username: this.props.item.owner
@@ -100,7 +112,7 @@ class Item extends Component {
 			));
 		}
 
-		// generating carousel elements (array of JSX elements when rendered will come one after another)
+		// generating carousel elements
 		let carouselElements = [];
 		if (item.fileNames.length > 0) {
 			carouselElements.push((
@@ -125,7 +137,6 @@ class Item extends Component {
 			));
 		}
 
-		// Default text if no description provided
 		if (item.desc === '') {
 			item.desc = 'No description provided';
 		}
@@ -134,11 +145,6 @@ class Item extends Component {
 			<div className="col-sm-auto">
 				<div className="card box-shadow--8dp">
 					<div id={"images" + item._id} className="carousel slide" data-ride="carousel">
-						{/* Indicators */}
-						{/* <ol className="carousel-indicators">
-							{varOl}
-						</ol> */}
-						{/* Slideshow */}
 						<div className="carousel-inner">
 								{carouselElements}
 						</div>
@@ -173,10 +179,11 @@ class Item extends Component {
 									<dt className="col-sm-4">Contact:</dt>
 									<dd className="col-sm-8">{this.state.contact}</dd>
 								</dl>
-								<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
+								<div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
+							</div>
+							<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
 								{this.state.status}
 							</button>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -185,4 +192,4 @@ class Item extends Component {
 	}
 }
 
-export default Item;
+export default Interesteditem;

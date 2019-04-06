@@ -37,12 +37,12 @@ class Dispuser extends Component {
     return (
       <div className="card dispUser">
         <div className="card-body dispUser">
+          <div className="row">
           <h4 className="card-title DispUsertitle" >@{this.state.Displayuser}</h4>
-
-          <div className="checkbox shareContact">
-            <label id='contactlabel'><input type="checkbox" aria-label="Checkbox" onClick={this.handleShare} defaultChecked={this.state.status} />Share contact info</label>
+            <div className="checkbox shareContact row">
+              <label id='contactlabel1'><input type="checkbox" aria-label="Checkbox" onClick={this.handleShare} defaultChecked={this.state.status} />Share contact info</label>
+            </div>
           </div>
-
           <h2 className="card-text contact1">Buyer: <label id='contactlabel'> {this.state.name}</label></h2>
           <h2 className="card-text contact2">Phone No: <label id='contactlabel'>{this.state.phoneno}</label></h2>
         </div>

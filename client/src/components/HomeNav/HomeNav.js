@@ -182,7 +182,7 @@ class HomeNav extends Component {
               <Link to="/requirements" className="nav-link">Requirements</Link>
             </li>
             <li className="nav-item">
-              <Link to="/profile" className="nav-link">Settings</Link> { /* @info: # represents redirecting to same page empty href will do nothing */}
+              <Link to="/user" className="nav-link">User</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="" onClick={this.logOut}>LogOut</a> { /* @debug: Float this to right */}

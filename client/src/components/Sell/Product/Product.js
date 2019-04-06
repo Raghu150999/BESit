@@ -85,6 +85,7 @@ class Product extends Component {
           id: item._id
         }
       }).then(res => {
+        console.log(res.data);
         this.setState({
           Displayusers: res.data
         });
@@ -155,11 +156,25 @@ class Product extends Component {
 
                   <Edit key={this.props.id} item={this.props.item} />
 
-                  <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} >Interested Buyers</button>
-
-                  <Modal open={this.state.open} onClose={onCloseModal} center>
-                    {usersList}
-                  </Modal>
+                  <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">Interested Buyers</button>
+                  <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className="modal-dialog interestDialog" role="document">
+                    <div className="modal-content">
+                      <div className="modal-header">
+                        <h5 className="modal-title" id="exampleModalLabel">Interested Buyers</h5>
+                        <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </div>
+                      <div className="modal-body interestBody">
+                      {usersList}
+                      </div>
+                      <div className="modal-footer">
+                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
                 </div>
               </div>
             </div>

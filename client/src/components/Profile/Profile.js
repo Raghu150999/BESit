@@ -107,11 +107,6 @@ class Profile extends Component {
               <input type="text" className="form-control" name="phoneno" aria-describedby="emailHelp" defaultValue={this.state.user.phoneno} />
             </div>
 
-            <div className="form-group" id="prof">
-              <label htmlFor="Password">Password</label>
-              <input type="password" className="form-control" name="password" defaultValue={this.state.user.password} disabled onClick={this.passChange}/>
-            </div>
-
             <div className="container-button" id="prof">
               <button type="submit" className="btn btn-primary" id="register-submit">Submit</button>
             </div>

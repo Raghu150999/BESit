@@ -17,7 +17,7 @@ class LogIn extends Component {
         authorize(token).then(result => {
             if (result.success) {
                 this.props.logInUser(result.user);
-                this.props.history.push('/profile');
+                this.props.history.push('/');
             }
             else {
                 if (result.remove) {

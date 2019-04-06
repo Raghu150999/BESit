@@ -1,0 +1,21 @@
+.user{
+    color:#cf6d17;
+    background-color: #fff;
+    margin-top: 2.5vh;
+    text-decoration: none;
+}
+
+.user:active,
+.user:visited,
+.user:hover{
+  border-bottom: none;
+    background-color: #cf6d17;
+    color:#fff;
+    transition: background-color 0.6s;
+  }
+
+  .vline{
+    border-right: 2px solid #cf6d17;
+    height: 1000px;
+  }
+

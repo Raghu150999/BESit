@@ -131,6 +131,7 @@ router.get('/getInterestedUsers', (req, res) => {
             reponse = null;
         }
         res.send(response);
+        
     });
 });
 
@@ -167,6 +168,15 @@ router.get('/getprods', (req,res) =>
     {
         result.reverse();
         res.send(result);
+    })
+});
+
+router.get('/getInterestedItems', (req, res) => {
+    // req.query contains the parameter passed from axios request  // see in console your username
+    const username=req.query.username;
+    console.log(username);
+    Product.find({'interestedUsers.username':username}).then(result => {
+        res.send(result);
     });
 });
 
@@ -176,7 +186,15 @@ router.post('/updateitemstatus', (req, res) => {
     });
 });
 
-router.post('/newreq', (req, res) => {
+router.post('/removereq', (req, res) => {
+    console.log(req.body._id);
+    Requirement.deleteOne({ _id: req.body._id}).then(result => {
+        res.send('ok');
+    });
+});
+
+router.post('/newreq', (req,res) => 
+{
     const requirement = new Requirement(
         {
             title: req.body.title,
@@ -194,6 +212,14 @@ router.get('/getreq',(req,res) =>
     Requirement.find().then(result =>
     {
         res.send(result.reverse());
+    });
+});
+
+router.get('/getownreq',(req,res) =>
+{
+    Requirement.find({username: req.query.username}).then(result =>
+    {
+        res.send(result);
     });
 });
 
