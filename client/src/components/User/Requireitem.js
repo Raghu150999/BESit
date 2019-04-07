@@ -69,9 +69,7 @@ class Requireitem extends Component {
         <div>
         {header}
         <div className="container" style={{marginBottom: "20px"}}>
-          <div className="row">
             {displayItems}
-          </div>
         </div>
       </div>
         </div>

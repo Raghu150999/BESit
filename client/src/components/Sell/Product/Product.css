@@ -1,18 +1,12 @@
 
-.Product
-{
-    display: inline-block;
-    margin: 16px 14px;
-}
-
-.card {
+.product .card, .item .card {
 	width: 18rem;
     height: 28rem;
     max-height: 28rem;
 	margin-top: 10px;
 }
 
-.card-img-top
+.product .card-img-top, .item .card-img-top
 {
     margin-top: 15px;
 	width: 18rem;
@@ -20,7 +14,7 @@
 	object-fit: contain;
 }
 
-.card-title
+.product .card-title, .item .card-title
 {
 	display: block;
     text-align: left;
@@ -29,7 +23,7 @@
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
 
-.card-body
+.product .card-body, .item .card-body
 {
 	margin-top: 5px;
 	height: auto;
@@ -83,7 +77,7 @@
     border: none;
 }
 
-.box-shadow--8dp {
+.product .box-shadow--8dp, .item .box-shadow--8dp {
     box-shadow: -5px 5px 10px 1px rgba(0, 0, 0, .14),
                 2px -5px 10px 1px rgba(0, 0, 0, .14)
 }

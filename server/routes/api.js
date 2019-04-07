@@ -130,6 +130,7 @@ router.get('/getInterestedUsers', (req, res) => {
         else {
             reponse = null;
         }
+        console.log(response);
         res.send(response);
         
     });
