@@ -24,7 +24,6 @@
   },
   "scripts": {
     "start": "node app.js",
-    "build": "",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "heroku-postbuild": "echo Skip build on Heroku"
@@ -51,5 +50,5 @@
     "url": "https://github.com/Raghu150999/BESit/issues"
   },
   "homepage": "https://github.com/Raghu150999/BESit#readme",
-  "heroku-run-build-script": true
+  "heroku-run-build-script": false
 }
