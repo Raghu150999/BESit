@@ -153,7 +153,7 @@ class HomeNav extends Component {
     // Default content when no notification is present
     if (notifications && notifications.length === 0) {
       notifications.push((
-        <div>
+        <div key="0">
           <div className="dropdown-divider"></div>
           <button className="dropdown-item notification-item" type="button">
             <strong>No Notifications to show!</strong>
