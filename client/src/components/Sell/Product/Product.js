@@ -21,6 +21,33 @@ class Product extends Component {
     }).then(res => {
     });
   }
+  calcTime(timestamp) {
+    var x = new Date(timestamp);
+    var y = new Date();
+    var diff = (y.getTime() / 1000) - (x.getTime() / 1000);
+    if (diff < 3600) {
+      var val = parseInt(diff / 60);
+      if (val != 1)
+        return val + ' minutes ago';
+      else
+        return val + ' minute ago';
+    }
+    if (diff < 86400) {
+      var val = parseInt(diff / 3600);
+      if (val != 1)
+        return val + ' hours ago';
+      else
+        return val + ' hour ago';
+    }
+    else {
+      var val = parseInt(diff / 86400);
+      if (val != 1)
+        return val + ' days ago';
+      else
+        return val + ' day ago';
+    }
+  }
+
   render() {
 
     let item = this.props.item;
@@ -85,7 +112,6 @@ class Product extends Component {
           id: item._id
         }
       }).then(res => {
-        console.log(res.data);
         this.setState({
           Displayusers: res.data
         });
@@ -113,51 +139,52 @@ class Product extends Component {
           <h4 className="card-title">Sorry! No users to display!</h4>
         </div>
       );
-
+    
     return (
-      <div className="">
-        <div className="">
-          <div className="col-sm-auto">
-            <div className="card box-shadow--8dp">
+      <div className="product">
+        <div className="col-sm-auto">
+          <div className="card box-shadow--8dp">
 
-              <div id={"images" + item._id} className="carousel slide" data-ride="carousel">
-                {/* <ol className="carousel-indicators">
+            <div id={"images" + item._id} className="carousel slide" data-ride="carousel">
+              {/* <ol className="carousel-indicators">
                 {varOl}
               </ol> */}
 
-                <div className="carousel-inner">
-                  {carouselElements}
-                </div>
-
-                <a className="carousel-control-prev" href={"#images" + item._id} role="button" data-slide="prev">
-                  <span className="carousel-control-prev-icon" aria-hidden="true"></span>
-                  <span className="sr-only">Previous</span>
-                </a>
-
-                <a className="carousel-control-next" href={"#images" + item._id} role="button" data-slide="next">
-                  <span className="carousel-control-next-icon" aria-hidden="true"></span>
-                  <span className="sr-only">Next</span>
-                </a>
+              <div className="carousel-inner">
+                {carouselElements}
               </div>
 
-              <div className="card-body">
-                <h4 className="card-title">{item.name}</h4>
-                <div className="container desc-list">
-                  <dl className="row">
-                    <dt className="col-sm-4">Price:</dt>
-                    <dd className="col-sm-8">{String.fromCharCode(8377) + " " + item.price}</dd>
-                    <dt className="col-sm-4">Desc:</dt>
-                    <dd className="col-sm-8">{item.desc}</dd>
-                  </dl>
+              <a className="carousel-control-prev" href={"#images" + item._id} role="button" data-slide="prev">
+                <span className="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span className="sr-only">Previous</span>
+              </a>
 
-                  {<Dropdown update={this.props.update} id={this.props.id} current={this.props.item.status} />}
+              <a className="carousel-control-next" href={"#images" + item._id} role="button" data-slide="next">
+                <span className="carousel-control-next-icon" aria-hidden="true"></span>
+                <span className="sr-only">Next</span>
+              </a>
+            </div>
 
-                  <button type="button" className="btn btn-dark sell-prod-btn" onClick={handleDelete}>Delete</button>
+            <div className="card-body">
+              <h4 className="card-title">{item.name}</h4>
+              <div className="container desc-list">
+                <dl className="row">
+                  <dt className="col-sm-4">Price:</dt>
+                  <dd className="col-sm-8">{String.fromCharCode(8377) + " " + item.price}</dd>
+                  <dt className="col-sm-4">Desc:</dt>
+                  <dd className="col-sm-8">{item.desc}</dd>
+                </dl>
 
-                  <Edit key={this.props.id} item={this.props.item} />
+                {<Dropdown update={this.props.update} id={this.props.id} current={this.props.item.status} />}
 
-                  <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">Interested Buyers</button>
-                  <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <button type="button" className="btn btn-dark sell-prod-btn" onClick={handleDelete}>Delete</button>
+
+                <Edit key={this.props.id} item={this.props.item} />
+
+                <div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
+
+                <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">Interested Buyers</button>
+                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div className="modal-dialog interestDialog" role="document">
                     <div className="modal-content">
                       <div className="modal-header">
@@ -167,14 +194,13 @@ class Product extends Component {
                         </button>
                       </div>
                       <div className="modal-body interestBody">
-                      {usersList}
+                        {usersList}
                       </div>
                       <div className="modal-footer">
                         <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
                       </div>
                     </div>
                   </div>
-                </div>
                 </div>
               </div>
             </div>
