@@ -13,7 +13,6 @@ class Item extends Component {
 
 	handleInterested = (e) => {
 		const newStatus = this.state.status === 'Not Interested' ? 'Interested' : 'Not Interested';
-		console.log(newStatus);
 		const interestedUsers = this.state.interestedUsers.filter(user => {
 			if (user.username === this.props.user.username) {
 				return false; // skip the current user
@@ -35,9 +34,50 @@ class Item extends Component {
 		this.setState({
 			status: newStatus,
 			interestedUsers
-		})
+		});
 
+		let data = {
+			sourceUsername: this.props.user.username,
+			targetUsername: this.props.item.owner,
+			productID: this.props.item._id,
+			productName: this.props.item.name,
+			type: 'INTEREST',
+			seenStatus: false,
+			status: newStatus,
+			timeStamp: new Date()
+		};
+
+		axios.post('/notify/interest', data)
+			.then(res => {
+			});
 	}
+	calcTime(timestamp) {
+		var x = new Date(timestamp);
+		var y = new Date();
+		var diff = (y.getTime() / 1000) - (x.getTime() / 1000);
+		if (diff < 3600) {
+			var val = parseInt(diff / 60);
+			if (val != 1)
+				return val + ' minutes ago';
+			else
+				return val + ' minute ago';
+		}
+		if (diff < 86400) {
+			var val = parseInt(diff / 3600);
+			if (val != 1)
+				return val + ' hours ago';
+			else
+				return val + ' hour ago';
+		}
+		else {
+			var val = parseInt(diff / 86400);
+			if (val != 1)
+				return val + ' days ago';
+			else
+				return val + ' day ago';
+		}
+	}
+	
 	componentDidMount() {
 		const interestedUsers = this.props.item.interestedUsers;
 		let status = false;
@@ -51,6 +91,7 @@ class Item extends Component {
 			}
 		});
 		if (status) {
+			// if status is true then contact sharing is allowed hence, get contact
 			axios.get('/api/getContact', {
 				params: {
 					username: this.props.item.owner
@@ -85,7 +126,7 @@ class Item extends Component {
 			));
 		}
 
-		// generating carousel elements
+		// generating carousel elements (array of JSX elements when rendered will come one after another)
 		let carouselElements = [];
 		if (item.fileNames.length > 0) {
 			carouselElements.push((
@@ -110,61 +151,67 @@ class Item extends Component {
 			));
 		}
 
+		// Default text if no description provided
 		if (item.desc === '') {
 			item.desc = 'No description provided';
 		}
 
 		return (
-			<div className="col-sm-auto">
-				<div className="card box-shadow--8dp">
-					<div id={"images" + item._id} className="carousel slide" data-ride="carousel">
-						{/* Indicators */}
-						{/* <ol className="carousel-indicators">
+			<div className="item">
+				<div className="col-sm-auto">
+					<div className="card box-shadow--8dp">
+						<div id={"images" + item._id} className="carousel slide" data-ride="carousel">
+							{/* Indicators */}
+							{/* <ol className="carousel-indicators">
 							{varOl}
 						</ol> */}
-						{/* Slideshow */}
-						<div className="carousel-inner">
+							{/* Slideshow */}
+							<div className="carousel-inner">
 								{carouselElements}
-						</div>
+							</div>
 
-						<a className="carousel-control-prev" href={"#images" + item._id} role="button" data-slide="prev">
+							<a className="carousel-control-prev" href={"#images" + item._id} role="button" data-slide="prev">
 								<span className="carousel-control-prev-icon" aria-hidden="true"></span>
 								<span className="sr-only">Previous</span>
-						</a>
+							</a>
 
-						<a className="carousel-control-next" href={"#images" + item._id} role="button" data-slide="next">
+							<a className="carousel-control-next" href={"#images" + item._id} role="button" data-slide="next">
 								<span className="carousel-control-next-icon" aria-hidden="true"></span>
 								<span className="sr-only">Next</span>
-						</a>
+							</a>
 
-            <div className="card-body">
-							<h4 className="card-title">{item.name}</h4>
-							
-							<div className="container desc-list">
-								<dl className="row">
-									<dt className="col-sm-4">Price:</dt>
-									<dd className="col-sm-8">{String.fromCharCode(8377) + " " + item.price}</dd>
+							<div className="card-body">
+								<h4 className="card-title">{item.name}</h4>
 
-									<dt className="col-sm-4">Owner:</dt>
-									<dd className="col-sm-8">{item.owner}</dd>
+								<div className="container desc-list">
+									<dl className="row">
+										<dt className="col-sm-4">Price:</dt>
+										<dd className="col-sm-8">{String.fromCharCode(8377) + " " + item.price}</dd>
 
-									<dt className="col-sm-4">Desc:</dt>
-									<dd className="col-sm-8">{item.desc}</dd>
+										<dt className="col-sm-4">Owner:</dt>
+										<dd className="col-sm-8">{item.owner}</dd>
 
-									<dt className="col-sm-4">Status:</dt>
-									<dd className="col-sm-8">{item.status}</dd>
+										<dt className="col-sm-4">Desc:</dt>
+										<dd className="col-sm-8">{item.desc}</dd>
 
-									<dt className="col-sm-4">Contact:</dt>
-									<dd className="col-sm-8">{this.state.contact}</dd>
-								</dl>
-								<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
-								{this.state.status}
-							</button>
+										<dt className="col-sm-4">Status:</dt>
+										<dd className="col-sm-8">{item.status}</dd>
+
+										<dt className="col-sm-4">Contact:</dt>
+										<dd className="col-sm-8">{this.state.contact}</dd>
+									</dl>
+									<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
+										{this.state.status}
+									</button>
+
+									<div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
+
+								</div>
 							</div>
 						</div>
 					</div>
 				</div>
-			</div>	
+			</div>
 		);
 	}
 }

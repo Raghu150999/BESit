@@ -63,20 +63,20 @@ class Buy extends Component {
     if (items.length === 0) {
       items = (
         <div className="container">
-          <h4>
+          <h4 style={{ fontSize: "100%" }}>
             No results found :( 
           </h4>
-          <p className="lead">
+          <p className="lead" style={{ fontSize: "80%" }}>
             (Tip: search with empty query to get all items)
           </p>
         </div>
       );
     }
-
+    
     return (
       <div>
         <HomeNav />
-        <div className="container">
+        <div className="container" style={{padding: "10px"}}>
         <form onSubmit={this.submitHandler}>
           <div className="form-group">
             <label>Category</label>
@@ -87,19 +87,18 @@ class Buy extends Component {
 
           <div className="input-group mb-3">
             <input type="text" className="form-control" placeholder="Search for items" aria-label="search" aria-describedby="basic-addon2" />
-            <div className="input-group-append">
-              <button className="btn btn-outline-secondary" type="submit">Search</button>
-            </div>
+              <button className="btn btn-outline-secondary" type="submit" style={{marginLeft: "15px", marginTop: "-2px"}}>Search</button>
           </div>
         </form>
-        </div>
-        <div className="container" style={{marginBottom: "20px"}}>
-          <h3 className="display-4">
+      
+        <div style={{marginBottom: "20px"}}>
+          <h3 className="display-4" style={{fontSize: "150%"}}>
             Search Results: 
           </h3>
           <div className="row">
             {items}
           </div>
+        </div>
         </div>
       </div>
     )

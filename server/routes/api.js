@@ -130,7 +130,9 @@ router.get('/getInterestedUsers', (req, res) => {
         else {
             reponse = null;
         }
+        console.log(response);
         res.send(response);
+        
     });
 });
 
@@ -161,6 +163,15 @@ router.get('/getitems', (req, res) => {
     });
 });
 
+router.get('/getprods', (req,res) => 
+{
+    Product.find().then(result =>
+    {
+        result.reverse();
+        res.send(result);
+    })
+});
+
 router.get('/getInterestedItems', (req, res) => {
     // req.query contains the parameter passed from axios request  // see in console your username
     const username=req.query.username;
@@ -169,7 +180,6 @@ router.get('/getInterestedItems', (req, res) => {
         res.send(result);
     });
 });
-
 
 router.post('/updateitemstatus', (req, res) => {
     Product.findOneAndUpdate({ _id: req.body.id }, { status: req.body.status }).then(result => {
@@ -187,14 +197,13 @@ router.post('/removereq', (req, res) => {
 router.post('/newreq', (req,res) => 
 {
     const requirement = new Requirement(
-    {
-        title: req.body.title,
-        desc: req.body.desc,
-        timestamp: req.body.timestamp,
-        username: req.body.username
-    });
-    requirement.save().then(() =>
-    {
+        {
+            title: req.body.title,
+            desc: req.body.desc,
+            timestamp: req.body.timestamp,
+            username: req.body.username
+        });
+    requirement.save().then(() => {
         res.send(requirement);
     });
 });
@@ -203,7 +212,7 @@ router.get('/getreq',(req,res) =>
 {
     Requirement.find().then(result =>
     {
-        res.send(result);
+        res.send(result.reverse());
     });
 });
 
@@ -230,11 +239,13 @@ router.post('/updateitem', (req, res) => {
 });
 
 router.post('/shareStatus', (req, res) => {
-    Product.findOneAndUpdate({ 
-        _id: req.body.item._id, 
-        "interestedUsers.username": req.body.username }, 
-        { $set: 
-            { "interestedUsers.$.status": req.body.status } 
+    Product.findOneAndUpdate({
+        _id: req.body.item._id,
+        "interestedUsers.username": req.body.username
+    },
+        {
+            $set:
+                { "interestedUsers.$.status": req.body.status }
         })
         .then(result => {
             res.send('ok');

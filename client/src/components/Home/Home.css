@@ -1,0 +1,88 @@
+.home-container
+{
+    padding-top: 50px;
+}
+
+.feed-username
+{
+    display: inline;
+    color: orange;
+}
+
+.home-card
+{
+    padding-top: 50px;
+    padding-bottom: 50px;
+    height: auto;
+    width: 100%;
+    position: relative;
+}
+
+.home-card-title
+{
+    position: absolute;
+    top: 20px;
+    left: 80px;     /*10*/
+}
+
+.feed-time
+{
+    position: absolute;
+    top: 55px;
+    left: 90px;     /*20*/
+    font-size: 25px;
+    font-style: italic;
+}
+
+.home-prod-desc-card-text 
+{
+    position: absolute;
+    top: 200px;
+    left: 20px;     /*20*/
+    height: 150px;
+    white-space: pre-wrap;
+}
+
+.home-req-desc-card-text 
+{
+    position: absolute;
+    top: 170px;
+    left: 20px;     /*20*/
+    height: 150px;
+    white-space: pre-wrap;
+}
+
+.home-price-card-text 
+{
+    position: absolute;
+    top: 120px;
+    left: 20px;     /*20*/
+    height: 150px;
+    white-space: pre-wrap;
+    color: green;
+}
+
+.desc-req-container
+{
+    height: 150px;
+    width: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 5px;
+}
+
+.desc-prod-container
+{
+    height: 250px;
+    width: 50px;
+    padding-bottom: 50px;
+    margin-bottom: 5px;
+}
+
+.req-img
+{
+    position: absolute;
+    height: 50px;
+    width: auto;
+    left: 25px;
+    top: 32px;
+}

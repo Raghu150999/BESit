@@ -1,0 +1,38 @@
+.notification-dropdown {
+	max-height: 400px;
+	overflow-y: scroll;
+}
+
+.notification-dropdown-button {
+	font-size: 80%;
+	margin-top: 7px;
+	margin-left: 15px;
+}
+
+.notification-item {
+	font-size: 50%;
+	margin-top: -15px;
+	margin-bottom: -15px;
+	margin-right: 5px;
+	padding: 20px;
+}
+
+.unseen:hover
+{
+	background-color: #E3EBDF;
+}
+
+.unseen {
+	background-color: #E3EBEF;
+}
+
+.bell-img {
+	margin-bottom: 4px;
+	margin-right: 2px;
+	margin-left: -5px;
+}
+
+.notification-wrapper {
+	width: 350px;
+	white-space: pre-wrap;
+}

@@ -36,7 +36,7 @@ class Requirement extends Component {
 
   componentDidMount() {
     axios.get('/api/getreq').then(res => {
-      console.log(res.data[0]);
+      //console.log(res.data[0]);
       this.setState(
         {
           requirements: res.data
@@ -47,14 +47,14 @@ class Requirement extends Component {
 
   render() {
     var x = this.state.requirements;
-    x.reverse();
+    //x.reverse();
     var y = []
     for (var i = 0; i < x.length / 2; i++)
       y.push(i);
     var t = this.state.requirements.length > 0 ?
       (y.map((requirement, index) => {
         return (
-          <div className="container req-container">
+          <div className="container req-container" key={index}>
             <div className="row">
               <div className="col-sm-6">
                 <div className="card req-card">
@@ -64,6 +64,7 @@ class Requirement extends Component {
                       <div className="card-text req-card-text username">{x[index * 2].username}</div>
                       <div className="card-text req-card-text desc">{x[index * 2].desc}</div>
                       <div className="card-text req-card-text time"><small className="text-muted">{this.calcTime(x[index * 2].timestamp)}</small></div>
+
                     </div>
                   </div>
                 </div>
@@ -76,7 +77,7 @@ class Requirement extends Component {
                         <div className="card-title req-card-title"><strong>{x[index * 2 + 1].title}</strong></div>
                         <div className="card-text req-card-text username">{x[index * 2 + 1].username}</div>
                         <div className="card-text req-card-text desc">{x[index * 2 + 1].desc}</div>
-                      <div className="card-text req-card-text time"><small className="text-muted">{this.calcTime(x[index * 2 + 1].timestamp)}</small></div>
+                        <div className="card-text req-card-text time"><small className="text-muted">{this.calcTime(x[index * 2 + 1].timestamp)}</small></div>
                       </div>
                     </div>
                   </div>

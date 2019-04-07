@@ -17,7 +17,7 @@ class LogIn extends Component {
         authorize(token).then(result => {
             if (result.success) {
                 this.props.logInUser(result.user);
-                this.props.history.push('/profile');
+                this.props.history.push('/');
             }
             else {
                 if (result.remove) {
@@ -41,7 +41,7 @@ class LogIn extends Component {
                 // adding user to the redux store
                 this.props.logInUser(user); 
 
-                this.props.history.push('/profile');
+                this.props.history.push('/');
             }
             else {
                 this.setState({
@@ -75,8 +75,8 @@ class LogIn extends Component {
                     <h1 id="title">Want to sell? Want to Buy?<br />BESit Karo. Lite lo.</h1>
                     <div className="form-group">
                         <div className="wrap-input100 validate-input" data-validate="Enter username">
-                            <label htmlFor="Username">UserName</label>
-                            <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="UserName" />
+                            <label htmlFor="Username">Username</label>
+                            <input type="text" className="form-control" name="username" aria-describedby="emailHelp" placeholder="Username" />
                             <span className="focus-input100" data-placeholder="&#xf207;"></span>
                         </div>
                         <div className="form-group">
