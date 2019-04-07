@@ -24,7 +24,7 @@
   },
   "scripts": {
     "start": "node app.js",
-    "build": "node app.js",
+    "build": "",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "heroku-postbuild": "echo Skip build on Heroku"
