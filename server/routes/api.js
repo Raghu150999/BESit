@@ -224,12 +224,25 @@ router.get('/getownreq',(req,res) =>
     });
 });
 
-router.post('/updateinteresteduser', (req, res) => {
+router.post('/updateinteresteduser', (req, res) => {// _id of arrray given id
     Product.findOneAndUpdate({ _id: req.body.item._id }, { interestedUsers: req.body.interestedUsers })
         .then(result => {
             res.send('ok');
         });
 });
+router.post('/updatepassword',(req,res)=>{
+    User.findOneAndUpdate({username:req.body.prevdetails.username},{...req.body.prevdetails,password:req.body.newpassword})
+        .then(
+            (result)=>{
+                console.log(result)
+                res.send('ok');
+            }
+        )
+        .catch((error)=>{
+                console.log(error,'error in update password catch block');
+            }
+        )
+})
 
 router.post('/updateitem', (req, res) => {
     Product.findOneAndUpdate({ _id: req.body.id }, { ...req.body.form }).then(result => {

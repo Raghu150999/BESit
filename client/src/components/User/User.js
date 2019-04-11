@@ -4,8 +4,10 @@ import { connect } from 'react-redux';
 import HomeNav from './../HomeNav/HomeNav';
 import InterestedHistory from './InterestedHistory';
 import Requireitem from './Requireitem';
+import ChangePassword from "./ChangePassword";
 class User extends Component {
   render() {
+    console.log(this.props);
     return (
       <div>
         <HomeNav />
@@ -23,7 +25,7 @@ class User extends Component {
             <div className="tab-content" id="v-pills-tabContent">
               <div className="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><InterestedHistory /></div>
               <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><Requireitem /></div>
-              <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+              <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><ChangePassword history={this.props.history}/></div>
               <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
             </div>
           </div>
