@@ -165,7 +165,7 @@ router.get('/getitems', (req, res) => {
 
 router.get('/getprods', (req,res) => 
 {
-    Product.find().then(result =>
+    Product.find({status: 'Available'}).then(result =>
     {
         result.reverse();
         res.send(result);

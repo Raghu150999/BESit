@@ -24,9 +24,9 @@
   },
   "scripts": {
     "start": "node app.js",
-    "build": "node app.js",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "heroku-postbuild": "echo Skip build on Heroku"
   },
   "eslintConfig": {
     "extends": "react-app"
@@ -49,5 +49,6 @@
   "bugs": {
     "url": "https://github.com/Raghu150999/BESit/issues"
   },
-  "homepage": "https://github.com/Raghu150999/BESit#readme"
+  "homepage": "https://github.com/Raghu150999/BESit#readme",
+  "heroku-run-build-script": true
 }
