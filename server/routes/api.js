@@ -7,7 +7,6 @@ const jwt = require('jsonwebtoken');
 
 
 router.post('/verifyuser', (req, res) => {
-    console.log(req.body);
     User.findOne({ username: req.body.username }).then(function (result) {
         if (result)
             req.check('username', 'User already exists').not().equals(result.username);
@@ -130,7 +129,6 @@ router.get('/getInterestedUsers', (req, res) => {
         else {
             reponse = null;
         }
-        console.log(response);
         res.send(response);
         
     });
@@ -175,7 +173,6 @@ router.get('/getprods', (req,res) =>
 router.get('/getInterestedItems', (req, res) => {
     // req.query contains the parameter passed from axios request  // see in console your username
     const username=req.query.username;
-    console.log(username);
     Product.find({'interestedUsers.username':username}).then(result => {
         res.send(result);
     });
@@ -188,7 +185,6 @@ router.post('/updateitemstatus', (req, res) => {
 });
 
 router.post('/removereq', (req, res) => {
-    console.log(req.body._id);
     Requirement.deleteOne({ _id: req.body._id}).then(result => {
         res.send('ok');
     });
@@ -233,7 +229,6 @@ router.post('/updateinteresteduser', (req, res) => {
 
 router.post('/updateitem', (req, res) => {
     Product.findOneAndUpdate({ _id: req.body.id }, { ...req.body.form }).then(result => {
-        console.log(result);
         res.send('ok');
     });
 });
