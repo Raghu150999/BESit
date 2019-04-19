@@ -5,6 +5,7 @@ import HomeNav from './../HomeNav/HomeNav';
 import InterestedHistory from './InterestedHistory';
 import Requireitem from './Requireitem';
 import ChangePassword from "./ChangePassword";
+import Dashboard from "./Dashboard";
 class User extends Component {
   render() {
     console.log(this.props);
@@ -19,6 +20,7 @@ class User extends Component {
               <a className="nav-link user" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Requirements History</a>
               <a className="nav-link user" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Change password</a>
               <a className="nav-link user" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Account Settings</a>
+              <a className="nav-link user" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false">Dashboard</a>
             </div>
           </div>
           <div className="col-9">
@@ -27,6 +29,7 @@ class User extends Component {
               <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><Requireitem /></div>
               <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><ChangePassword history={this.props.history}/></div>
               <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+              <div className="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab"><Dashboard /></div>
             </div>
           </div>
         </div>

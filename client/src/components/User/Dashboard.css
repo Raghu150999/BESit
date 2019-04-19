@@ -1,0 +1,33 @@
+.buttons
+{
+    position: absolute;
+    /*left: 50%;*/
+}
+
+.prod-chart
+{
+    margin-top: 50px;
+}
+
+.chart-btn
+{
+    height: 50px;
+    width: 100px;
+    font-size: 20px;
+    margin-right: 1px;
+    background-color: orange;
+    border-color: orange;
+    border-radius: 0 0 0 0;
+    padding: 0px;
+}
+
+.chart-btn:hover
+{
+    background-color: black;
+    border-color: black;
+}
+
+.chart-btn:focus
+{
+    outline: 0 !important;
+}
