@@ -88,7 +88,7 @@ class Profile extends Component {
     })) : '';
     return (
       <div className="profile">
-        <HomeNav />
+        {/* <HomeNav /> */}
         <div id="profilecard">
           <h1 id="profiletitle">YOUR PROFILE</h1>
           <form className="registerform" onSubmit={this.handleSubmit}>
