@@ -6,6 +6,8 @@ import Dispuser from './Dispuser.js';
 import { connect } from 'react-redux';
 import Edit from './../Edit';
 
+
+
 class Product extends Component {
   state = {
     open: false,
@@ -69,7 +71,7 @@ class Product extends Component {
     })
     let item = this.props.item;
     let notifications = [];
-    for(let i = 0; i < item.interestedUsers.length; i++) {
+    for (let i = 0; i < item.interestedUsers.length; i++) {
       let notification = {
         targetUsername: item.interestedUsers[i].username,
         sourceUsername: item.owner,
@@ -180,7 +182,7 @@ class Product extends Component {
           <h4 className="card-title">Sorry! No users to display!</h4>
         </div>
       );
-    
+
     return (
       <div className="product">
         <div className="col-sm-auto">
@@ -216,29 +218,38 @@ class Product extends Component {
                   <dd className="col-sm-8">{item.desc}</dd>
                 </dl>
 
-                <Dropdown update={this.updateStatus} id={this.props.id} current={this.props.item.status} />
+                {<Dropdown update={this.updateStatus} id={this.props.id} current={this.props.item.status} />}
 
-                <button type="button" className="btn btn-dark sell-prod-btn" onClick={handleDelete}>Delete</button>
+                <div className="bttns">
+                  <dl className="row">
+                    <dt className="col-sm-0">
+                      <button type="button" className="btn btn-default" onClick={handleDelete}>
+                        <img src="https://img.icons8.com/material-outlined/24/000000/waste.png" />
+                      </button></dt>
 
-                <Edit key={this.props.id} item={this.props.item} />
+                    <dt className="col-sm-0">
+                      <Edit key={this.props.id} item={this.props.item} /></dt>
 
-                <div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
-
-                <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">Interested Buyers</button>
-                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                  <div className="modal-dialog interestDialog" role="document">
-                    <div className="modal-content">
-                      <div className="modal-header">
-                        <h5 className="modal-title" id="exampleModalLabel">Interested Buyers</h5>
-                        <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </div>
-                      <div className="modal-body interestBody">
-                        {usersList}
-                      </div>
-                      <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
+                    <dt className="col-sm-4">
+                      <button type="button" className="btn btn-default" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">
+                        <img src="https://img.icons8.com/ios-glyphs/24/000000/visible.png" />
+                      </button></dt></dl>
+                  <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div className="modal-dialog interestDialog" role="document">
+                      <div className="modal-content">
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="exampleModalLabel">Interested Buyers</h5>
+                          <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </div>
+                        <div className="modal-body interestBody">
+                          {usersList}
+                        </div>
+                        <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
                       </div>
                     </div>
                   </div>

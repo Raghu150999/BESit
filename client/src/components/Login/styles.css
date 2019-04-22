@@ -31,5 +31,14 @@
     word-spacing: 1.4vh; 
     margin-bottom:3.9vh; 
   }
-
+.cat{
+  color: rgb(71, 157, 184);
+  font-size: 6.3vh;
+  text-align: left;
+}
+.srch{
+  color: rgb(216, 118, 38);
+  font-size: 125%;
+  text-align: center;
+}
 

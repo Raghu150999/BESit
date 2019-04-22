@@ -201,7 +201,10 @@ class HomeNav extends Component {
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-
+        <img src="https://img.icons8.com/nolan/70/000000/shopping-cart.png"/>
+        <div className="logoname">
+        Bes!t
+        </div>
         <div className="collapse navbar-collapse" id="navbarToggler">
           <ul className="navbar-nav homenav">
             <li className={"nav-item " + this.state.status[0]}>
@@ -224,7 +227,7 @@ class HomeNav extends Component {
             </li>
             <li>
               <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle notification-dropdown-button" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.notificationHandler}>
+                <button className="btn btn-dark dropdown-toggle notification-dropdown-button" type="button"  data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" onClick={this.notificationHandler}>
                   <img src="https://img.icons8.com/color/32/000000/appointment-reminders.png" className="bell-img" />({this.state.nofNotifications})
                 </button>
                 <div className="dropdown-menu notification-dropdown">

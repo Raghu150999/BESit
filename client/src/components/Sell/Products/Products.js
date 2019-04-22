@@ -56,7 +56,9 @@ class Products extends Component {
       );
     const header = this.state.items.length > 0 ? (
       <div className="container">
-        <h2 style={{ marginTop: '15px' }}>All Your Items:</h2>
+        <h2 style={{ marginTop: '15px' }}>
+        <img src="https://img.icons8.com/cotton/56/000000/list--v1.png"></img>
+        <label className="sellhead">All Your Items:</label></h2>
       </div>
     ) : (
         ''

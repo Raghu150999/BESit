@@ -56,7 +56,7 @@ class Buy extends Component {
 
     let items = this.state.items.map(item => {
       return (
-          <Item key={item._id} item={item} user={this.props.user}/>
+        <Item key={item._id} item={item} user={this.props.user} />
       );
     });
 
@@ -64,41 +64,46 @@ class Buy extends Component {
       items = (
         <div className="container">
           <h4 style={{ fontSize: "100%" }}>
-            No results found :( 
+            No results found <img src="https://img.icons8.com/ultraviolet/40/000000/drama.png"></img>
           </h4>
-          <p className="lead" style={{ fontSize: "80%" }}>
+          <p className="lead" style={{ fontSize: "10g0%", color: "red" }}>
             (Tip: search with empty query to get all items)
           </p>
         </div>
       );
     }
-    
+
     return (
       <div>
         <HomeNav />
-        <div className="container" style={{padding: "10px"}}>
-        <form onSubmit={this.submitHandler}>
-          <div className="form-group">
-            <label>Category</label>
-            <select className="form-control">
-              {categories}
-            </select>
-          </div>
+        <div className="container" style={{ padding: "10px" }}>
+          <form onSubmit={this.submitHandler}>
+            <div className="form-group">
+              <label className="cat">
+                <img src="https://img.icons8.com/color/48/000000/categorize.png"></img>
+                Category</label>
+              <select className="form-control">
+                {categories}
+              </select>
+            </div>
 
-          <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Find Text Books, Novels, Electronics and more" aria-label="search" aria-describedby="basic-addon2" />
-              <button className="btn btn-outline-secondary" type="submit" style={{marginLeft: "15px", marginTop: "-2px"}}>Search</button>
+            <div className="input-group mb-3">
+              <input type="text" className="form-control" placeholder="Find Text Books, Novels, Electronics and more" aria-label="search" aria-describedby="basic-addon2" />
+              <button className="btn btn-default" type="submit" style={{ marginLeft: "15px", marginTop: "-2px" }}>
+                <img src="https://img.icons8.com/cotton/50/000000/detective.png" />
+              </button>
+            </div>
+          </form>
+
+          <div style={{ marginBottom: "20px" }}>
+            <h3 className="display-4" style={{ fontSize: "150%" }}>
+              <label className="srch">
+                <img src="https://img.icons8.com/dusk/64/000000/test-passed.png"></img>Search Results:</label>
+            </h3>
+            <div className="row">
+              {items}
+            </div>
           </div>
-        </form>
-      
-        <div style={{marginBottom: "20px"}}>
-          <h3 className="display-4" style={{fontSize: "150%"}}>
-            Search Results: 
-          </h3>
-          <div className="row">
-            {items}
-          </div>
-        </div>
         </div>
       </div>
     )
