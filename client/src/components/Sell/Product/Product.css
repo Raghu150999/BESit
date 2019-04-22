@@ -26,7 +26,8 @@
 .product .card-body, .item .card-body
 {
 	margin-top: 5px;
-	height: auto;
+    height: auto;
+    
 }
 
 .price
@@ -48,7 +49,7 @@
 {
 	font-size: 80%;
     border-radius: 5px;
-    background-color: black;
+    background-color: rgb(158, 156, 156);
 	border: none;
     margin-top: 5px;
 }	
@@ -66,7 +67,7 @@
 .prod-btn:hover
 {
     cursor: default;
-    background-color: black;
+    background-color: rgb(146, 139, 139);
     border: none;
 }
 
@@ -74,7 +75,7 @@
 {
     cursor: default;
     background-color: black;
-    border: none;
+    border-color: black
 }
 
 .product .box-shadow--8dp, .item .box-shadow--8dp {
@@ -101,8 +102,8 @@
 
 .new-item-btn:hover
 {
-    background-color: black;
-    color:gray;
+    background-color:rgb(165, 38, 6);
+    color:white;
     border-color: black;
 }
 

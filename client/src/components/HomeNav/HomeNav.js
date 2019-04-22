@@ -166,7 +166,10 @@ class HomeNav extends Component {
         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggler" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
           <span className="navbar-toggler-icon"></span>
         </button>
-
+        <img src="https://img.icons8.com/nolan/70/000000/shopping-cart.png"/>
+        <div className="logoname">
+        Bes!t
+        </div>
         <div className="collapse navbar-collapse" id="navbarToggler">
           <ul className="navbar-nav homenav">
             <li className="nav-item active">

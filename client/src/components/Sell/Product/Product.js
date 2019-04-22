@@ -7,6 +7,8 @@ import Dispuser from './Dispuser.js';
 import { connect } from 'react-redux';
 import Edit from './../Edit';
 
+  
+
 class Product extends Component {
   state = {
     open: false,
@@ -176,14 +178,24 @@ class Product extends Component {
                 </dl>
 
                 {<Dropdown update={this.props.update} id={this.props.id} current={this.props.item.status} />}
-
-                <button type="button" className="btn btn-dark sell-prod-btn" onClick={handleDelete}>Delete</button>
-
-                <Edit key={this.props.id} item={this.props.item} />
+                
+             <div className="bttns">
+             <dl className="row">
+             <dt className="col-sm-0">
+            <button type="button" className="btn btn-default" onClick={handleDelete}>
+            <img src="https://img.icons8.com/material-outlined/24/000000/waste.png"/>
+            </button></dt>
+      
+                <dt className="col-sm-0">
+                <Edit key={this.props.id} item={this.props.item} /></dt>
+                  
 
                 <div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
-
-                <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">Interested Buyers</button>
+                <dt className="col-sm-4">
+                <button type="button" className="btn btn-default" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">
+                <img src="https://img.icons8.com/ios-glyphs/24/000000/visible.png"/>
+                 
+                </button></dt></dl>
                 <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div className="modal-dialog interestDialog" role="document">
                     <div className="modal-content">
@@ -207,6 +219,7 @@ class Product extends Component {
           </div>
         </div>
       </div>
+      </div> 
     );
   }
 }

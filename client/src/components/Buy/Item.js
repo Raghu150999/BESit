@@ -8,7 +8,9 @@ class Item extends Component {
 		status: 'Not Interested',
 		interestedUsers: [],
 		sellerStatus: false,
-		contact: 'Not provided'
+		contact: 'Not provided',
+		image: <img src="https://img.icons8.com/ios/50/000000/bookmark-ribbon.png"/>
+		
 	}
 
 	handleInterested = (e) => {
@@ -23,7 +25,8 @@ class Item extends Component {
 		if (newStatus === 'Interested') {
 			interestedUsers.push({
 				username: this.props.user.username,
-				status: this.state.sellerStatus
+				status: this.state.sellerStatus,
+				image: <img src="https://img.icons8.com/ios/50/000000/bookmark-ribbon-filled.png"/>
 			})
 		}
 		axios.post('/api/updateinteresteduser', {
@@ -86,7 +89,7 @@ class Item extends Component {
 				status = user.status;
 				this.setState({
 					status: 'Interested',
-					sellerStatus: user.status
+					sellerStatus: user.status,
 				});
 			}
 		});
@@ -200,8 +203,9 @@ class Item extends Component {
 										<dt className="col-sm-4">Contact:</dt>
 										<dd className="col-sm-8">{this.state.contact}</dd>
 									</dl>
-									<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
-										{this.state.status}
+									<button type="button" className="btn btn-default prod-btn" onClick={this.handleInterested}>
+									{this.state.image}
+									{this.state.status}
 									</button>
 
 									<div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>

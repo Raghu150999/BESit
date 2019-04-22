@@ -32,7 +32,9 @@ class Edit extends Component {
 
     return (
       <div>
-        <button className="btn btn-dark sell-prod-btn" onClick={this.onOpenModal}>Edit</button>
+        <button type="button" className="btn btn-default" onClick={this.onOpenModal}>
+        <img src="https://img.icons8.com/metro/26/000000/pencil.png"/>
+        </button>
         <Modal open={this.state.open} onClose={this.onCloseModal} center>
           <Editform categories={this.categories} formdata={this.formdata} />
         </Modal>
