@@ -64,9 +64,9 @@ class Buy extends Component {
       items = (
         <div className="container">
           <h4 style={{ fontSize: "100%" }}>
-            No results found :( 
+            No results found <img src="https://img.icons8.com/ultraviolet/40/000000/drama.png"></img>
           </h4>
-          <p className="lead" style={{ fontSize: "80%" }}>
+          <p className="lead" style={{ fontSize: "10g0%",color: "red" }}>
             (Tip: search with empty query to get all items)
           </p>
         </div>
@@ -79,7 +79,9 @@ class Buy extends Component {
         <div className="container" style={{padding: "10px"}}>
         <form onSubmit={this.submitHandler}>
           <div className="form-group">
-            <label>Category</label>
+          <label className="cat">
+          <img src="https://img.icons8.com/color/48/000000/categorize.png"></img>
+            Category</label>
             <select className="form-control">
               {categories}
             </select>
@@ -95,7 +97,8 @@ class Buy extends Component {
       
         <div style={{marginBottom: "20px"}}>
           <h3 className="display-4" style={{fontSize: "150%"}}>
-            Search Results: 
+            <label className="srch">
+            <img src="https://img.icons8.com/dusk/64/000000/test-passed.png"></img>Search Results:</label>
           </h3>
           <div className="row">
             {items}
