@@ -38,15 +38,14 @@ class Dispuser extends Component {
   }
 
   render() {
-    let checked = 'ok';
     return (
       <div className="card">
         <div className="card-body">
           <div className="row">
           <h4 className="card-title">@{this.state.Displayuser}</h4>
             <div className="custom-control custom-checkbox my-1 mr-sm-2">
-              <input type="checkbox" className="custom-control-input" id="customControlInline" onClick={this.handleShare} defaultChecked={this.state.status} />
-                <label className="custom-control-label shareContact" htmlFor="customControlInline">Share Contact</label>
+              <input type="checkbox" className="custom-control-input" id={"customControlInline" + this.state.Displayuser + this.props.id} onClick={this.handleShare} defaultChecked={this.state.status} />
+              <label className="custom-control-label shareContact" htmlFor={"customControlInline" + this.state.Displayuser + this.props.id}>Share Contact</label>
             </div>
           </div>
           <h2 className="card-text contact1">Buyer: <label id='contactlabel'> {this.state.name}</label></h2>

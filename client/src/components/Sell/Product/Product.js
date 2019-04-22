@@ -21,7 +21,7 @@ class Product extends Component {
       this.props.item.interestedUsers.map((Displayuser, index) => {
         return (
          <div key={index}>
-          <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} />
+          <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} id={this.props.item._id} />
         </div>
           )
       })
