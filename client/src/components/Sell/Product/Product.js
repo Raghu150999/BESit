@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import './Product.css';
 import Dropdown from '../Dropdown.js'
-import Modal from 'react-responsive-modal';
 import axios from 'axios';
 import Dispuser from './Dispuser.js';
 import { connect } from 'react-redux';
@@ -18,9 +17,23 @@ class Product extends Component {
       item: this.props.item,
       username: username,
       status: status
-    }).then(res => {
     });
+    let item = this.props.item;
+    let notification = {
+      sourceUsername: item.owner,
+      targetUsername: username,
+      type: 'SHARE CONTACT',
+      productID: item._id,
+      productName: item.name,
+      seenStatus: false,
+      timeStamp: new Date(),
+      payload: {
+        status
+      }
+    };
+    axios.post('/notify/shareContact', notification);
   }
+
   calcTime(timestamp) {
     var x = new Date(timestamp);
     var y = new Date();
@@ -46,6 +59,34 @@ class Product extends Component {
       else
         return val + ' day ago';
     }
+  }
+
+  updateStatus = (status, id) => {
+    axios.post('/api/updateitemstatus', {
+      status,
+      id,
+      owner: this.props.user.username
+    })
+    let item = this.props.item;
+    let notifications = [];
+    for(let i = 0; i < item.interestedUsers.length; i++) {
+      let notification = {
+        targetUsername: item.interestedUsers[i].username,
+        sourceUsername: item.owner,
+        type: 'STATUS UPDATE',
+        productID: item._id,
+        productName: item.name,
+        seenStatus: false,
+        timeStamp: new Date(),
+        payload: {
+          status
+        }
+      };
+      notifications.push(notification);
+    }
+    axios.post('/notify/interestedUsers', notifications)
+      .then(res => {
+      })
   }
 
   render() {
@@ -175,7 +216,7 @@ class Product extends Component {
                   <dd className="col-sm-8">{item.desc}</dd>
                 </dl>
 
-                {<Dropdown update={this.props.update} id={this.props.id} current={this.props.item.status} />}
+                <Dropdown update={this.updateStatus} id={this.props.id} current={this.props.item.status} />
 
                 <button type="button" className="btn btn-dark sell-prod-btn" onClick={handleDelete}>Delete</button>
 

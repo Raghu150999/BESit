@@ -43,13 +43,6 @@ class Products extends Component {
     }
   }
 
-  updateStatus = (status, id) => {
-    axios.post('/api/updateitemstatus', {
-      status,
-      id,
-      owner: this.props.user.username
-    })
-  }
 
   render() {
     let displayItems = this.state.items.length > 0 ? (

@@ -13,7 +13,8 @@ class HomeNav extends Component {
     nofNotifications: 0,
     notifications: [],
     notificationsAvailable: false,
-    seenNotifications: false
+    seenNotifications: false,
+    status: ['active', '', '', '', '']
   }
 
   componentDidMount() {
@@ -70,6 +71,18 @@ class HomeNav extends Component {
           });
         });
     }
+    let key = this.props.location.state ? this.props.location.state.key : 0;
+    let status = [];
+    for (var i = 0; i < 5; i++) {
+      if (i == key) {
+        status.push('active');
+      } else {
+        status.push('');
+      }
+    }
+    this.setState({
+      status
+    });
   }
 
   logOut = (e) => {
@@ -109,17 +122,39 @@ class HomeNav extends Component {
   getNotificationText = (notification) => {
     if (notification.type === 'INTEREST') {
       return (
-        <div className="notification-wrapper">
-          <strong>{notification.sourceUsername}</strong> is interested in your item <strong>{notification.productName}</strong><br />
-          <small className="text-muted">{this.calcTime(notification.timeStamp)}</small>
-        </div>
+        <Link to={{pathname: '/sell', state: {key: 2}}} className="notification-element">
+          <div className="notification-wrapper">
+            <strong>{notification.sourceUsername}</strong> is interested in your item <strong>{notification.productName}</strong><br />
+            <small className="text-muted">{this.calcTime(notification.timeStamp)}</small>
+          </div>
+        </Link>
       );
     } else if (notification.type === 'COMMENT') {
       return (
-        <div className="notification-wrapper">
-          <strong>{notification.sourceUsername}</strong> commented on your item <strong>{notification.productName}</strong>
-          <small className="text-muted">{this.calcTime(notification.timeStamp)}</small>
-        </div>
+        <Link to="" className="notification-element">
+          <div className="notification-wrapper">
+            <strong>{notification.sourceUsername}</strong> commented on your item <strong>{notification.productName}</strong> <br />
+            <small className="text-muted">{this.calcTime(notification.timeStamp)}</small>
+          </div>
+        </Link>
+      );
+    } else if (notification.type === 'STATUS UPDATE') {
+      return (
+        <Link to={{pathname: '/user', state: {key: 4}}} className="notification-element">
+          <div className="notification-wrapper" onClick={this.directUser}>
+            <strong>{notification.sourceUsername + "'s"}</strong> item <strong>{notification.productName}</strong> is now  <strong>{notification.payload.status.toLowerCase()} </strong> <br />
+            <small className="text-muted">{this.calcTime(notification.timeStamp)}</small>
+          </div>
+        </Link>
+      );
+    } else if (notification.type === 'SHARE CONTACT') {
+      return (
+        <Link to={{ pathname: '/user', state: { key: 4 } }} className="notification-element">
+          <div className="notification-wrapper" onClick={this.directUser}>
+            <strong>{notification.sourceUsername}</strong> has shared contact <br />
+            <small className="text-muted">{this.calcTime(notification.timeStamp)}</small>
+          </div>
+        </Link>
       );
     }
     return 'NA';
@@ -169,20 +204,20 @@ class HomeNav extends Component {
 
         <div className="collapse navbar-collapse" id="navbarToggler">
           <ul className="navbar-nav homenav">
-            <li className="nav-item active">
-              <Link to="/" className="nav-link">Home</Link>
+            <li className={"nav-item " + this.state.status[0]}>
+              <Link to={{pathname: "/", state: {key: 0}}} className="nav-link">Home</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/buy" className="nav-link">Buy</Link>
+            <li className={"nav-item " + this.state.status[1]}>
+              <Link to={{ pathname: "/buy", state: { key: 1 } }} className="nav-link">Buy</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/sell" className="nav-link">Sell</Link>
+            <li className={"nav-item " + this.state.status[2]}>
+              <Link to={{ pathname: "/sell", state: { key: 2 } }} className="nav-link">Sell</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/requirements" className="nav-link">Requirements</Link>
+            <li className={"nav-item " + this.state.status[3]}>
+              <Link to={{ pathname: "/requirements", state: { key: 3 } }} className="nav-link">Requirements</Link>
             </li>
-            <li className="nav-item">
-              <Link to="/user" className="nav-link">User</Link>
+            <li className={"nav-item " + this.state.status[4]}>
+              <Link to={{ pathname: "/user", state: { key: 4 } }} className="nav-link">User</Link>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="" onClick={this.logOut}>Logout</a> { /* @debug: Float this to right */}
@@ -222,4 +257,5 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
+
 export default connect(mapStateToProps, mapDispatchToProps)(withRouter(HomeNav));

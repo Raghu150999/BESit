@@ -7,9 +7,9 @@ let notificationSchema = new Schema({
 	type: String,
 	productID: String,
 	productName: String,
-	commentID: String,
 	seenStatus: Boolean,
-	timeStamp: Date
+	timeStamp: Date,
+	payload: Object
 });
 
 let Notification = mongoose.model('notifications', notificationSchema);

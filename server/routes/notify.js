@@ -50,4 +50,42 @@ router.get('/seen', (req, res) => {
 	res.send('ok');
 })	
 
+router.post('/interestedUsers', (req, res) => {
+	let notifications = req.body;
+	notifications.forEach(item => {
+		Notification.findOneAndDelete({
+			productID: item.productID,
+			targetUsername: item.targetUsername,
+			type: 'STATUS UPDATE'
+		}).then(result => {
+			let notification = new Notification({
+				...item
+			});
+			notification.save().then(result => {
+			});
+		})
+	})
+	res.send('ok');
+});
+
+router.post('/shareContact', (req, res) => {
+	let notification = req.body;
+	Notification.findOneAndDelete({
+		productID: notification.productID,
+		targetUsername: notification.targetUsername,
+		type: 'SHARE CONTACT'
+	}).then(result => {
+		if (notification.payload.status) {
+			let n = new Notification({
+				...notification
+			});
+			n.save().then(result => {
+				res.send('ok');
+			});
+		} else {
+			res.send('ok');
+		}
+	});
+})
+
 module.exports = router;

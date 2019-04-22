@@ -13,7 +13,6 @@ let User = mongoose.model('users', userSchema);
 module.exports = User;
 
 module.exports.saveUser = function (data, done) {
-    console.log(data);
     let user = new User({
         username: data.username,
         fname: data.fname,

@@ -86,7 +86,7 @@ class Buy extends Component {
           </div>
 
           <div className="input-group mb-3">
-            <input type="text" className="form-control" placeholder="Search for items" aria-label="search" aria-describedby="basic-addon2" />
+            <input type="text" className="form-control" placeholder="Find Text Books, Novels, Electronics and more" aria-label="search" aria-describedby="basic-addon2" />
               <button className="btn btn-outline-secondary" type="submit" style={{marginLeft: "15px", marginTop: "-2px"}}>Search</button>
           </div>
         </form>

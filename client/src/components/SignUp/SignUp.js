@@ -48,6 +48,9 @@ class SignUp extends Component {
     })) : '';
     return (
       <div className="container-register">
+        <div className="error">
+          {errBlock}
+        </div>
         <div className="card mb-3 w-95 " id="card">
           <div className="row no-gutters">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-8" >
@@ -139,9 +142,6 @@ class SignUp extends Component {
               </div>
             </div>
           </div>
-        </div>
-        <div className="error">
-          {errBlock}
         </div>
       </div>
     )

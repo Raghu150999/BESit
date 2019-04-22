@@ -36,3 +36,12 @@
 	width: 350px;
 	white-space: pre-wrap;
 }
+
+.notification-element {
+	text-decoration: none;
+	color: black;
+}
+.notification-element:hover {
+	text-decoration: none;
+	color: black;
+}
