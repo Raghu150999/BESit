@@ -48,7 +48,6 @@
 {
 	font-size: 80%;
     border-radius: 5px;
-    background-color: rgb(158, 156, 156);
 	border: none;
     margin-top: 5px;
 }	
@@ -66,7 +65,6 @@
 .prod-btn:hover
 {
     cursor: default;
-    background-color: rgb(146, 139, 139);
     border: none;
 }
 

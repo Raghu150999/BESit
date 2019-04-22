@@ -16,9 +16,9 @@ class User extends Component {
         <div className="row tabmenuparent">
           <div className="col-3">
             <div className="nav flex-column nav-pills tabmenu vline" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-              <a className="nav-link active user" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="https://img.icons8.com/color/48/000000/wish-list.png" />  Your Wish List</a>
-              <a className="nav-link user" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><img src="https://img.icons8.com/color/48/000000/order-history.png" />  Your Requirements</a>
-              <a className="nav-link user" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><img src="https://img.icons8.com/office/40/000000/re-enter-pincode.png" />  Change password</a>
+              <a className="nav-link active user" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="https://img.icons8.com/color/48/000000/wish-list.png" />  My Wish List</a>
+              <a className="nav-link user" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><img src="https://img.icons8.com/color/48/000000/order-history.png" />  My Requirements</a>
+              <a className="nav-link user" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><img src="https://img.icons8.com/office/40/000000/re-enter-pincode.png" />  Change Password</a>
               <a className="nav-link user" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><img src="https://img.icons8.com/color/48/000000/settings.png" />  Account Settings</a>
             </div>
           </div>

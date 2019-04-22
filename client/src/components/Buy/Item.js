@@ -9,12 +9,13 @@ class Item extends Component {
 		interestedUsers: [],
 		sellerStatus: false,
 		contact: 'Not provided',
-		image: <img src="https://img.icons8.com/ios/50/000000/bookmark-ribbon.png"/>
+		image: <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon.png" />
 		
 	}
 
 	handleInterested = (e) => {
 		const newStatus = this.state.status === 'Not Interested' ? 'Interested' : 'Not Interested';
+		const image = newStatus === 'Interested' ? <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon-filled.png" /> : <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon.png" />;
 		const interestedUsers = this.state.interestedUsers.filter(user => {
 			if (user.username === this.props.user.username) {
 				return false; // skip the current user
@@ -26,7 +27,6 @@ class Item extends Component {
 			interestedUsers.push({
 				username: this.props.user.username,
 				status: this.state.sellerStatus,
-				image: <img src="https://img.icons8.com/ios/50/000000/bookmark-ribbon-filled.png"/>
 			})
 		}
 		axios.post('/api/updateinteresteduser', {
@@ -36,7 +36,8 @@ class Item extends Component {
 
 		this.setState({
 			status: newStatus,
-			interestedUsers
+			interestedUsers,
+			image
 		});
 
 		let data = {
@@ -90,6 +91,7 @@ class Item extends Component {
 				this.setState({
 					status: 'Interested',
 					sellerStatus: user.status,
+					image: <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon-filled.png" />
 				});
 			}
 		});
@@ -159,6 +161,8 @@ class Item extends Component {
 			item.desc = 'No description provided';
 		}
 
+
+
 		return (
 			<div className="item">
 				<div className="col-sm-auto">
@@ -203,9 +207,8 @@ class Item extends Component {
 										<dt className="col-sm-4">Contact:</dt>
 										<dd className="col-sm-8">{this.state.contact}</dd>
 									</dl>
-									<button type="button" className="btn btn-default prod-btn" onClick={this.handleInterested}>
-									{this.state.image}
-									{this.state.status}
+									<button type="button" className="btn btn-default prod-btn" onClick={this.handleInterested} data-toggle="tooltip" data-placement="bottom" title={this.state.status === 'Interested' ? 'Remove Interest' : 'Express Interest'} id='mytooltip'>
+										{this.state.image}
 									</button>
 
 									<div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>

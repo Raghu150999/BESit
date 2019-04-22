@@ -8,14 +8,15 @@ class Interesteditem extends Component {
 		status: 'Interested',
 		interestedUsers: [],
 		sellerStatus: false,
-		contact: 'Not provided'
+		contact: 'Not provided',
+		image: <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon.png" />
 	}
 
 	
 
 	handleInterested = (e) => {
 		const newStatus = this.state.status === 'Not Interested' ? 'Interested' : 'Not Interested';
-		console.log(newStatus);
+		const image = newStatus === 'Interested' ? <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon-filled.png" /> : <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon.png" />;
 		const interestedUsers = this.state.interestedUsers.filter(user => {
 			if (user.username === this.props.user.username) {
 				return false; // skip the current user
@@ -35,7 +36,8 @@ class Interesteditem extends Component {
 		}).then(res=>{
             this.setState({
                 status: newStatus,
-                interestedUsers
+								interestedUsers,
+								image
             });
             this.props.update();
         });
@@ -76,7 +78,8 @@ class Interesteditem extends Component {
 				status = user.status;
 				this.setState({
 					status: 'Interested',
-					sellerStatus: user.status
+					sellerStatus: user.status,
+					image: <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon-filled.png" />
 				});
 			}
 		});
@@ -184,8 +187,8 @@ class Interesteditem extends Component {
 								</dl>
 								<div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
 							</div>
-							<button type="button" className="btn btn-dark prod-btn" onClick={this.handleInterested}>
-								{this.state.status}
+							<button type="button" className="btn btn-default prod-btn" onClick={this.handleInterested} data-toggle="tooltip" data-placement="bottom" title={this.state.status === 'Interested' ? 'Remove Interest' : 'Express Interest'} id='mytooltip'>
+								{this.state.image}
 							</button>
 						</div>
 					</div>
