@@ -11,7 +11,29 @@ import Edit from './../Edit';
 class Product extends Component {
   state = {
     open: false,
-    Displayusers: []
+    Displayusers: [],
+    usersList: ''
+  }
+  
+  componentDidMount() {
+    console.log(this.props.item.interestedUsers);
+    let usersList = this.props.item.interestedUsers.length > 0 ? (
+      this.props.item.interestedUsers.map((Displayuser, index) => {
+        return (
+         <div key={index}>
+          <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} />
+        </div>
+          )
+      })
+    ) : (
+        <div>
+          <br />
+          <h4 className="card-title">Sorry! No users to display!</h4>
+        </div>
+      );
+      this.setState({
+        usersList
+      })
   }
 
   shareStatus = (status, username) => {
@@ -144,24 +166,14 @@ class Product extends Component {
         return;
       axios.post('/removeitem', this.props.item)
         .then(res => {
-          console.log(res.data);
           window.location = '/sell';
         })
     }
 
     const getInterestedUsers = (e) => {
-      axios.get('/api/getInterestedUsers', {
-        params: {
-          id: item._id
-        }
-      }).then(res => {
         this.setState({
-          Displayusers: res.data
+          open:true
         });
-        this.setState({
-          open: true
-        });
-      });
     }
 
     const onCloseModal = (e) => {
@@ -169,20 +181,7 @@ class Product extends Component {
         open: false
       });
     };
-
-    let usersList = this.state.Displayusers.length > 0 ? (
-      this.state.Displayusers.map((Displayuser) => {
-        return (
-          <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} />
-        )
-      })
-    ) : (
-        <div>
-          <br />
-          <h4 className="card-title">Sorry! No users to display!</h4>
-        </div>
-      );
-
+    
     return (
       <div className="product">
         <div className="col-sm-auto">
@@ -228,10 +227,10 @@ class Product extends Component {
 
                     <div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
                     <dt className="col-sm-4">
-                      <button type="button" className="btn btn-default" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">
+                    <button type="button" className="btn btn-default" onClick={getInterestedUsers} data-toggle="modal" data-target={"#exampleModal" + this.props.item._id}>
                         <img src="https://img.icons8.com/ios-glyphs/24/000000/visible.png" />
                       </button></dt></dl>
-                  <div className="interested-users-modal modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className="modal interested-users-modal fade" id={"exampleModal" + this.props.item._id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog interestDialog" role="document">
                       <div className="modal-content">
                         <div className="modal-header">
@@ -241,7 +240,11 @@ class Product extends Component {
                           </button>
                         </div>
                         <div className="modal-body interestBody">
-                          {usersList}
+                        {
+                          this.state.open ? (
+                            this.state.usersList
+                          ) : ('')
+                        }
                         </div>
                         <div className="modal-footer">
                           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

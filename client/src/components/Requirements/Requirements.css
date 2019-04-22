@@ -42,8 +42,8 @@
 
 .new-req-btn
 {
-    width: 20vh;
-    height: 20vh;
+    width: 15vh;
+    height: 15vh;
     background-color: #e99041;
     color: white;
     border-color: #e99041;
@@ -85,4 +85,29 @@
     cursor: default;
     background-color: black;
     border: none;
+}
+
+.new-item-btn
+{
+    font-size: 1.5rem;
+    width: 4rem;
+	height: 4rem;
+	z-index: 1;
+    background-color: #e99041;
+    color: white;
+    border-color: #e99041;
+    border-radius: 50%;
+    position: fixed;
+    bottom: 10%;
+    right: 10%;
+    padding-right: -1000px;
+    padding-left: 27px;
+    z-index: 100;
+}
+
+.new-item-btn:hover
+{
+    background-color:rgb(165, 38, 6);
+    color:white;
+    border-color: white;
 }

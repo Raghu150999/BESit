@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import HomeNav from './../HomeNav/HomeNav';
 import Modal from 'react-responsive-modal';
-import './Requirements.css'
+import './Requirements.css';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import Requirement from './Requirement';
@@ -58,7 +58,7 @@ class Requirements extends Component {
         <HomeNav />
         <Requirement />
         <div className="req-container">
-          <button className="btn btn-primary btn-lg new-req-btn box-shadow--8dp" onClick={this.openModal}>+</button>
+          <button className="btn btn-primary btn-lg new-item-btn box-shadow--8dp" onClick={this.openModal}>+</button>
           <Modal
             open={open}
             onClose={this.closeModal}
