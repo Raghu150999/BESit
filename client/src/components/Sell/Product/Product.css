@@ -27,7 +27,6 @@
 {
 	margin-top: 5px;
     height: auto;
-    
 }
 
 .price
@@ -85,8 +84,9 @@
 
 .new-item-btn
 {
-    width: 20vh;
-	height: 20vh;
+    font-size: 1.5rem;
+    width: 4rem;
+	height: 4rem;
 	z-index: 1;
     background-color: #e99041;
     color: white;
@@ -132,4 +132,36 @@
 }
 .sellhead{
     color: rgb(63, 144, 168);
+}
+
+/* -------------------------------------- */
+
+.interested-users-modal .card-text{
+    font-size: 0.9rem;
+}
+
+.contact1 {
+    margin-top:3vh;
+}
+
+/* DispUserTitle */
+.interested-users-modal .card-title{
+    font-size: 5vh;
+    color:orange;
+}
+
+/* dispUser */
+.interested-users-modal .card, .interested-users-modal .card-body{ 
+    width: 16rem;
+	height: auto;
+}
+
+.interested-users-modal .shareContact{
+    float:right;
+    padding-top:0.8vh;
+    margin-right:5px;
+}
+.interested-users-modal #contactlabel{
+    color: black;
+    font-weight: 100;
 }

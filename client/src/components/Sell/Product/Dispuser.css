@@ -1,32 +1,32 @@
-.contact2{
+.interested-users-modal .card-text{
     font-size: 5vh;
     text-align: center;
 }
-.contact1{
-    font-size: 5vh;
+
+.contact1 {
     margin-top:3vh;
-    text-align: center;
 }
-.DispUsertitle{
+
+/* DispUserTitle */
+.interested-users-modal .card-title{
     font-size: 5vh;
     color:orange;
 }
-.dispUser{
+
+/* dispUser */
+.interested-users-modal .card, .interested-users-modal .card-body{ 
     margin-top: 5vh;
     width: auto;
 	height:auto;
 
 }
-.shareContact{
+.interested-users-modal .shareContact{
 float:right;
 padding-top:0.6vh;
 margin-right:5px;
 }
-#contactlabel{
+.interested-users-modal #contactlabel{
     color: black;
     font-weight: 100;
-}
-#contactlabel1{
-    color: black;
-    font-weight: 100;
+    font-size: 300%;
 }

@@ -19,3 +19,12 @@
     height: 1000px;
   }
 
+.tabmenuparent {
+  position: relative;
+}
+
+.tabmenu {
+  position: fixed;
+  top: 15%;
+  left: 1%;
+}

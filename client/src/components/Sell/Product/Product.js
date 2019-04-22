@@ -189,10 +189,6 @@ class Product extends Component {
           <div className="card box-shadow--8dp">
 
             <div id={"images" + item._id} className="carousel slide" data-ride="carousel">
-              {/* <ol className="carousel-indicators">
-                {varOl}
-              </ol> */}
-
               <div className="carousel-inner">
                 {carouselElements}
               </div>
@@ -235,7 +231,7 @@ class Product extends Component {
                       <button type="button" className="btn btn-default" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">
                         <img src="https://img.icons8.com/ios-glyphs/24/000000/visible.png" />
                       </button></dt></dl>
-                  <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                  <div className="interested-users-modal modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog interestDialog" role="document">
                       <div className="modal-content">
                         <div className="modal-header">

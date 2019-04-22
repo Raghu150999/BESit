@@ -14,13 +14,13 @@
     text-align: center;
 }
 .profile{
-    align-items: center;
+    align-items: left;
 }
 #profilecard{
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    padding: 1.5vh;
-    width: 45%;
-    margin-top:5vh;
+    padding-left: 10vh;
+    padding-right: 10vh;
+    width: auto;
 }

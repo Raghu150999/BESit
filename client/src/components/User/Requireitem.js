@@ -66,12 +66,11 @@ class Requireitem extends Component {
       );
       return(
         <div>
-        <div>
-        {header}
-        <div className="container" style={{marginBottom: "20px"}}>
-            {displayItems}
-        </div>
-      </div>
+          <div>
+            <div className="container" style={{ marginBottom: "20px" }}>
+              {displayItems}
+            </div>
+          </div>
         </div>
     );
   }

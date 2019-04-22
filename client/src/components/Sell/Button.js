@@ -33,7 +33,7 @@ class Button extends Component {
     return (
       <div className="container">
         <button className="btn btn-primary btn-xs new-item-btn box-shadow--8dp" onClick={this.onOpenModal}>
-        New
+        +
         </button>
         <Modal open={open} onClose={this.onCloseModal} center>
           <Form categories={this.state.categories} />
