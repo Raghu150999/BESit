@@ -8,7 +8,7 @@ class Products extends Component {
 
   state = {
     items: [],
-    itemsAvailable: false,
+    itemsAvailable: false
   }
 
   componentDidMount() {
@@ -39,6 +39,7 @@ class Products extends Component {
             items: res.data.reverse(),
             itemsAvailable: true
           });
+
         });
     }
   }

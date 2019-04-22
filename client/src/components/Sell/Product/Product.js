@@ -10,7 +10,29 @@ import Edit from './../Edit';
 class Product extends Component {
   state = {
     open: false,
-    Displayusers: []
+    Displayusers: [],
+    usersList: ''
+  }
+  
+  componentDidMount() {
+    console.log(this.props.item);
+    let usersList = this.props.item.interestedUsers.length > 0 ? (
+      this.props.item.interestedUsers.map((Displayuser, index) => {
+        return (
+         <div key={index}>
+          <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} />
+        </div>
+          )
+      })
+    ) : (
+        <div>
+          <br />
+          <h4 className="card-title">Sorry! No users to display!</h4>
+        </div>
+      );
+      this.setState({
+        usersList
+      })
   }
 
   shareStatus = (status, username) => {
@@ -107,18 +129,10 @@ class Product extends Component {
     }
 
     const getInterestedUsers = (e) => {
-      axios.get('/api/getInterestedUsers', {
-        params: {
-          id: item._id
-        }
-      }).then(res => {
+      console.log(this.props.item.interestedUsers);
         this.setState({
-          Displayusers: res.data
+          open:true
         });
-        this.setState({
-          open: true
-        });
-      });
     }
 
     const onCloseModal = (e) => {
@@ -127,18 +141,20 @@ class Product extends Component {
       });
     };
 
-    let usersList = this.state.Displayusers.length > 0 ? (
-      this.state.Displayusers.map((Displayuser) => {
-        return (
-          <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} />
-        )
-      })
-    ) : (
-        <div>
-          <br />
-          <h4 className="card-title">Sorry! No users to display!</h4>
-        </div>
-      );
+    // let usersList = this.props.item.interestedUsers.length > 0? (
+    //   this.props.item.interestedUsers.map((Displayuser) => {
+    //     return (
+    //      <div>
+    //       <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} />
+    //     </div>
+    //       )
+    //   })
+    // ) : (
+    //     <div>
+    //       <br />
+    //       <h4 className="card-title">Sorry! No users to display!</h4>
+    //     </div>
+    //   );
     
     return (
       <div className="product">
@@ -146,9 +162,6 @@ class Product extends Component {
           <div className="card box-shadow--8dp">
 
             <div id={"images" + item._id} className="carousel slide" data-ride="carousel">
-              {/* <ol className="carousel-indicators">
-                {varOl}
-              </ol> */}
 
               <div className="carousel-inner">
                 {carouselElements}
@@ -183,21 +196,25 @@ class Product extends Component {
 
                 <div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
 
-                <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} data-toggle="modal" data-target="#exampleModal">Interested Buyers</button>
-                <div className="modal fade" id="exampleModal" tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <button type="button" className="btn btn-dark sell-prod-btn" onClick={getInterestedUsers} data-toggle="modal" data-target={"#exampleModal"+this.props.item._id}>Interested Buyers</button>
+                <div className="modal fade" id={"exampleModal"+this.props.item._id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                   <div className="modal-dialog interestDialog" role="document">
                     <div className="modal-content">
                       <div className="modal-header">
                         <h5 className="modal-title" id="exampleModalLabel">Interested Buyers</h5>
-                        <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
+                        <button type="button" className="close interest" onClick={onCloseModal} data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div className="modal-body interestBody">
-                        {usersList}
+                        {
+                          this.state.open?(
+                            this.state.usersList
+                          ):(console.log('good') )
+                       }
                       </div>
                       <div className="modal-footer">
-                        <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button type="button" className="btn btn-secondary" onClick={onCloseModal} data-dismiss="modal">Close</button>
                       </div>
                     </div>
                   </div>

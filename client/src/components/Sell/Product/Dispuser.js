@@ -8,13 +8,15 @@ class Dispuser extends Component {
     status: null,
     name: null,
     phoneno: null,
-    show: false
+    show: false,
+    flag:false
   }
   componentDidMount() {
     this.setState({
       Displayuser: this.props.username,
       status: this.props.status
     });
+    console.log(this.props.username);
     axios.get('/api/getContact', {
       params: {
         username: this.props.username
@@ -23,7 +25,8 @@ class Dispuser extends Component {
       this.setState({
         name: res.data.name,
         phoneno: res.data.phoneno,
-        show: true
+        show: true,
+        flag:true
       });
     })
   }
@@ -36,16 +39,19 @@ class Dispuser extends Component {
   render() {
     return (
       <div className="card dispUser">
+      {this.state.flag?(
         <div className="card-body dispUser">
-          <div className="row">
-          <h4 className="card-title DispUsertitle" >@{this.state.Displayuser}</h4>
-            <div className="checkbox shareContact row">
-              <label id='contactlabel1'><input type="checkbox" aria-label="Checkbox" onClick={this.handleShare} defaultChecked={this.state.status} />Share contact info</label>
-            </div>
+        <div className="row">
+        <h4 className="card-title DispUsertitle" >@{this.state.Displayuser}</h4>
+          <div className="checkbox shareContact row">
+            <label id='contactlabel1'><input type="checkbox" aria-label="Checkbox" onClick={this.handleShare} defaultChecked={this.state.status} />Share contact info</label>
           </div>
-          <h2 className="card-text contact1">Buyer: <label id='contactlabel'> {this.state.name}</label></h2>
-          <h2 className="card-text contact2">Phone No: <label id='contactlabel'>{this.state.phoneno}</label></h2>
         </div>
+        <h2 className="card-text contact1">Buyer: <label id='contactlabel'> {this.state.name}</label></h2>
+        <h2 className="card-text contact2">Phone No: <label id='contactlabel'>{this.state.phoneno}</label></h2>
+      </div>
+      ):('')
+    }
       </div>
     )
   }
