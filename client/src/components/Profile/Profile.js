@@ -93,7 +93,7 @@ class Profile extends Component {
           {errBlock}
         </div>
         <div id="profilecard">
-          <h1 id="profiletitle">YOUR PROFILE</h1>
+          <h1 id="profiletitle">Your Profile</h1>
           <form className="registerform" onSubmit={this.handleSubmit}>
             
             <div className="form-group" id="prof1">
