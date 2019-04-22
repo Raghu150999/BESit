@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import { withRouter } from 'react-router-dom';
+import upimage from './Product/images/uploadimg.png';
 
 class Form extends Component {
   state = {
@@ -23,7 +24,6 @@ class Form extends Component {
       name: e.target[1].value,
       price: e.target[2].value,
       desc: e.target[3].value,
-      rating: e.target[4].value,
       timestamp: Date(),
       owner: this.props.user.username,
       status: 'Available'
@@ -38,7 +38,6 @@ class Form extends Component {
     fd.append('name', e.target[1].value);
     fd.append('price', e.target[2].value);
     fd.append('desc', e.target[3].value);
-    fd.append('rating', e.target[4].value);
     fd.append('timestamp', Date());
     fd.append('owner', this.props.user.username);
     fd.append('status', 'Available');
@@ -128,20 +127,10 @@ class Form extends Component {
             <label htmlFor="exampleFormControlTextarea1">Short Description</label>
             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Condition</label>
-            <select className="form-control" id="exampleFormControlSelect1">
-              <option>1 star</option>
-              <option>2 stars</option>
-              <option>3 stars</option>
-              <option>4 stars</option>
-              <option>5 stars</option>
-            </select>
-          </div>
-          <button> Submit </button>
+          <button className="btn btn-primary" type="submit"> Submit </button>
         </form>
         <br />
-        <h6>Upload image</h6>
+        <h6><img src={upimage} alt="Responsive" /> Upload image</h6>
         <input type="file" name="files" id="files" onChange={this.fileSelectHandler} accept="image/*" multiple />
         {errmsg}
       </div>
