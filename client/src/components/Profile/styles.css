@@ -5,20 +5,15 @@
     margin-top:4.5vh;
 }
 #profiletitle{
-    color:#fff;
+    
     font-size: 8.3vh;
-    font-weight: 300;
+    font-weight: 500;
     letter-spacing: 1px;
     word-spacing: 1.4vh; 
     margin-bottom:3.5vh; 
     text-align: center;
 }
 .profile{
-    background-image: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.8)), url(img/good.jpg);
-    background-repeat: no-repeat;
-    background-position: center;
-    background-size: cover;
-    position: relative;
     align-items: center;
 }
 #profilecard{

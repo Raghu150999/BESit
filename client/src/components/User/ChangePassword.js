@@ -25,7 +25,7 @@ class ChangePassword extends Component{
         if((e.target[0].value!=="")&&(e.target[1].value!="")){
             (this.props.user.password===e.target[0].value)
                 ?((e.target[1].value===e.target[2].value)
-                            ? (this.logout(e)) : ( this.setState( {err:["new password doesn't match with confirm one"]} )))
+                            ? (this.logout(e)) : ( this.setState( {err:["Password doesn't match"]} )))
                 :(this.setState({err:["enter correct previous password"]}));
         }
         else{
@@ -36,6 +36,9 @@ class ChangePassword extends Component{
         let errblk=(this.state.err!="")?(<div className="alert alert-danger" ><strong>Err : </strong>{this.state.err}</div>):(" ");
         return(
             <div >
+                <div className="error" >
+                    {errblk}
+                </div>
                 <div style={{marginRight:"50px",marginLeft:"50px",marginBottom:"10px"}}>
                     <h1 id="changepassword">Change Password</h1>
                     <form  onSubmit={this.handleSubmit}>
@@ -58,9 +61,6 @@ class ChangePassword extends Component{
                             <button type="submit" className="btn btn-primary" id="register-submit">Change</button>
                         </div>
                     </form>
-                </div>
-                <div className="error" >
-                    {errblk}
                 </div>
             </div>
         )
