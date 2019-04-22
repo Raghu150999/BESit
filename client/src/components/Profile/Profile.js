@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { authorize } from '../../utils/authorize';
 import axios from 'axios';
 import { logOutUser, logInUser } from './../../actions/userActions';
-import HomeNav from '../HomeNav/HomeNav';
+//import HomeNav from '../HomeNav/HomeNav';
 
 class Profile extends Component {
   state = {
@@ -47,10 +47,10 @@ class Profile extends Component {
       username: e.target[0].value,
       fname: e.target[1].value,
       phoneno: e.target[2].value,
-      password: e.target[3].value,
+      password:this.state.user.password
     };
     axios.post('/api/updateuser', user)
-      .then(res => res.data)
+      .then(res => res.data)//res is response sent from api
       .then(json => {
         if (json.success) {
           console.log("successful");
@@ -59,7 +59,7 @@ class Profile extends Component {
           });
           localStorage.removeItem('access_token');
           this.props.logOutUser();
-          this.props.history.push('/', { success: true, msg: 'Updated Successfully!' });
+          window.location = '/';//this.history,location,match only if higher order component here profile doent have any router
         }
         else {
           let errs = json.errors.map((error) => {
@@ -89,9 +89,13 @@ class Profile extends Component {
     return (
       <div className="profile">
         {/* <HomeNav /> */}
+        <div className="error">
+          {errBlock}
+        </div>
         <div id="profilecard">
           <h1 id="profiletitle">YOUR PROFILE</h1>
           <form className="registerform" onSubmit={this.handleSubmit}>
+            
             <div className="form-group" id="prof1">
               <label htmlFor="Username" >UserName</label>
               <input type="text" className="form-control" name="username" aria-describedby="emailHelp" defaultValue={this.state.user.username} disabled />
@@ -112,9 +116,6 @@ class Profile extends Component {
             </div>
 
           </form>
-        </div>
-        <div className="error">
-          {errBlock}
         </div>
       </div>
     )
@@ -138,4 +139,4 @@ const mapDispatchToProps = (dispatch) => {
     }
   }
 }
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)((Profile));
