@@ -467,8 +467,8 @@ class Dashboard extends Component
                         width = "100%"
                     />
                     <div className = "buttons">
-                        <button onClick = {this.reqScaleDate} type = "button" class = "btn btn-primary chart-btn">Date</button>
-                        <button onClick = {this.reqScaleMonth} type = "button" class = "btn btn-primary chart-btn">Month</button>
+                        <button onClick = {this.reqScaleDate} type = "button" className = "btn btn-primary chart-btn">Date</button>
+                        <button onClick = {this.reqScaleMonth} type = "button" className = "btn btn-primary chart-btn">Month</button>
                     </div>
                 </div>
                 <br /><br />
@@ -481,8 +481,8 @@ class Dashboard extends Component
                         width = "100%"
                     />
                     <div className = "buttons">
-                        <button onClick = {this.prodScaleDate} type = "button" class = "btn btn-primary chart-btn">Date</button>
-                        <button onClick = {this.prodScaleMonth} type = "button" class = "btn btn-primary chart-btn">Month</button>
+                        <button onClick = {this.prodScaleDate} type = "button" className = "btn btn-primary chart-btn">Date</button>
+                        <button onClick = {this.prodScaleMonth} type = "button" className = "btn btn-primary chart-btn">Month</button>
                     </div>
                 </div>
                 <br /><br /><br />

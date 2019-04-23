@@ -16,7 +16,6 @@ class Product extends Component {
   }
   
   componentDidMount() {
-    console.log(this.props.item.interestedUsers);
     let usersList = this.props.item.interestedUsers.length > 0 ? (
       this.props.item.interestedUsers.map((Displayuser, index) => {
         return (

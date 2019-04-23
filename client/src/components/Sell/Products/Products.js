@@ -21,7 +21,9 @@ class Products extends Component {
       })
         .then(res => {
           this.setState({
-            items: res.data.reverse(),
+            items: res.data.sort((item1, item2) => {
+              return (item1.timestamp < item2.timestamp) ? 1 : -1;
+            }),
             itemsAvailable: true
           })
           var k = this.state.items.length;
@@ -44,7 +46,9 @@ class Products extends Component {
       })
         .then(res => {
           this.setState({
-            items: res.data.reverse(),
+            items: res.data.sort((item1, item2) => {
+              return (item1.timestamp < item2.timestamp) ? 1 : -1;
+            }),
             itemsAvailable: true
           });
           var k = this.state.items.length;

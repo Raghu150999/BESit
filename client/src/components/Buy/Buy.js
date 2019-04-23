@@ -41,7 +41,9 @@ class Buy extends Component {
         // @debug
         
         this.setState({
-          items: res.data
+          items: res.data.sort((item1, item2) => {
+            return (item1.timestamp < item2.timestamp) ? 1 : -1;
+          })
         });
         var k = this.state.items.length;
         var temp = [];
