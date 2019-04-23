@@ -37,7 +37,7 @@ class Edit extends Component {
 
         <div className="modal fade" id={"edititem" + this.props.item._id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
           <div className="modal-dialog editformdialog" role="document">
-            <div className="modal-content">
+            <div className="modal-content" style = {{width:"150%"}}>
               <div className="modal-header">
                 <h5 className="modal-title" id="exampleModalLabel">Edit</h5>
                 <button type="button" className="close" onClick={this.onCloseModal} data-dismiss="modal" aria-label="Close">
