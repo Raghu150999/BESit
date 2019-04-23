@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import Editform from './Editform';
-import Modal from 'react-responsive-modal';
 import './Product/Product.css'
 import axios from 'axios';
 

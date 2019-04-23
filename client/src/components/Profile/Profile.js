@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import { authorize } from '../../utils/authorize';
 import axios from 'axios';
 import { logOutUser, logInUser } from './../../actions/userActions';
-//import HomeNav from '../HomeNav/HomeNav';
 
 class Profile extends Component {
   state = {
