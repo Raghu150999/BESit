@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import Chart from 'react-apexcharts';
 import axios from 'axios';
 import moment from 'moment';
+import RadialChart from './RadialChart.js';
 import './Dashboard.css';
 
 class Dashboard extends Component
@@ -470,6 +471,7 @@ class Dashboard extends Component
                         <button onClick = {this.reqScaleMonth} type = "button" class = "btn btn-primary chart-btn">Month</button>
                     </div>
                 </div>
+                <br /><br />
                 <div className = "prod-chart">
                     <Chart 
                         options = {this.state.prod.options}
@@ -482,6 +484,11 @@ class Dashboard extends Component
                         <button onClick = {this.prodScaleDate} type = "button" class = "btn btn-primary chart-btn">Date</button>
                         <button onClick = {this.prodScaleMonth} type = "button" class = "btn btn-primary chart-btn">Month</button>
                     </div>
+                </div>
+                <br /><br /><br />
+
+                <div className = "radialChart">
+                    <RadialChart />
                 </div>
             </div>
         );

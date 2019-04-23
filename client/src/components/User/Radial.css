@@ -1,0 +1,21 @@
+.radial-chart
+{
+    background-color: #FFFFFF;
+    border: 1px solid black;
+    position: relative;
+}
+
+h5
+{
+    position: absolute;
+    left: 1.25rem;
+    top: 1.25rem;
+}
+
+h6
+{
+    position: absolute;
+    left: 1.3rem;
+    top: 2.75rem;
+    font-size: 0.75rem;
+}

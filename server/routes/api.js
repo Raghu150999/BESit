@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const User = require('../models/userSchema');
 const Requirement = require('../models/reqSchema');
+const Category = require('../models/categoySchema');
 const jwtHandler = require('./../auth/token');
 const utils = require('./../utils/utils');
 const jwt = require('jsonwebtoken');
@@ -172,6 +173,23 @@ router.get('/getprods', (req,res) =>
     })
 });
 
+router.get('/getallprods', (req,res) => 
+{
+    Product.find().then(result =>
+    {
+        result.reverse();
+        res.send(result);
+    })
+});
+
+router.get('/getcategories',(req,res) =>
+{
+    Category.find().then(result =>
+    {
+        res.send(result);     
+    });
+});
+
 router.get('/getInterestedItems', (req, res) => {
     // req.query contains the parameter passed from axios request  // see in console your username
     const username=req.query.username;
@@ -206,6 +224,18 @@ router.post('/newreq', (req,res) =>
     requirement.save().then(() => {
         res.send(requirement);
     });
+});
+
+router.post('/addCategory', (req,res) => 
+{
+    const category = new Category(
+    {
+        name: req.body.name
+    });
+    category.save().then(() => {
+        res.send(category);
+    });
+    console.log(req.body);
 });
 
 router.get('/getreq',(req,res) =>
