@@ -236,7 +236,7 @@ class Product extends Component {
                         <div className="modal-header">
                           <h5 className="modal-title" id="exampleModalLabel">Interested Buyers</h5>
                           <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
+                            <span aria-hidden="true" className="cross-btn">&times;</span>
                           </button>
                         </div>
                         <div className="modal-body interestBody">

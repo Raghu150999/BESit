@@ -127,12 +127,12 @@ class Form extends Component {
             <label htmlFor="exampleFormControlTextarea1">Short Description</label>
             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
           </div>
-          <button className="btn btn-primary" type="submit"> Submit </button>
+          <h6><img src={upimage} alt="Responsive" /> Upload image</h6>
+          <input type="file" name="files" id="files" onChange={this.fileSelectHandler} accept="image/*" multiple />
+          {errmsg}
+          <button className="btn btn-primary submit-btn" type="submit"> Submit </button>
         </form>
         <br />
-        <h6><img src={upimage} alt="Responsive" /> Upload image</h6>
-        <input type="file" name="files" id="files" onChange={this.fileSelectHandler} accept="image/*" multiple />
-        {errmsg}
       </div>
     )
   }

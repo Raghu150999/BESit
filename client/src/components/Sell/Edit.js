@@ -29,23 +29,22 @@ class Edit extends Component {
   }
 
   render() {
-
     return (
       <div>
-        <button type="button" className="btn btn-default" onClick={this.onOpenModal} data-toggle="modal" data-target="#edititem" >
+        <button type="button" className="btn btn-default" onClick={this.onOpenModal} data-toggle="modal" data-target={"#edititem" + this.props.item._id} >
         <img src="https://img.icons8.com/metro/26/000000/pencil.png"/>
         </button>
 
-        <div class="modal fade" id="edititem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog editformdialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="close" onClick={this.onCloseModal} data-dismiss="modal" aria-label="Close">
-                  <span aria-hidden="true">&times;</span>
+        <div className="modal fade" id={"edititem" + this.props.item._id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div className="modal-dialog editformdialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title" id="exampleModalLabel">Edit</h5>
+                <button type="button" className="close" onClick={this.onCloseModal} data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true" className="cross-btn">&times;</span>
                 </button>
               </div>
-              <div class="modal-body editformbody">
+              <div className="modal-body editformbody">
                {
                 this.state.open?(
                   <Editform categories={this.categories} formdata={this.formdata} />

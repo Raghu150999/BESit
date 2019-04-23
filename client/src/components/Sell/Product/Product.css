@@ -146,7 +146,7 @@
 
 .uploadItemBody{
     height:75vh;
-    width:65vh;
+    width: 70vh;
     overflow-y:auto; 
 }
 
@@ -184,4 +184,15 @@
 .interested-users-modal #contactlabel{
     color: black;
     font-weight: 100;
+}
+.uploadItemDialog {
+    width: 80vh;
+}
+
+.submit-btn {
+    margin-top: 1rem;
+}
+
+.cross-btn {
+    margin-left: 15rem;
 }
