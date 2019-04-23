@@ -8,7 +8,8 @@ class Products extends Component {
 
   state = {
     items: [],
-    itemsAvailable: false
+    itemsAvailable: false,
+    cnt: []
   }
 
   componentDidMount() {
@@ -22,6 +23,13 @@ class Products extends Component {
           this.setState({
             items: res.data.reverse(),
             itemsAvailable: true
+          })
+          var k = this.state.items.length;
+          var temp = [];
+          for(var i=0;i<k/2;i++)
+            temp.push(i);
+          this.setState({
+            cnt: temp
           });
         });
     }
@@ -39,20 +47,32 @@ class Products extends Component {
             items: res.data.reverse(),
             itemsAvailable: true
           });
-
+          var k = this.state.items.length;
+          var temp = [];
+          for(var i=0;i<k/2;i++)
+            temp.push(i);
+          this.setState(
+          {
+            cnt: temp
+          })
         });
     }
   }
 
 
   render() {
+
     let displayItems = this.state.items.length > 0 ? (
-      this.state.items.map((item) => {
+      this.state.cnt.map(idx => {
         return (
-            <Product update={this.updateStatus} key={item._id} item={item} id={item._id} />
-        )
-      })
-    ) : (
+      <div className = "row">
+              <div className = "col-sm-6">
+                <Product update={this.updateStatus} key={this.state.items[idx*2]._id} item={this.state.items[idx*2]} id={this.state.items[idx*2]._id} />
+              </div>
+              {idx*2+1<this.state.items.length?(<div className = "col-sm-6">
+                <Product update={this.updateStatus} key={this.state.items[idx*2+1]._id} item={this.state.items[idx*2+1]} id={this.state.items[idx*2+1]._id} />
+              </div>):(' ')}
+            </div> )})): (
         <h2 style={{ marginTop: '15px', textAlign: 'center' }}>No items available to display</h2>
       );
     const header = this.state.items.length > 0 ? (
@@ -68,10 +88,8 @@ class Products extends Component {
       <div>
         <Button />
         {header}
-        <div className="container" style={{marginBottom: "20px"}}>
-          <div className="row">
+        <div className="container" style={{marginBottom: "20px",maxWidth: "1300px"}}>
             {displayItems}
-          </div>
         </div>
       </div>
     )

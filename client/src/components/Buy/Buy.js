@@ -10,7 +10,8 @@ class Buy extends Component {
     categories: [],
     err: false,
     errmsg: null,
-    items: []
+    items: [],
+    cnt: []
   }
 
   componentDidMount() {
@@ -38,9 +39,19 @@ class Buy extends Component {
     })
       .then(res => {
         // @debug
+        
         this.setState({
           items: res.data
         });
+        var k = this.state.items.length;
+        var temp = [];
+        for(var i=0;i<k/2;i++)
+          temp.push(i);
+          this.setState(
+            {
+              cnt: temp
+            }
+          )
       })
   }
 
@@ -54,9 +65,17 @@ class Buy extends Component {
       <option key="0">Any</option>
     ));
 
-    let items = this.state.items.map(item => {
+    let items = this.state.cnt.map(idx => {
       return (
-        <Item key={item._id} item={item} user={this.props.user} />
+        <div className = "row">
+          <div className = "col-sm-6">
+            <Item key={this.state.items[idx*2]._id} item={this.state.items[idx*2]} user={this.props.user} />
+            </div>
+            {idx*2+1<this.state.items.length?(
+              <div className = "col-sm-6">
+                <Item key={this.state.items[idx*2+1]._id} item={this.state.items[idx*2+1]} user={this.props.user} />
+              </div>):(' ')}
+          </div>
       );
     });
 
@@ -72,6 +91,8 @@ class Buy extends Component {
         </div>
       );
     }
+
+    var t = this.state.items;
 
     return (
       <div>
@@ -100,10 +121,10 @@ class Buy extends Component {
               <label className="srch">
                 <img src="https://img.icons8.com/dusk/64/000000/test-passed.png"></img>Search Results:</label>
             </h3>
-            <div className="row">
-              {items}
-            </div>
           </div>
+        </div>
+        <div className = "container-fluid" style = {{ maxWidth: "1300px"}}>
+          {items}
         </div>
       </div>
     )
