@@ -127,9 +127,31 @@
 }
 
 .interestBody{
-    height:65vh;
+    height:75vh;
+    width:65vh;
     overflow-y:auto; 
 }
+
+.editformdialog{
+    overflow-y:initial;
+}
+
+.editformbody{
+    height:75vh;
+    width: 65vh;
+    overflow-y:auto; 
+}
+
+.uploadItemDialog{
+    overflow-y:initial;
+}
+
+.uploadItemBody{
+    height:75vh;
+    width:65vh;
+    overflow-y:auto; 
+}
+
 .sellhead{
     color: rgb(63, 144, 168);
 }

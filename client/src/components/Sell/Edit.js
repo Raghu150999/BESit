@@ -32,12 +32,29 @@ class Edit extends Component {
 
     return (
       <div>
-        <button type="button" className="btn btn-default" onClick={this.onOpenModal}>
+        <button type="button" className="btn btn-default" onClick={this.onOpenModal} data-toggle="modal" data-target="#edititem" >
         <img src="https://img.icons8.com/metro/26/000000/pencil.png"/>
         </button>
-        <Modal open={this.state.open} onClose={this.onCloseModal} center>
-          <Editform categories={this.categories} formdata={this.formdata} />
-        </Modal>
+
+        <div class="modal fade" id="edititem" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog editformdialog" role="document">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <button type="button" class="close" onClick={this.onCloseModal} data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span>
+                </button>
+              </div>
+              <div class="modal-body editformbody">
+               {
+                this.state.open?(
+                  <Editform categories={this.categories} formdata={this.formdata} />
+                ):(' ')
+               }
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
     )
   }

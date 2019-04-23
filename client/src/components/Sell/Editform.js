@@ -22,7 +22,6 @@ class Form extends Component {
         name: e.target[1].value,
         price: e.target[2].value,
         desc: e.target[3].value,
-        rating: e.target[4].value,
         timestamp: Date(),
         owner: this.props.user.username,
         status: 'Available'
@@ -69,17 +68,7 @@ class Form extends Component {
             <label htmlFor="exampleFormControlTextarea1">Short Description</label>
             <textarea className="form-control" id="exampleFormControlTextarea1" rows="3" defaultValue={this.prevdata.desc} ></textarea>
           </div>
-          <div className="form-group">
-            <label htmlFor="exampleFormControlSelect1">Condition</label>
-            <select className="form-control" id="exampleFormControlSelect1" defaultValue={this.prevdata.rating}>
-              <option >1 star</option>
-              <option >2 stars</option>
-              <option >3 stars</option>
-              <option >4 stars</option>
-              <option >5 stars</option>
-            </select>
-          </div>
-          <button> Submit </button>
+          <button className="btn btn-primary" type="submit"> Submit </button>
         </form>
         <br />
         {errmsg}
