@@ -1,0 +1,45 @@
+.shadow-textarea textarea.form-control::placeholder {
+    font-weight: 300;
+}
+
+.shadow-textarea textarea.form-control {
+    padding-left: 0.8rem;
+}
+
+.comment .card-body {
+
+}
+
+.comment .card-text {
+}
+
+.comment p {
+	padding-bottom: 1.6rem;
+}
+
+.comment .card {
+	width: 17rem;
+	margin-bottom: 0.5rem;
+	padding-top: -0.8rem;
+}
+
+.comment-container {
+	margin-left: -0.8rem;
+}
+
+.comment .card-title {
+	margin-left: -0.2rem;
+	font-size: 5vh;
+}
+
+.post-btn {
+	margin-top: 0.8rem;
+	font-size: 1rem;
+	margin-bottom: 1rem;
+}
+
+.delete-btn {
+	margin-left: 5.8rem;
+	margin-bottom: 0.2rem;
+}
+

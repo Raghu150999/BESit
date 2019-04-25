@@ -111,3 +111,8 @@
     color:white;
     border-color: white;
 }
+
+.comment-btn {
+    margin-left: -1rem;
+    margin-top: 3.6rem;
+}

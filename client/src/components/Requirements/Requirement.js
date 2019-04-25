@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
+import CommentListReq from './../Comments/CommentListReq';
 
 class Requirement extends Component {
   state =
@@ -44,11 +45,9 @@ class Requirement extends Component {
     });
   }
 
-
   render() {
     var x = this.state.requirements;
-    //x.reverse();
-    var y = []
+    var y = [];
     for (var i = 0; i < x.length / 2; i++)
       y.push(i);
     var t = this.state.requirements.length > 0 ?
@@ -65,6 +64,29 @@ class Requirement extends Component {
                       <div className="card-text req-card-text desc">{x[index * 2].desc}</div>
                       <div className="card-text req-card-text time"><small className="text-muted">{this.calcTime(x[index * 2].timestamp)}</small></div>
 
+                      <button type="button" className="btn btn-default comment-btn" data-toggle="modal" data-target={"#commentsModal" + x[index * 2]._id}>
+                        <img src="https://img.icons8.com/metro/24/000000/comments.png" />
+                      </button>
+
+                      {/* Comments Modal */}
+                      <div className="modal interested-users-modal fade" id={"commentsModal" + x[index * 2]._id} tabIndex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                        <div className="modal-dialog interestDialog" role="document">
+                          <div className="modal-content" style={{ width: "150%" }}>
+                            <div className="modal-header">
+                              <h5 className="modal-title" id="commentModalLabel">Comments</h5>
+                              <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true" className="cross-btn">&times;</span>
+                              </button>
+                            </div>
+                            <div className="modal-body interestBody">
+                              <CommentListReq username={this.props.user.username} id={x[index * 2]._id} requirement={x[index * 2]}/>
+                            </div>
+                            <div className="modal-footer">
+                              <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
@@ -78,6 +100,30 @@ class Requirement extends Component {
                         <div className="card-text req-card-text username">{x[index * 2 + 1].username}</div>
                         <div className="card-text req-card-text desc">{x[index * 2 + 1].desc}</div>
                         <div className="card-text req-card-text time"><small className="text-muted">{this.calcTime(x[index * 2 + 1].timestamp)}</small></div>
+
+                        <button type="button" className="btn btn-default comment-btn" data-toggle="modal" data-target={"#commentsModal" + x[index * 2 + 1]._id}>
+                          <img src="https://img.icons8.com/metro/24/000000/comments.png" />
+                        </button>
+
+                        {/* Comments Modal */}
+                        <div className="modal interested-users-modal fade" id={"commentsModal" + x[index * 2 + 1]._id} tabIndex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                          <div className="modal-dialog interestDialog" role="document">
+                            <div className="modal-content" style={{ width: "150%" }}>
+                              <div className="modal-header">
+                                <h5 className="modal-title" id="commentModalLabel">Comments</h5>
+                                <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
+                                  <span aria-hidden="true" className="cross-btn">&times;</span>
+                                </button>
+                              </div>
+                              <div className="modal-body interestBody">
+                              <CommentListReq id={x[index * 2 + 1]._id} username={this.props.user.username} requirement={x[index * 2 + 1]}/>
+                              </div>
+                              <div className="modal-footer">
+                                <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>

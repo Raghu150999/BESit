@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import axios from 'axios';
 import './../Sell/Product/Product.css';
+import CommentList from './../Comments/CommentList';
 
 class Item extends Component {
 
@@ -9,8 +10,42 @@ class Item extends Component {
 		interestedUsers: [],
 		sellerStatus: false,
 		contact: 'Not provided',
-		image: <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon.png" />
-		
+		image: <img src="https://img.icons8.com/ios/40/000000/bookmark-ribbon.png" />,
+		comments: []
+	}
+
+	handleDeleteComment = (id) => {
+		let comments = this.state.comments.filter(comment => {
+			return (comment._id != id);
+		});
+		this.setState({
+			comments
+		});
+		axios.post('/comment/deletecomment', {
+			id
+		});
+	}
+
+	handlePost = (e) => {
+		e.preventDefault();
+		// Add a new comment
+		let comment = {
+			text: e.target[0].value,
+			owner: this.props.item.owner,
+			username: this.props.user.username,
+			itemName: this.props.item.name,
+			itemID: this.props.item._id,
+			timestamp: new Date()
+		}
+		e.target[0].value = '';
+		let comments = this.state.comments;
+		axios.post('/comment/addcomment', comment)
+			.then(res => {
+				comments.push(res.data);
+				this.setState({
+					comments
+				});
+			});
 	}
 
 	handleInterested = (e) => {
@@ -95,6 +130,17 @@ class Item extends Component {
 				});
 			}
 		});
+		axios.get('/comment/getcomments', {
+			params: {
+				id: this.props.item._id
+			}
+		})
+			.then(res => {
+				let comments = res.data;
+				this.setState({
+					comments
+				})
+			});
 		if (status) {
 			// if status is true then contact sharing is allowed hence, get contact
 			axios.get('/api/getContact', {
@@ -108,7 +154,6 @@ class Item extends Component {
 					})
 				});
 		}
-
 		this.setState({
 			interestedUsers
 		});
@@ -169,9 +214,6 @@ class Item extends Component {
 					<div className="card box-shadow--8dp">
 						<div id={"images" + item._id} className="carousel slide" data-ride="carousel">
 							{/* Indicators */}
-							{/* <ol className="carousel-indicators">
-							{varOl}
-						</ol> */}
 							{/* Slideshow */}
 							<div className="carousel-inner">
 								{carouselElements}
@@ -207,12 +249,36 @@ class Item extends Component {
 										<dt className="col-sm-4">Contact:</dt>
 										<dd className="col-sm-8">{this.state.contact}</dd>
 									</dl>
+
 									<button type="button" className="btn btn-default prod-btn" onClick={this.handleInterested} data-toggle="tooltip" data-placement="bottom" title={this.state.status === 'Interested' ? 'Remove Interest' : 'Express Interest'} id='mytooltip'>
 										{this.state.image}
 									</button>
 
 									<div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
 
+									<button type="button" className="btn btn-default" data-toggle="modal" data-target={"#commentsModal" + this.props.item._id}>
+										<img src="https://img.icons8.com/metro/24/000000/comments.png" />
+									</button>
+
+									{/* Comments Modal */}
+									<div className="modal interested-users-modal fade" id={"commentsModal" + this.props.item._id} tabIndex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+										<div className="modal-dialog interestDialog" role="document">
+											<div className="modal-content" style={{ width: "150%" }}>
+												<div className="modal-header">
+													<h5 className="modal-title" id="commentModalLabel">Comments</h5>
+													<button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
+														<span aria-hidden="true" className="cross-btn">&times;</span>
+													</button>
+												</div>
+												<div className="modal-body interestBody">
+													<CommentList handlePost={this.handlePost} comments={this.state.comments} handleDeleteComment={this.handleDeleteComment} username={this.props.user.username} />
+												</div>
+												<div className="modal-footer">
+													<button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+												</div>
+											</div>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>

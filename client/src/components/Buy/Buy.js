@@ -38,22 +38,17 @@ class Buy extends Component {
       user: this.props.user
     })
       .then(res => {
-        // @debug
-        
-        this.setState({
-          items: res.data.sort((item1, item2) => {
-            return (item1.timestamp < item2.timestamp) ? 1 : -1;
-          })
-        });
-        var k = this.state.items.length;
         var temp = [];
-        for(var i=0;i<k/2;i++)
+        let items = res.data.sort((item1, item2) => {
+          return (item1.timestamp < item2.timestamp) ? 1 : -1;
+        });
+        var k = items.length;
+        for (var i = 0; i < k / 2; i++)
           temp.push(i);
-          this.setState(
-            {
-              cnt: temp
-            }
-          )
+        this.setState({
+          items,
+          cnt: temp
+        });
       })
   }
 
@@ -66,18 +61,17 @@ class Buy extends Component {
     categories.unshift((
       <option key="0">Any</option>
     ));
-
-    let items = this.state.cnt.map(idx => {
+    let items = this.state.cnt.map((idx, index) => {
       return (
-        <div className = "row">
-          <div className = "col-sm-6">
-            <Item key={this.state.items[idx*2]._id} item={this.state.items[idx*2]} user={this.props.user} />
-            </div>
-            {idx*2+1<this.state.items.length?(
-              <div className = "col-sm-6">
-                <Item key={this.state.items[idx*2+1]._id} item={this.state.items[idx*2+1]} user={this.props.user} />
-              </div>):(' ')}
+        <div className="row" key={index}>
+          <div className="col-sm-6">
+            <Item key={this.state.items[idx * 2]._id} item={this.state.items[idx * 2]} user={this.props.user} />
           </div>
+          {((idx * 2 + 1) < this.state.items.length) ? (
+            <div className="col-sm-6">
+              <Item key={this.state.items[idx * 2 + 1]._id} item={this.state.items[idx * 2 + 1]} user={this.props.user} />
+            </div>) : (' ')}
+        </div>
       );
     });
 
@@ -93,9 +87,7 @@ class Buy extends Component {
         </div>
       );
     }
-
-    var t = this.state.items;
-
+    
     return (
       <div>
         <HomeNav />
@@ -125,7 +117,7 @@ class Buy extends Component {
             </h3>
           </div>
         </div>
-        <div className = "container-fluid" style = {{ maxWidth: "1300px"}}>
+        <div className="container-fluid" style={{ maxWidth: "1300px" }}>
           {items}
         </div>
       </div>

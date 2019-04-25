@@ -5,24 +5,25 @@ import axios from 'axios';
 import Dispuser from './Dispuser.js';
 import { connect } from 'react-redux';
 import Edit from './../Edit';
-
+import CommentList from './../../Comments/CommentList';
 
 
 class Product extends Component {
   state = {
     open: false,
     Displayusers: [],
-    usersList: ''
+    usersList: '',
+    comments: []
   }
-  
+
   componentDidMount() {
     let usersList = this.props.item.interestedUsers.length > 0 ? (
       this.props.item.interestedUsers.map((Displayuser, index) => {
         return (
-         <div key={index}>
-          <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} id={this.props.item._id} />
-        </div>
-          )
+          <div key={index}>
+            <Dispuser username={Displayuser.username} status={Displayuser.status} key={Displayuser.username} shareStatus={this.shareStatus} id={this.props.item._id} />
+          </div>
+        )
       })
     ) : (
         <div>
@@ -30,9 +31,54 @@ class Product extends Component {
           <h4 className="card-title">Sorry! No users to display!</h4>
         </div>
       );
-      this.setState({
-        usersList
-      })
+    axios.get('/comment/getcomments', {
+      params: {
+        id: this.props.item._id
+      }
+    })
+      .then(res => {
+        let comments = res.data;
+        this.setState({
+          comments
+        })
+      });
+    this.setState({
+      usersList
+    });
+  }
+
+  handleDeleteComment = (id) => {
+    let comments = this.state.comments.filter(comment => {
+      return (comment._id != id);
+    });
+    this.setState({
+      comments
+    });
+    axios.post('/comment/deletecomment', {
+      id
+    });
+  }
+
+  handlePost = (e) => {
+    e.preventDefault();
+    // Add a new comment
+    let comment = {
+      text: e.target[0].value,
+      owner: this.props.item.owner,
+      username: this.props.user.username,
+      itemName: this.props.item.name,
+      itemID: this.props.item._id,
+      timestamp: new Date()
+    }
+    e.target[0].value = '';
+    let comments = this.state.comments;
+    axios.post('/comment/addcomment', comment)
+      .then(res => {
+        comments.unshift(res.data);
+        this.setState({
+          comments
+        });
+      });
   }
 
   shareStatus = (status, username) => {
@@ -170,9 +216,9 @@ class Product extends Component {
     }
 
     const getInterestedUsers = (e) => {
-        this.setState({
-          open:true
-        });
+      this.setState({
+        open: true
+      });
     }
 
     const onCloseModal = (e) => {
@@ -180,7 +226,7 @@ class Product extends Component {
         open: false
       });
     };
-    
+
     return (
       <div className="product">
         <div className="col-sm-auto">
@@ -225,13 +271,22 @@ class Product extends Component {
                       <Edit key={this.props.id} item={this.props.item} /></dt>
 
                     <div className="card-text int-card-text time"><small className="text-muted">{this.calcTime(this.props.item.timestamp)}</small></div>
-                    <dt className="col-sm-4">
-                    <button type="button" className="btn btn-default" onClick={getInterestedUsers} data-toggle="modal" data-target={"#exampleModal" + this.props.item._id}>
+                    <dt className="col-sm-3">
+                      <button type="button" className="btn btn-default" onClick={getInterestedUsers} data-toggle="modal" data-target={"#exampleModal" + this.props.item._id}>
                         <img src="https://img.icons8.com/ios-glyphs/24/000000/visible.png" />
-                      </button></dt></dl>
-                <div className="modal interested-users-modal fade" id={"exampleModal" + this.props.item._id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                      </button>
+                      </dt>
+                      
+                      <dt>
+                      <button type="button" className="btn btn-default" onClick={() => { }} data-toggle="modal" data-target={"#commentsModal" + this.props.item._id}>
+                        <img src="https://img.icons8.com/metro/24/000000/comments.png" />
+                      </button></dt>
+                      </dl>
+
+                  {/* Interested Users Modal */}
+                  <div className="modal interested-users-modal fade" id={"exampleModal" + this.props.item._id} tabIndex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
                     <div className="modal-dialog interestDialog" role="document">
-                      <div className="modal-content" style = {{width:"150%"}}>
+                      <div className="modal-content" style={{ width: "150%" }}>
                         <div className="modal-header">
                           <h5 className="modal-title" id="exampleModalLabel">Interested Buyers</h5>
                           <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
@@ -239,11 +294,31 @@ class Product extends Component {
                           </button>
                         </div>
                         <div className="modal-body interestBody">
-                        {
-                          this.state.open ? (
-                            this.state.usersList
-                          ) : ('')
-                        }
+                          {
+                            this.state.open ? (
+                              this.state.usersList
+                            ) : ('')
+                          }
+                        </div>
+                        <div className="modal-footer">
+                          <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Comments Modal */}
+                  <div className="modal interested-users-modal fade" id={"commentsModal" + this.props.item._id} tabIndex="-1" role="dialog" aria-labelledby="commentModalLabel" aria-hidden="true">
+                    <div className="modal-dialog interestDialog" role="document">
+                      <div className="modal-content" style={{ width: "150%" }}>
+                        <div className="modal-header">
+                          <h5 className="modal-title" id="commentModalLabel">Comments</h5>
+                          <button type="button" className="close interest" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true" className="cross-btn">&times;</span>
+                          </button>
+                        </div>
+                        <div className="modal-body interestBody">
+                          <CommentList handlePost={this.handlePost} comments={this.state.comments} handleDeleteComment={this.handleDeleteComment} username={this.props.user.username} />
                         </div>
                         <div className="modal-footer">
                           <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>

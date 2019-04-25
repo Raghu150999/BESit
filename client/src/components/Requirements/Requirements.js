@@ -56,7 +56,7 @@ class Requirements extends Component {
     return (
       <div>
         <HomeNav />
-        <Requirement />
+        <Requirement user={this.props.user}/>
         <div className="req-container">
           <button className="btn btn-primary btn-lg new-item-btn box-shadow--8dp" onClick={this.openModal}>+</button>
           <Modal

@@ -67,9 +67,9 @@ class Products extends Component {
   render() {
 
     let displayItems = this.state.items.length > 0 ? (
-      this.state.cnt.map(idx => {
+      this.state.cnt.map((idx, index) => {
         return (
-      <div className = "row">
+      <div className = "row" key={index}>
               <div className = "col-sm-6">
                 <Product update={this.updateStatus} key={this.state.items[idx*2]._id} item={this.state.items[idx*2]} id={this.state.items[idx*2]._id} />
               </div>
