@@ -66,7 +66,6 @@ class RadialChart extends Component
                 let val = [], sum = 0;
                 for(let i=0;i<categories.length;i++)
                 {
-                    let x;
                     if(map1.has(categories[i]))
                     {
                         let x = map1.get(categories[i]);
