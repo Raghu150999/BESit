@@ -19,15 +19,15 @@ class Form extends Component {
     }
 
     // use this type of object passing if endpoint uses bodyparser
-    const formData = {
-      category: e.target[0].value,
-      name: e.target[1].value,
-      price: e.target[2].value,
-      desc: e.target[3].value,
-      timestamp: Date(),
-      owner: this.props.user.username,
-      status: 'Available'
-    };
+    // const formData = {
+    //   category: e.target[0].value,
+    //   name: e.target[1].value,
+    //   price: e.target[2].value,
+    //   desc: e.target[3].value,
+    //   timestamp: Date(),
+    //   owner: this.props.user.username,
+    //   status: 'Available'
+    // };
 
     const fd = new FormData();
 
@@ -47,7 +47,7 @@ class Form extends Component {
     if (this.state.imageAvailable) {
       const files = this.state.files;
       const len = files.length;
-      for (var i = 0; i < len; i++) {
+      for (let i = 0; i < len; i++) {
         fd.append('files', files[i], files[i].name);
       }
     }
@@ -67,15 +67,15 @@ class Form extends Component {
 
   fileSelectHandler = (event) => {
     const len = event.target.files.length;
-    var files = [];
+    let files = [];
     let err = false;
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       files.push(event.target.files[i]);
       if (!this.checkValidImg(event.target.files[i].type)) {
         err = true;
       }
     }
-    var imageAvailable = false;
+    let imageAvailable = false;
     if (err) {
       this.setState({
         imageAvailable,

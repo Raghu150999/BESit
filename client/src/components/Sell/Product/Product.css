@@ -95,7 +95,6 @@
     right: 10%;
     padding-right: -1000px;
     padding-left: 27px;
-    z-index: 100;
 }
 
 .new-item-btn:hover
@@ -142,6 +141,7 @@
 
 .uploadItemDialog{
     overflow-y:initial;
+    width: 80vh;
 }
 
 .uploadItemBody{
@@ -184,9 +184,6 @@
 .interested-users-modal #contactlabel{
     color: black;
     font-weight: 100;
-}
-.uploadItemDialog {
-    width: 80vh;
 }
 
 .submit-btn {

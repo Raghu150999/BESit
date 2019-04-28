@@ -26,9 +26,9 @@ class Products extends Component {
             }),
             itemsAvailable: true
           })
-          var k = this.state.items.length;
-          var temp = [];
-          for(var i=0;i<k/2;i++)
+          let k = this.state.items.length;
+          let temp = [];
+          for(let i=0;i<k/2;i++)
             temp.push(i);
           this.setState({
             cnt: temp
@@ -51,9 +51,9 @@ class Products extends Component {
             }),
             itemsAvailable: true
           });
-          var k = this.state.items.length;
-          var temp = [];
-          for(var i=0;i<k/2;i++)
+          let k = this.state.items.length;
+          let temp = [];
+          for(let i=0;i<k/2;i++)
             temp.push(i);
           this.setState(
           {

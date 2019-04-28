@@ -5,25 +5,25 @@ import axios from 'axios';
 class Reqitem extends Component {
 
   calcTime(timestamp) {
-    var x = new Date(timestamp);
-    var y = new Date();
-    var diff = (y.getTime() / 1000) - (x.getTime() / 1000);
+    let x = new Date(timestamp);
+    let y = new Date();
+    let diff = (y.getTime() / 1000) - (x.getTime() / 1000);
     if (diff < 3600) {
-      var val = parseInt(diff / 60);
+      let val = parseInt(diff / 60);
       if (val != 1)
         return val + ' minutes ago';
       else
         return val + ' minute ago';
     }
     if (diff < 86400) {
-      var val = parseInt(diff / 3600);
+      let val = parseInt(diff / 3600);
       if (val != 1)
         return val + ' hours ago';
       else
         return val + ' hour ago';
     }
     else {
-      var val = parseInt(diff / 86400);
+      let val = parseInt(diff / 86400);
       if (val != 1)
         return val + ' days ago';
       else

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import HomeNav from './../HomeNav/HomeNav';
 import Feed from './Feed';
 

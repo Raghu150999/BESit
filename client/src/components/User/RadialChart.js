@@ -36,11 +36,11 @@ class RadialChart extends Component
         console.log('mount');
         axios.get('/api/getcategories').then(res =>
         {
-            var categories = []
-            for(var i=0;i<res.data.length;i++)
+            let categories = []
+            for(let i=0;i<res.data.length;i++)
                 categories.push(res.data[i].name);
             console.log(categories);
-            var map1 = new Map();
+            let map1 = new Map();
             this.setState(
             {
                 options:
@@ -52,24 +52,24 @@ class RadialChart extends Component
             axios.get('/api/getallprods').then(res =>
             {
                 //console.log(res.data);
-                for(var i=0;i<res.data.length;i++)
+                for(let i=0;i<res.data.length;i++)
                 {
-                    var category_ = (res.data[i]).category;
+                    let category_ = (res.data[i]).category;
                     if(map1.has(category_))
                     {
-                        var x = map1.get(category_);
+                        let x = map1.get(category_);
                         map1.set(category_,1+x);
                     }
                     else
                         map1.set(category_,1);
                 }
-                var val = [], sum = 0;
-                for(var i=0;i<categories.length;i++)
+                let val = [], sum = 0;
+                for(let i=0;i<categories.length;i++)
                 {
-                    var x;
+                    let x;
                     if(map1.has(categories[i]))
                     {
-                        var x = map1.get(categories[i]);
+                        let x = map1.get(categories[i]);
                         val.push(x);
                         console.log(x);
                         sum = sum + x;
@@ -78,7 +78,7 @@ class RadialChart extends Component
                         val.push(0);
                 }
                 console.log(sum);
-                for(var i=0;i<val.length;i++) {
+                for(let i=0;i<val.length;i++) {
                     val[i] = ((val[i]/sum)*100);
                     val[i] = val[i].toPrecision(4);
                 }

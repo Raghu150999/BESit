@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports.generateToken = function (user) {
-    var u = {
+    let u = {
         username: user.username,
         fname: user.fname,
         phoneno:user.phoneno,

@@ -10,25 +10,26 @@ class Requirement extends Component {
     };
 
   calcTime(timestamp) {
-    var x = new Date(timestamp);
-    var y = new Date();
-    var diff = (y.getTime() / 1000) - (x.getTime() / 1000);
+    let x = new Date(timestamp);
+    let y = new Date();
+    let diff = (y.getTime() / 1000) - (x.getTime() / 1000);
+    let val;
     if (diff < 3600) {
-      var val = parseInt(diff / 60);
+      val = parseInt(diff / 60);
       if (val != 1)
         return val + ' minutes ago';
       else
         return val + ' minute ago';
     }
     if (diff < 86400) {
-      var val = parseInt(diff / 3600);
+      val = parseInt(diff / 3600);
       if (val != 1)
         return val + ' hours ago';
       else
         return val + ' hour ago';
     }
     else {
-      var val = parseInt(diff / 86400);
+      val = parseInt(diff / 86400);
       if (val != 1)
         return val + ' days ago';
       else
@@ -47,11 +48,11 @@ class Requirement extends Component {
   }
 
   render() {
-    var x = this.state.requirements;
-    var y = [];
-    for (var i = 0; i < x.length / 2; i++)
+    let x = this.state.requirements;
+    let y = [];
+    for (let i = 0; i < x.length / 2; i++)
       y.push(i);
-    var t = this.state.requirements.length > 0 ?
+    let t = this.state.requirements.length > 0 ?
       (y.map((requirement, index) => {
         return (
           <div className="container req-container" key={index}>

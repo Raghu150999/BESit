@@ -13,10 +13,10 @@ class Feed extends Component {
     };
 
   calcTime(timestamp) {
-    var x = new Date(timestamp);
-    var y = new Date();
-    var diff = (y.getTime() / 1000) - (x.getTime() / 1000);
-    var val;
+    let x = new Date(timestamp);
+    let y = new Date();
+    let diff = (y.getTime() / 1000) - (x.getTime() / 1000);
+    let val;
     if (diff < 3600) {
       val = parseInt(diff / 60);
       if (val !== 1)
@@ -47,8 +47,8 @@ class Feed extends Component {
           requirement: res.data
         });
 
-      var temp = this.state.requirement;
-      for (var i = 0; i < this.state.requirement.length; i++)
+      let temp = this.state.requirement;
+      for (let i = 0; i < this.state.requirement.length; i++)
         temp[i].type = 'requirement';
 
       this.setState(
@@ -62,8 +62,8 @@ class Feed extends Component {
           product: res.data
         });
 
-      var temp = this.state.product;
-      for (var i = 0; i < this.state.product.length; i++)
+      let temp = this.state.product;
+      for (let i = 0; i < this.state.product.length; i++)
         temp[i].type = 'product';
 
       this.setState(
@@ -77,21 +77,19 @@ class Feed extends Component {
 
   render() {
     {
-      var y = [];
+      let y = [];
       y = this.state.product;
 
-      var z = [];
+      let z = [];
       z = this.state.requirement;
 
-      var w = y.concat(z);
+      let w = y.concat(z);
 
       w.sort(function (a1, b1) {
-        var x1 = new Date(a1.timestamp).getTime();
-        var y1 = new Date(b1.timestamp).getTime();
+        let x1 = new Date(a1.timestamp).getTime();
+        let y1 = new Date(b1.timestamp).getTime();
         return y1 - x1;
       });
-
-      //console.log(w);
 
       var ret = w.length > 0 ?
         (w.map((feedItem, index) => {
@@ -140,7 +138,6 @@ class Feed extends Component {
           }
         })) : ('');
     }
-
     return ret;
   };
 }

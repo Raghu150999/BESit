@@ -38,12 +38,12 @@ class Buy extends Component {
       user: this.props.user
     })
       .then(res => {
-        var temp = [];
+        let temp = [];
         let items = res.data.sort((item1, item2) => {
           return (item1.timestamp < item2.timestamp) ? 1 : -1;
         });
-        var k = items.length;
-        for (var i = 0; i < k / 2; i++)
+        let k = items.length;
+        for (let i = 0; i < k / 2; i++)
           temp.push(i);
         this.setState({
           items,

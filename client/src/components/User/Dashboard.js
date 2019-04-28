@@ -5,504 +5,487 @@ import moment from 'moment';
 import RadialChart from './RadialChart.js';
 import './Dashboard.css';
 
-class Dashboard extends Component
-{
+class Dashboard extends Component {
 
-    state = 
+  state =
     {
-        requirementsTime: [],
-        requirementsVal: [],
-        prodTime: [],
-        prodVal: [],
-        req:
+      requirementsTime: [],
+      requirementsVal: [],
+      prodTime: [],
+      prodVal: [],
+      req:
+      {
+        options:
         {
-            options:
+          chart:
+          {
+            offsetY: 10,
+            background: '#f4f4f4',
+          },
+          plotOptions:
+          {
+            bar:
             {
-                chart: 
-                {
-                    offsetY: 10,
-                    background: '#f4f4f4',
-                },
-                plotOptions:
-                {
-                    bar:
-                    {
-                        dataLabels:
-                        {
-                            position: 'top',
-                        }
-                    },
-                },
-                dataLabels:
-                {
-                    enabled:true,
-                    offsetY: -30,
-                    style:
-                    {
-                        fontSize: '20px',
-                        colors: ['#304758']
-                    }
-                },
-                xaxis:
-                {
-                    categories: [],
-                    labels:
-                    {
-                        offsetY: 5,
-                        style:
-                        {
-                            fontSize: '15px',
-                        }
-                    },
-                    axisTicks:
-                    {
-                        show: false
-                    }
-                },
-                yaxis:
-                {
-                    labels:
-                    {
-                        show: false
-                    },
-                    axisBorder: 
-                    {
-                        show: false
-                    },
-                    axisTicks: 
-                    {
-                        show: false,
-                    }
-                },
-                title: 
-                {
-                    text: '#Requirements uploaded',
-                    floating: false,
-                    offsetY: 0,
-                    align: 'center',
-                    style:
-                    {
-                        fontSize: '20px',
-                        fontWeight: 'bold'
-                    }
-                },
+              dataLabels:
+              {
+                position: 'top',
+              }
             },
-
-            series: 
-            [{
-                data: []
-            }],
+          },
+          dataLabels:
+          {
+            enabled: true,
+            offsetY: -30,
+            style:
+            {
+              fontSize: '20px',
+              colors: ['#304758']
+            }
+          },
+          xaxis:
+          {
+            categories: [],
+            labels:
+            {
+              offsetY: 5,
+              style:
+              {
+                fontSize: '15px',
+              }
+            },
+            axisTicks:
+            {
+              show: false
+            }
+          },
+          yaxis:
+          {
+            labels:
+            {
+              show: false
+            },
+            axisBorder:
+            {
+              show: false
+            },
+            axisTicks:
+            {
+              show: false,
+            }
+          },
+          title:
+          {
+            text: '#Requirements uploaded',
+            floating: false,
+            offsetY: 0,
+            align: 'center',
+            style:
+            {
+              fontSize: '20px',
+              fontWeight: 'bold'
+            }
+          },
         },
 
+        series:
+          [{
+            data: []
+          }],
+      },
+
+      prod:
+      {
+        options:
+        {
+          chart:
+          {
+            offsetY: 10,
+            background: '#f4f4f4',
+          },
+          plotOptions:
+          {
+            bar:
+            {
+              dataLabels:
+              {
+                position: 'top',
+              }
+            },
+          },
+          dataLabels:
+          {
+            enabled: true,
+            offsetY: -30,
+            style:
+            {
+              fontSize: '20px',
+              colors: ['#304758']
+            }
+          },
+          xaxis:
+          {
+            categories: [],
+            labels:
+            {
+              offsetY: 5,
+              style:
+              {
+                fontSize: '15px',
+              }
+            },
+            axisTicks:
+            {
+              show: false
+            }
+          },
+          yaxis:
+          {
+            labels:
+            {
+              show: false
+            },
+            axisBorder:
+            {
+              show: false
+            },
+            axisTicks:
+            {
+              show: false,
+            }
+          },
+          title:
+          {
+            text: '#Sale-Items uploaded',
+            floating: false,
+            offsetY: 0,
+            align: 'center',
+            style:
+            {
+              fontSize: '20px',
+              fontWeight: 'bold'
+            }
+          },
+        },
+
+        series:
+          [{
+            data: []
+          }],
+      }
+    };
+
+  prodScaleDate = () => {
+    let t1 = this.state.prodTime;
+    let t2 = this.state.prodVal;
+    console.log(t1);
+    console.log(t2);
+    this.setState(
+      {
         prod:
         {
-            options:
+          options:
+          {
+            xaxis:
             {
-                chart: 
-                {
-                    offsetY: 10,
-                    background: '#f4f4f4',
-                },
-                plotOptions:
-                {
-                    bar:
-                    {
-                        dataLabels:
-                        {
-                            position: 'top',
-                        }
-                    },
-                },
-                dataLabels:
-                {
-                    enabled:true,
-                    offsetY: -30,
-                    style:
-                    {
-                        fontSize: '20px',
-                        colors: ['#304758']
-                    }
-                },
-                xaxis:
-                {
-                    categories: [],
-                    labels:
-                    {
-                        offsetY: 5,
-                        style:
-                        {
-                            fontSize: '15px',
-                        }
-                    },
-                    axisTicks:
-                    {
-                        show: false
-                    }
-                },
-                yaxis:
-                {
-                    labels:
-                    {
-                        show: false
-                    },
-                    axisBorder: 
-                    {
-                        show: false
-                    },
-                    axisTicks: 
-                    {
-                        show: false,
-                    }
-                },
-                title: 
-                {
-                    text: '#Sale-Items uploaded',
-                    floating: false,
-                    offsetY: 0,
-                    align: 'center',
-                    style:
-                    {
-                        fontSize: '20px',
-                        fontWeight: 'bold'
-                    }
-                },
+              categories: t1
             },
 
-            series: 
+            plotOptions:
+            {
+              bar:
+              {
+                columnWidth: '20px',
+              }
+            },
+            fill:
+            {
+              colors: ['#00FF7F']
+            }
+          },
+
+          series:
             [{
-                data: []
-            }],
+              name: 'Date',
+              data: t2
+            }]
         }
-    };
+      });
+  }
 
-    prodScaleDate = () =>
-    {
-        var t1 = this.state.prodTime;
-        var t2 = this.state.prodVal;
-        console.log(t1);
-        console.log(t2);
-        this.setState(
+  reqScaleDate = () => {
+    let t1 = this.state.requirementsTime;
+    let t2 = this.state.requirementsVal;
+    console.log(t1);
+    console.log(t2);
+    this.setState(
+      {
+        req:
         {
-            prod:
+          options:
+          {
+            xaxis:
             {
-                options:
-                {
-                    xaxis:
-                    {
-                        categories: t1
-                    },
+              categories: t1
+            },
 
-                    plotOptions:
-                    {
-                        bar:
-                        {
-                            columnWidth: '20px',
-                        }
-                    },
-                    fill:
-                    {
-                        colors: ['#00FF7F']
-                    }
-                },
-
-                series: 
-                [{
-                    name: 'Date',
-                    data: t2
-                }]
-            }
-        });
-    }
-
-    reqScaleDate = () =>
-    {
-        var t1 = this.state.requirementsTime;
-        var t2 = this.state.requirementsVal;
-        console.log(t1);
-        console.log(t2);
-        this.setState(
-        {
-            req:
+            plotOptions:
             {
-                options:
-                {
-                    xaxis:
-                    {
-                        categories: t1
-                    },
-
-                    plotOptions:
-                    {
-                        bar:
-                        {
-                            columnWidth: '20px',
-                        }
-                    },
-                    fill:
-                    {
-                        colors: ['#00bfff']
-                    }
-                },
-
-                series: 
-                [{
-                    name: 'Date',
-                    data: t2
-                }]
-            }
-        });
-    };
-
-    prodScaleMonth = () =>
-    {
-        var t1 = this.state.prodTime;
-        var t2 = this.state.prodVal;
-        var map1 = new Map();
-        for(var i=0;i<t1.length;i++)
-        {
-            var month = moment(t1[i]).format("MMMM YY");
-            if(map1.has(month))
+              bar:
+              {
+                columnWidth: '20px',
+              }
+            },
+            fill:
             {
-                var x = map1.get(month);
-                map1.set(month,t2[i]+x);
+              colors: ['#00bfff']
             }
-            else
-                map1.set(month,t2[i]);
+          },
+
+          series:
+            [{
+              name: 'Date',
+              data: t2
+            }]
         }
-        var x = Array.from(map1.keys());
-        var y = [];
-        for(var i=0;i<x.length;i++)
-            y.push(map1.get(x[i]));
-        //console.log(x);
-        //console.log(y);
-        this.setState(
+      });
+  };
+
+  prodScaleMonth = () => {
+    let t1 = this.state.prodTime;
+    let t2 = this.state.prodVal;
+    let map1 = new Map();
+    let x;
+    let i;
+    for (i = 0; i < t1.length; i++) {
+      let month = moment(t1[i]).format("MMMM YY");
+      if (map1.has(month)) {
+        x = map1.get(month);
+        map1.set(month, t2[i] + x);
+      }
+      else
+        map1.set(month, t2[i]);
+    }
+    x = Array.from(map1.keys());
+    let y = [];
+    for (i = 0; i < x.length; i++)
+      y.push(map1.get(x[i]));
+    //console.log(x);
+    //console.log(y);
+    this.setState(
+      {
+        prod:
         {
-            prod:
+          options:
+          {
+            xaxis:
             {
-                options:
-                {
-                    xaxis:
-                    {
-                        categories: x
-                    },
+              categories: x
+            },
 
-                    plotOptions:
-                    {
-                        bar:
-                        {
-                            columnWidth: '10px'
-                        }
-                    },
-                    fill:
-                    {
-                        colors: ['#FFFF33']
-                    }
-                },
-
-                series: 
-                [{
-                    name: 'Month',
-                    data: y
-                }]
-            }
-        });
-    };
-
-    reqScaleMonth = () =>
-    {
-        var t1 = this.state.requirementsTime;
-        var t2 = this.state.requirementsVal;
-        var map1 = new Map();
-        for(var i=0;i<t1.length;i++)
-        {
-            var month = moment(t1[i]).format("MMMM YY");
-            if(map1.has(month))
+            plotOptions:
             {
-                var x = map1.get(month);
-                map1.set(month,t2[i]+x);
+              bar:
+              {
+                columnWidth: '10px'
+              }
+            },
+            fill:
+            {
+              colors: ['#FFFF33']
             }
-            else
-                map1.set(month,t2[i]);
+          },
+
+          series:
+            [{
+              name: 'Month',
+              data: y
+            }]
         }
-        var x = Array.from(map1.keys());
-        var y = [];
-        for(var i=0;i<x.length;i++)
-            y.push(map1.get(x[i]));
-        //console.log(x);
-        //console.log(y);
-        this.setState(
-        {
-            req:
-            {
-                options:
-                {
-                    xaxis:
-                    {
-                        categories: x
-                    },
+      });
+  };
 
-                    plotOptions:
-                    {
-                        bar:
-                        {
-                            columnWidth: '10px'
-                        }
-                    },
-                    fill:
-                    {
-                        colors: ['#f44336']
-                    }
-                },
-
-                series: 
-                [{
-                    name: 'Month',
-                    data: y
-                }]
-            }
-        });
-    };
-
-    componentDidMount() 
-    {
-        axios.get('/api/getreq').then(res => 
-        {
-            //console.log(res.data);
-            var rows = res.data
-            var occurences = rows.reduce(function (r, row) 
-            {
-                var date = "";
-                for(var i=0;i<10;i++)
-                    date+=row.timestamp[i];
-                date = moment(date).format("DD MMMM YYYY");
-                r[date] = ++r[date] || 1;
-                return r;
-            }, {});
-        
-            var result = Object.keys(occurences).map(function (key) 
-            {
-                return { key: key, value: occurences[key] };
-            });
-
-            result.sort(function(a,b)
-            {
-                var d1 = moment(a.key).format("YYYY MM DD");
-                var d2 = moment(b.key).format("YYYY MM DD");
-                return d1.localeCompare(d2);
-            });
-
-            var t1 = [];
-            var t2 = [];
-
-            for(var i=0;i<result.length;i++)
-            {
-                t1.push(result[i].key);
-                t2.push(result[i].value);                
-            }
-
-            this.setState(
-            {
-                requirementsTime: t1,
-                requirementsVal: t2
-            });
-
-            this.reqScaleDate();
-        });
-
-        axios.get('/api/getprods').then(res => 
-        {
-            console.log(res.data);
-            var rows = res.data;
-            var occurences = rows.reduce(function (r, row) 
-            {
-                var date = "";
-                for(var i=0;i<10;i++)
-                    date+=row.timestamp[i];
-                date = moment(date).format("DD MMMM YYYY");
-                r[date] = ++r[date] || 1;
-                return r;
-            }, {});
-        
-            var result = Object.keys(occurences).map(function (key) 
-            {
-                return { key: key, value: occurences[key] };
-            });
-
-            result.sort(function(a,b)
-            {
-                var d1 = moment(a.key).format("YYYY MM DD");
-                var d2 = moment(b.key).format("YYYY MM DD");
-                return d1.localeCompare(d2);
-            });
-
-            var t1 = [];
-            var t2 = [];
-
-            for(var i=0;i<result.length;i++)
-            {
-                t1.push(result[i].key);
-                t2.push(result[i].value);                
-            }
-
-            this.setState(
-            {
-                prodTime: t1,
-                prodVal: t2
-            });
-
-            this.prodScaleDate();
-        });
+  reqScaleMonth = () => {
+    let t1 = this.state.requirementsTime;
+    let t2 = this.state.requirementsVal;
+    let map1 = new Map();
+    let x;
+    let i;
+    for (i = 0; i < t1.length; i++) {
+      let month = moment(t1[i]).format("MMMM YY");
+      if (map1.has(month)) {
+        x = map1.get(month);
+        map1.set(month, t2[i] + x);
+      }
+      else
+        map1.set(month, t2[i]);
     }
+    x = Array.from(map1.keys());
+    let y = [];
+    for (i = 0; i < x.length; i++)
+      y.push(map1.get(x[i]));
+    //console.log(x);
+    //console.log(y);
+    this.setState(
+      {
+        req:
+        {
+          options:
+          {
+            xaxis:
+            {
+              categories: x
+            },
 
-    render()
-    {
-        return(
-            <div className = "container">
-                <div className = "req-chart">
-                    <Chart 
-                        options = {this.state.req.options}
-                        series = {this.state.req.series}
-                        type = "bar"
-                        height = "450"
-                        width = "100%"
-                    />
-                    <div className = "buttons">
-                        <button onClick = {this.reqScaleDate} type = "button" className = "btn btn-primary chart-btn">Date</button>
-                        <button onClick = {this.reqScaleMonth} type = "button" className = "btn btn-primary chart-btn">Month</button>
-                    </div>
-                </div>
-                <br /><br />
-                <div className = "prod-chart">
-                    <Chart 
-                        options = {this.state.prod.options}
-                        series = {this.state.prod.series}
-                        type = "bar"
-                        height = "450"
-                        width = "100%"
-                    />
-                    <div className = "buttons">
-                        <button onClick = {this.prodScaleDate} type = "button" className = "btn btn-primary chart-btn">Date</button>
-                        <button onClick = {this.prodScaleMonth} type = "button" className = "btn btn-primary chart-btn">Month</button>
-                    </div>
-                </div>
-                <br /><br /><br />
+            plotOptions:
+            {
+              bar:
+              {
+                columnWidth: '10px'
+              }
+            },
+            fill:
+            {
+              colors: ['#f44336']
+            }
+          },
 
-                <div className = "radialChart">
-                    <RadialChart />
-                </div>
-            </div>
-        );
-    }
+          series:
+            [{
+              name: 'Month',
+              data: y
+            }]
+        }
+      });
+  };
+
+  componentDidMount() {
+    let i;
+    axios.get('/api/getreq').then(res => {
+      //console.log(res.data);
+      let rows = res.data
+      let occurences = rows.reduce(function (r, row) {
+        let date = "";
+        for (i = 0; i < 10; i++)
+          date += row.timestamp[i];
+        date = moment(date).format("DD MMMM YYYY");
+        r[date] = ++r[date] || 1;
+        return r;
+      }, {});
+
+      let result = Object.keys(occurences).map(function (key) {
+        return { key: key, value: occurences[key] };
+      });
+
+      result.sort(function (a, b) {
+        let d1 = moment(a.key).format("YYYY MM DD");
+        let d2 = moment(b.key).format("YYYY MM DD");
+        return d1.localeCompare(d2);
+      });
+
+      let t1 = [];
+      let t2 = [];
+
+      for (i = 0; i < result.length; i++) {
+        t1.push(result[i].key);
+        t2.push(result[i].value);
+      }
+
+      this.setState(
+        {
+          requirementsTime: t1,
+          requirementsVal: t2
+        });
+
+      this.reqScaleDate();
+    });
+
+    axios.get('/api/getprods').then(res => {
+      console.log(res.data);
+      let rows = res.data;
+      let occurences = rows.reduce(function (r, row) {
+        let date = "";
+        for (i = 0; i < 10; i++)
+          date += row.timestamp[i];
+        date = moment(date).format("DD MMMM YYYY");
+        r[date] = ++r[date] || 1;
+        return r;
+      }, {});
+
+      let result = Object.keys(occurences).map(function (key) {
+        return { key: key, value: occurences[key] };
+      });
+
+      result.sort(function (a, b) {
+        let d1 = moment(a.key).format("YYYY MM DD");
+        let d2 = moment(b.key).format("YYYY MM DD");
+        return d1.localeCompare(d2);
+      });
+
+      let t1 = [];
+      let t2 = [];
+
+      for (i = 0; i < result.length; i++) {
+        t1.push(result[i].key);
+        t2.push(result[i].value);
+      }
+
+      this.setState(
+        {
+          prodTime: t1,
+          prodVal: t2
+        });
+
+      this.prodScaleDate();
+    });
+  }
+
+  render() {
+    return (
+      <div className="container">
+        <div className="req-chart">
+          <Chart
+            options={this.state.req.options}
+            series={this.state.req.series}
+            type="bar"
+            height="450"
+            width="100%"
+          />
+          <div className="buttons">
+            <button onClick={this.reqScaleDate} type="button" className="btn btn-primary chart-btn">Date</button>
+            <button onClick={this.reqScaleMonth} type="button" className="btn btn-primary chart-btn">Month</button>
+          </div>
+        </div>
+        <br /><br />
+        <div className="prod-chart">
+          <Chart
+            options={this.state.prod.options}
+            series={this.state.prod.series}
+            type="bar"
+            height="450"
+            width="100%"
+          />
+          <div className="buttons">
+            <button onClick={this.prodScaleDate} type="button" className="btn btn-primary chart-btn">Date</button>
+            <button onClick={this.prodScaleMonth} type="button" className="btn btn-primary chart-btn">Month</button>
+          </div>
+        </div>
+        <br /><br /><br />
+
+        <div className="radialChart">
+          <RadialChart />
+        </div>
+      </div>
+    );
+  }
 }
 
 export default Dashboard;
 
 /*
-
 Group by date
 db.requirements.aggregate([
 {
-    $group : 
+    $group :
     {
        _id : { month: {$month: "$timestamp"}, day: {$dayOfMonth: "$timestamp"}, year: {$year: "$timestamp"} },
        count: { $sum: 1 }

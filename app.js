@@ -13,7 +13,7 @@ const Product = require('./server/models/productSchema');
 
 const app = express();
 
-// environment variables for jwt token
+// environment letiables for jwt token
 require('dotenv').config();
 
 mongoose.Promise = global.Promise;
@@ -79,7 +79,7 @@ app.post('/uploaditem', upload.array('files'), (req, res) => {
   const fileNames = [];
   if (imageIsAvailable) {
     const len = req.files.length;
-    for (var i = 0; i < len; i++) {
+    for (let i = 0; i < len; i++) {
       fileNames.push(req.files[i].filename);
     }
   }

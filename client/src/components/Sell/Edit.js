@@ -7,7 +7,6 @@ class Edit extends Component {
   state = {
     open: false,
   };
-  formdata = []; //get products data from props from Edit button from Products page
   formdata = this.props.item;
 
   onOpenModal = () => {

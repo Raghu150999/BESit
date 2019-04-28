@@ -10,14 +10,8 @@ import Dashboard from "./Dashboard";
 import AddCategory from "./AddCategory";
 
 class User extends Component {
-  
-  render() {
-    
-    //console.log(this.props.user.username);
-    var x = this.props.username==='admin'?(
-      <a className="nav-link user" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false">Dashboard</a>
-    ):(' ');
 
+  render() {
     return (
       <div>
         <HomeNav />
@@ -45,8 +39,8 @@ class User extends Component {
             <div className="tab-content" id="v-pills-tabContent">
               <div className="tab-pane fade " id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab"><InterestedHistory /></div>
               <div className="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab"><Requireitem /></div>
-              <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><ChangePassword history={this.props.history}/></div>
-              <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"> <Profile/> </div>
+              <div className="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab"><ChangePassword history={this.props.history} /></div>
+              <div className="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab"> <Profile /> </div>
               <div className="tab-pane fade" id="v-pills-dashboard" role="tabpanel" aria-labelledby="v-pills-dashboard-tab"><Dashboard /></div>
               <div className="tab-pane fade" id="v-pills-category" role="tabpanel" aria-labelledby="v-pills-category-tab"><AddCategory /></div>
             </div>
