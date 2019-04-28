@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import CommentListReq from './../Comments/CommentListReq';
+import { connect } from 'react-redux';
 
 class Requirement extends Component {
   state =
@@ -79,7 +80,7 @@ class Requirement extends Component {
                               </button>
                             </div>
                             <div className="modal-body interestBody">
-                              <CommentListReq username={this.props.user.username} id={x[index * 2]._id} requirement={x[index * 2]}/>
+                              {this.props.user ? (<CommentListReq username={this.props.user.username} id={x[index * 2]._id} requirement={x[index * 2]}/>) : ('')}
                             </div>
                             <div className="modal-footer">
                               <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -116,7 +117,7 @@ class Requirement extends Component {
                                 </button>
                               </div>
                               <div className="modal-body interestBody">
-                              <CommentListReq id={x[index * 2 + 1]._id} username={this.props.user.username} requirement={x[index * 2 + 1]}/>
+                              {this.props.user ? (<CommentListReq id={x[index * 2 + 1]._id} username={this.props.user.username} requirement={x[index * 2 + 1]}/>) : ('')}
                               </div>
                               <div className="modal-footer">
                                 <button type="button" className="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -136,4 +137,13 @@ class Requirement extends Component {
     return t;
   };
 }
-export default Requirement;
+
+const mapStateToProps = (state) => {
+  return {
+    userLoggedIn: state.userLoggedIn,
+    user: state.user
+  };
+};
+
+
+export default connect(mapStateToProps)(Requirement);

@@ -54,7 +54,7 @@ class ChangePassword extends Component{
 
                         <div className="form-group" id="prof1">
                             <label htmlFor="Confpassword" >Confirm Password</label>
-                            <input type="password" className="form-control" name="ConfPassword" aria-describedby="emailHelp" placeholder="Cofirm password" />
+                            <input type="password" className="form-control" name="ConfPassword" aria-describedby="emailHelp" placeholder="Confirm password" />
                         </div>
 
                         <div className="container-button" id="prof">

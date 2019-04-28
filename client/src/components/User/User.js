@@ -30,7 +30,7 @@ class User extends Component {
                   <a className="nav-link user" id="v-pills-dashboard-tab" data-toggle="pill" href="#v-pills-dashboard" role="tab" aria-controls="v-pills-dashboard" aria-selected="false"><img src="https://img.icons8.com/ultraviolet/40/000000/combo-chart.png" /> Dashboard</a>
                 ) : (' ')
               ) : (' ')}
-              <a className="nav-link active user" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="https://img.icons8.com/color/48/000000/wish-list.png" />  My Wish List</a>
+              <a className="nav-link user" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true"><img src="https://img.icons8.com/color/48/000000/wish-list.png" />  My Wish List</a>
               <a className="nav-link user" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false"><img src="https://img.icons8.com/color/48/000000/order-history.png" />  My Requirements</a>
               <a className="nav-link user" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false"><img src="https://img.icons8.com/office/40/000000/re-enter-pincode.png" />  Change Password</a>
               <a className="nav-link user" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false"><img src="https://img.icons8.com/color/48/000000/settings.png" />  Account Settings</a>
