@@ -1,68 +1,52 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# BESit
+A MERN application for Buy, Exchange, Sell of items. Aimed for a college environment where physical communication is very easy between sellers and buyers. Hence, can be used very effectively. For example, exchange of novels, buying second-hand books from seniors etc.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+### Seller
+- upload items
+  - add description
+  - add single or multiple images for the item
+  - specify expected price
+- manage uploaded items
+- view interested buyers
+- remove items / update status of items
 
-### `npm start`
+### Buyer
+- search for items
+- show interest on items, which are then notified to the seller
+- add requirements (specific items that buyers may require)
 
-Runs the app in the development mode.<br>
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Others
+- commenting on uploaded items
+- notifications for item status update, buyer interest etc
 
-The page will reload if you make edits.<br>
-You will also see any lint errors in the console.
+## Usage
+To run the code on localhost,
 
-### `npm test`
+### Install requirements
+<pre><code> npm install </code></pre>
 
-Launches the test runner in the interactive watch mode.<br>
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### File structure
+The project is divided into two parts. One is the server side code (Nodejs) and other is the client side server (React).
+`client` and `server` folder contain the code for client and server side respectively.
 
-### `npm run build`
+### Start Node server
+From the root directory of the project run.
+<pre><code> node app.js </code></pre>
 
-Builds the app for production to the `build` folder.<br>
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### Start React server
+Now, move to the `client` directory and run.
+<pre><code> npm start </code></pre>
+This initiates a script to run the React server on the `localhost:3000`.
 
-The build is minified and the filenames include the hashes.<br>
-Your app is ready to be deployed!
+Open browser and go to `http://localhost:3000` to view the application.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technologies used
+- MongoDB for database management 
+- Express and Nodejs for server side
+- React for client side
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+## Visit
+* [YouTube Demonstration](https://www.youtube.com/watch?v=Q8lC6du36Cw)
+* [Website link](https://floating-gorge-21434.herokuapp.com/)
