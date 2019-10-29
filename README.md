@@ -31,6 +31,17 @@ To run the code on localhost,
 The project is divided into two parts. One is the server side code (Nodejs) and other is the client side server (React).
 `client` and `server` folder contain the code for client and server side respectively.
 
+### .env file
+Create a .env file in the root directory with,
+```
+JWT_SECRET="your_secret_key"
+MONGODB_URI="your_mongodb_localhost_uri"
+```
+``your_secret_key`` can be string. This is used create to create secure JWT tokens
+``your_mongodb_localhost_uri`` will be your mongo localhost URI.
+Usually it is like this:
+``mongodb://localhost/<your_db_name>``
+
 ### Start Node server
 From the root directory of the project run.
 <pre><code> node app.js </code></pre>
